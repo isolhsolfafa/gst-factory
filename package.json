@@ -5,6 +5,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "cp partner.html internal.html pie_defect.html build/ && cp build/index.html build/factory.html",
+    "test": "react-scripts test",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
