@@ -4,21 +4,21 @@
   command = "npm run build"
 
 [[redirects]]
-  from = "/"
-  to = "/factory.html"
-  status = 200
+from = "/"
+to = "/index.html"    # ✅ 메뉴탭 포함된 index.html로 변경
+status = 200
 
 [[redirects]]
-  from = "/factory.html"
-  to = "/factory.html"
-  status = 200
+from = "/factory.html"
+to = "/factory.html"
+status = 200
 
 [[redirects]]
-  from = "/partner.html"
-  to = "/partner.html"
-  status = 200
+from = "/partner.html"
+to = "/partner.html"
+status = 200
 
 [[redirects]]
-  from = "/internal.html"
-  to = "/internal.html"
-  status = 200
+from = "/internal.html"
+to = "/internal.html"
+status = 200
