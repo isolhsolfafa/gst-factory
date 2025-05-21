@@ -1,11 +1,16 @@
 [build]
   base = "/"
-  publish = "."
+  publish = "build"
   command = "npm run build"
 
 [[redirects]]
   from = "/"
-  to = "/index.html"
+  to = "/factory.html"
+  status = 200
+
+[[redirects]]
+  from = "/factory.html"
+  to = "/factory.html"
   status = 200
 
 [[redirects]]
