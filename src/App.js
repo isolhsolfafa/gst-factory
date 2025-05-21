@@ -98,7 +98,7 @@ const Dashboard = () => {
 const App = () => (
   <Router>
     <Routes>
-      <Route path="/factory" element={<Dashboard />} />
+      <Route path="/" element={<Dashboard />} />
     </Routes>
   </Router>
 );
