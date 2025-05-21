@@ -1,0 +1,5 @@
+
+[[redirects]]
+  from = "/*"
+  to = "/factory_dashboard/factory.html"
+  status = 200
