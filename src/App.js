@@ -99,7 +99,6 @@ const App = () => (
   <Router>
     <Routes>
       <Route path="/factory" element={<Dashboard />} />
-      <Route path="*" element={<div></div>} /> {/* 빈 컴포넌트로 대체 */}
     </Routes>
   </Router>
 );
