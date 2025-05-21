@@ -4,8 +4,8 @@
   command = "npm run build"
 
 [[redirects]]
-  from = "/factory/*"
-  to = "https://gst-factory.netlify.app/:splat"
+  from = "/factory"
+  to = "/factory/index.html"
   status = 200
 
 [[redirects]]
