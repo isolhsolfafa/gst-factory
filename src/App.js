@@ -96,18 +96,16 @@ const FactoryDashboard = () => {
   );
 };
 
-// 협력사 대시보드 컴포넌트 (정적 HTML 대체)
-const PartnerDashboard = () => {
-  return (
-    <div>
-      <h2>🤝 협력사 대시보드</h2>
-      <p>여기에 협력사 대시보드 콘텐츠를 추가하세요.</p>
-      {/* partner.html 내용을 React 컴포넌트로 변환 */}
-    </div>
-  );
-};
+// 협력사 대시보드 컴포넌트 (iframe으로 partner.html 연동)
+const PartnerDashboard = () => (
+  <iframe
+    src="/partner.html"
+    title="Partner Dashboard"
+    style={{ width: '100%', height: '95vh', border: 'none' }}
+  />
+);
 
-// 내부 대시보드 컴포넌트 (비밀번호 보호 포함)
+// 내부 대시보드 컴포넌트 (비밀번호 보호 포함, iframe으로 internal.html 연동)
 const InternalDashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
@@ -122,22 +120,36 @@ const InternalDashboard = () => {
     }
   }, [navigate]);
 
-  if (!isAuthenticated) {
-    return null;
-  }
+  if (!isAuthenticated) return null;
 
   return (
-    <div>
-      <h2>🔒 내부 대시보드</h2>
-      <p>여기에 내부 대시보드 콘텐츠를 추가하세요.</p>
-      {/* internal.html 내용을 React 컴포넌트로 변환 */}
-    </div>
+    <iframe
+      src="/internal.html"
+      title="Internal Dashboard"
+      style={{ width: '100%', height: '95vh', border: 'none' }}
+    />
   );
 };
 
 // 메뉴탭과 라우팅을 포함한 메인 App 컴포넌트
 const App = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    const script1 = document.createElement('script');
+    script1.async = true;
+    script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-F7HTZVLPLF';
+    document.head.appendChild(script1);
+
+    const script2 = document.createElement('script');
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-F7HTZVLPLF');
+    `;
+    document.head.appendChild(script2);
+  }, []);
 
   const getButtonStyle = (path) => ({
     width: '100%',
