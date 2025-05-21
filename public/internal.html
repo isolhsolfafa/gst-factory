@@ -1,0 +1,562 @@
+
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>PDA Internal Dashboard</title>
+      <style>
+        body { font-family: 'NanumGothic', sans-serif; font-size: 12px; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        details { margin-bottom: 10px; }
+        summary { cursor: pointer; font-weight: bold; color: #333; }
+        details[open] summary { color: #0056b3; }
+        details > *:not(summary) { display: block; margin-left: 20px; }
+        ul { margin: 5px 0; padding-left: 20px; }
+        p { margin: 5px 0; }
+        hr { margin: 20px 0; }
+        a { color: #0056b3; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+      </style>
+    </head>
+    <body><h1>PDA 내부 작업 모니터링 - 2025년 18주차</h1>
+<h3>📌 [알림] PDA 내부 작업 NaN 및 Overtime 결과 (총 31건 처리)</h3>
+<p>📅 실행 시간: 2025-04-29 09:08:06 (KST)</p>
+<h4>내부 작업 요약 테이블</h4>
+<table border="1" style="border-collapse: collapse; width: 80%;"><tr style="background-color: #f2f2f2;"><th>Order</th><th>모델명</th><th>가압 NaN</th><th>가압 OT</th><th>가동 NaN</th><th>가동 OT</th><th>마무리 NaN</th><th>마무리 OT</th></tr>
+<h4>NaN 발생 비율 그래프</h4>
+<p>작업 수 대비 NaN 비율: <a href="https://drive.google.com/uc?export=view&id=1UcZ4A_UxnomvC0Wt9SyDuVwuORtWHLuo">그래프 보기</a></p><br>
+<tr><td>250411/5570/5543</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250411/5570/5544</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250411/5573/5545</td><td>GAIA-I DUAL</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>250415/5575/5558</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>250415/5575/5559</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>250409/5578/5526</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250409/5588/5529</td><td>GAIA-II</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>250409/5588/5530</td><td>GAIA-II</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250410/5590/3636</td><td>DRAGON DUAL</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250410/5590/3637</td><td>DRAGON DUAL</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250409/5602/0557</td><td>GAIA-P DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>250411/5620/5538</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>250411/5620/5539</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>250415/5558/0106</td><td>SWS-I</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250414/5572/5552</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250411/5614/0558</td><td>GAIA-P DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250411/5620/5540</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250411/5620/5541</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250411/5620/5542</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250313/5504/0536</td><td>GAIA-P</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250415/5545/5556</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250415/5548/5557</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">1</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250416/5498/5560</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250416/5498/5561</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250307/5491/0517</td><td>GAIA-P</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250417/5534/5571</td><td>GAIA-I</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250417/5534/5572</td><td>GAIA-I</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250416/5549/5562</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250411/5573/5546</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">1</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250414/5577/5553</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+<tr><td>250414/5577/5554</td><td>GAIA-I DUAL</td><td>0</td><td>0</td><td>0</td><td>0</td><td style="color: red; font-weight: bold;">2</td><td>0</td></tr>
+</table><br>
+<details><summary><strong>📍 Order: 250411/5570/5543, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1G7aAho9kB8MQzM03HEdfhfEGwA5uQ58dj5lmirsrKdY/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250411/5570/5544, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1pBu_hO1pJo80VGJdqzCjVoY6MTmr-k66mtw63REEu-E/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250411/5573/5545, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1IHPB9cJEEHMH0ctL_rCUWqAMGQ_uOYYLEilgBvl6Ts4/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 50.00%)</span><br>
+   - Chamber<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250415/5575/5558, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1YbtS3RPx2DPo1kv379MJd-2G2enBLmv_a6kgbK3ctgI/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250415/5575/5559, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1vGRIVlARVxqWO4v439fPresftYyg8zMCeJwUI4-uYQw/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250409/5578/5526, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/10Fge4-uWxuvUyAZG_6cT7BH6B29C4DzbkWyAw6OtXJA/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250409/5588/5529, 모델명: GAIA-II</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/17xtk6n57ODYOWCPDsn75Eg7gSEySMrMvkSRQFC7Kxjw/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250409/5588/5530, 모델명: GAIA-II</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/14oJmD24oarbZRqUecX2owtzig9C1szIDZ6bYRK4KPrk/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250410/5590/3636, 모델명: DRAGON DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1jTD3OM2FsUnvWD1L6qvVrd7hZYQv0onwsU73RcqF3OQ/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 100.00%)</span><br>
+   - I/O 체크, 가동 검사, 전장 마무리<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250410/5590/3637, 모델명: DRAGON DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1rusn6ys7GSOtdvxUs_xVjax1sPcahEz27g-sagAh0bs/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 50.00%)</span><br>
+   - LNG/Util<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250409/5602/0557, 모델명: GAIA-P DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1hYRCcVoPY7kLXlv7wzEoYPenGMeaIgbRQoK3gswHDGI/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250411/5620/5538, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/16otCbm628cJihfequwrENhDMdHlE7tLz4MyAP7lV0UY/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250411/5620/5539, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1OUBF0JoW2dq6i15zIoNkEnn0-Mkqh5lyIF2h7hYsn0U/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250415/5558/0106, 모델명: SWS-I</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1KssQJCcb_5Akg5uL9_xQDVXXlKgpGYDrgytbjHkxO54/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 50.00%)</span><br>
+   - LNG/Util<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250414/5572/5552, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1dNnDkKpMUEGxAY37gZEaSBaz_L80_x73VowQkFBhgtg/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250411/5614/0558, 모델명: GAIA-P DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1LjJfEr7qabAfYWg8PF7q7LJijRk0CHqlqbIm2wEuX2U/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250411/5620/5540, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1ju6_YP7v-508KYD_GExBGmo38LKFiAyMjAs6TOrTMHg/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250411/5620/5541, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1K2BZC0e314fBcqiuG2Qh9Pj91vmL3UDblnL4xSI_ty8/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250411/5620/5542, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1_ApaHd9SgSyrU8OWvzs8fmpSssTJHWz0ITsl67A4y9M/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250313/5504/0536, 모델명: GAIA-P</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/192qm4A2qSzziLI9AtLQ6I2P6f7_Vb_i3pnl7nZmCLkg/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250415/5545/5556, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1TvTQFDEPPODCsQmC3zOD483ErT0UPmO2gsixvsL21Ms/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250415/5548/5557, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1wayhXna3OiTcXhp3jcBPWSIaPwa9tJ2574FkbQXmB6s/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span style="color: red;">⏳ 오버타임: 1 건 (비율: 100.00%)</span><br>
+   - I/O 체크, 가동 검사, 전장 마무리 5h 23m<br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250416/5498/5560, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1oFavzczXmnXJODeA_gS1DL25uA8QO-bmXaiIuu6f2Es/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 100.00%)</span><br>
+   - I/O 체크, 가동 검사, 전장 마무리<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250416/5498/5561, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1iFpaA7dj2NFbM-6HIAUb_vbgHC2CiTaCQlpPqzwpYMg/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 100.00%)</span><br>
+   - I/O 체크, 가동 검사, 전장 마무리<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250307/5491/0517, 모델명: GAIA-P</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1P8mImTzbZPID7qRQbirA3HKbbQ_-J7VpIdKH4AZi2Zw/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250417/5534/5571, 모델명: GAIA-I</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1bEm2r7ElfdYYEU4004Tf8a0rVPlXdpIFrFCHhG-J2co/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 100.00%)</span><br>
+   - I/O 체크, 가동 검사, 전장 마무리<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250417/5534/5572, 모델명: GAIA-I</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1eSlhYsJ7Lhd_8kZIXhoYF1FqFMJe0oTw5MDb77SIeKM/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 100.00%)</span><br>
+   - I/O 체크, 가동 검사, 전장 마무리<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250416/5549/5562, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1gQ-nSSZhnMwnMpGkf6PJpSYww7Dw9Pd3K6VYEk78UgM/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 100.00%)</span><br>
+   - I/O 체크, 가동 검사, 전장 마무리<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250411/5573/5546, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1Ep1w-MBN4SyhzOl2R-LTIOM2Sux2G6mi4MJZoo2hiBI/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 100.00%)</span><br>
+   - I/O 체크, 가동 검사, 전장 마무리<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250414/5577/5553, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1v5s5Fv5tR0LOu1_czL3rOYbOm-p8KQOcsF1Zya-NVzI/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr>
+<details><summary><strong>📍 Order: 250414/5577/5554, 모델명: GAIA-I DUAL</strong></summary>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1zw6PFU74AA4-KgE4lke7eJtGiydTzATgKsBx7qrvauo/edit">바로가기</a></p>
+<p><b>🔹 가압 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 가동 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 2 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>   - 캐비넷 커버 장착 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr></body></html>
+    
