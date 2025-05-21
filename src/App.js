@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import WeeklyChart from './components/WeeklyChart';
 import MonthlyChart from './components/MonthlyChart';
@@ -8,7 +9,6 @@ import DefectMetrics from './components/DefectMetrics';
 import KpiMetrics from './components/KpiMetrics';
 import './App.css';
 
-// 현재 시간을 포맷팅하는 함수
 const formatDateTime = (date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -19,15 +19,14 @@ const formatDateTime = (date) => {
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} (KST)`;
 };
 
-// 현재 월을 YYYY-MM 형식으로 포맷팅하는 함수
 const getCurrentMonth = () => {
   const date = new Date();
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // 1~12, 두 자리로 포맷
+  const month = String(date.getMonth() + 1).padStart(2, '0');
   return `${year}-${month}`;
 };
 
-const App = () => {
+const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({
     weekly_production: [],
     monthly_production: [],
@@ -40,12 +39,10 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 동적으로 월 설정
-        const currentMonth = getCurrentMonth(); // 예: "2025-05"
+        const currentMonth = getCurrentMonth();
         const response = await axios.get(`https://pda-api-extract.up.railway.app/api/factory`);
         console.log("API Response (/api/factory):", response.data);
 
-        // /api/info 호출
         const infoResponse = await axios.get(`https://pda-api-extract.up.railway.app/api/info?mode=monthly&month=${currentMonth}`);
         console.log("API Response (/api/info):", infoResponse.data);
 
@@ -97,5 +94,14 @@ const App = () => {
     </div>
   );
 };
+
+const App = () => (
+  <Router>
+    <Routes>
+      <Route path="/factory" element={<Dashboard />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  </Router>
+);
 
 export default App;
