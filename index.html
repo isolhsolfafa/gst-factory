@@ -24,11 +24,11 @@
 </head>
 <body>
   <div class="tab">
-    <button class="tablinks active" onclick="openTab('/factory', this)">🏭 공장 대시보드</button>
+    <button class="tablinks active" onclick="openTab('/', this)">🏭 공장 대시보드</button>
     <button class="tablinks" onclick="openTab('partner.html', this)">🤝 협력사 대시보드</button>
     <button class="tablinks" onclick="openProtectedTab('internal.html', this)">🔒 내부 대시보드</button>
   </div>
-  <iframe id="dashboardFrame" src="/factory"></iframe>
+  <iframe id="dashboardFrame" src="/"></iframe>
   <script>
     function openTab(page, btn) {
       document.getElementById("dashboardFrame").src = page;
