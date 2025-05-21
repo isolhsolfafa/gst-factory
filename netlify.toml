@@ -1,11 +1,21 @@
 [build]
   base = "/"
-  publish = "."
+  publish = "build"
   command = "npm run build"
 
 [[redirects]]
-  from = "/factory/*"
-  to = "https://gst-factory.netlify.app/:splat"
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partner.html"
+  to = "/partner.html"
+  status = 200
+
+[[redirects]]
+  from = "/internal.html"
+  to = "/internal.html"
   status = 200
 
 [[redirects]]
