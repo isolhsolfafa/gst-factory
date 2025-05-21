@@ -1,5 +1,9 @@
+[build]
+  base = "/"
+  publish = "build"
+  command = "npm run build"
 
 [[redirects]]
   from = "/*"
-  to = "/factory_dashboard/factory.html"
+  to = "/index.html"
   status = 200
