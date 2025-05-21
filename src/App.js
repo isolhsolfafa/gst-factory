@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
 import WeeklyChart from './components/WeeklyChart';
 import MonthlyChart from './components/MonthlyChart';
@@ -99,7 +99,7 @@ const App = () => (
   <Router>
     <Routes>
       <Route path="/factory" element={<Dashboard />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<div></div>} /> {/* 빈 컴포넌트로 대체 */}
     </Routes>
   </Router>
 );
