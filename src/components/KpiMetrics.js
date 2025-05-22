@@ -2,7 +2,7 @@ import React from 'react';
 
 const KpiMetrics = () => {
   const kpiData = [
-    { emoji: "🥇", label: "BAT", tooltip: "상대지수(점수): 100"<br>"불량건수: 6건"<br>"누락비율: 0.6%" },
+    { emoji: "🥇", label: "BAT", tooltip: "KPI 지수: 3.6" },
     { emoji: "🥈", label: "FNI", tooltip: "KPI 지수: 3.6" },
     { emoji: "🥉", label: "TMS(m)", tooltip: "KPI 지수: 6.9" },
     { emoji: "🥇", label: "C&A", tooltip: "KPI 지수: 0.0" },
