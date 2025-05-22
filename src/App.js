@@ -26,6 +26,25 @@ const getCurrentMonth = () => {
   return `${year}-${month}`;
 };
 
+const getCurrentWeek = () => {
+  const now = new Date();
+  const [year, week] = [now.getFullYear(), getWeekNumber(now)];
+  return `${year}년 ${week}주차`;
+};
+
+const getWeekNumber = (date) => {
+  const target = new Date(date.valueOf());
+  const dayNr = (date.getDay() + 6) % 7;
+  target.setDate(target.getDate() - dayNr + 3);
+  const firstThursday = target.valueOf();
+  target.setMonth(0, 1);
+  if (target.getDay() !== 4) {
+    target.setMonth(0, 1 + ((4 - target.getDay()) + 7) % 7);
+  }
+  const weekNumber = 1 + Math.ceil((firstThursday - target) / 604800000);
+  return weekNumber;
+};
+
 // 공장 대시보드 컴포넌트
 const FactoryDashboard = () => {
   const [dashboardData, setDashboardData] = useState({
@@ -69,7 +88,7 @@ const FactoryDashboard = () => {
     <div>
       <div className="header">
         <img src="https://rainbow-haupia-cd8290.netlify.app/GST_banner.jpg" alt="Build up GST Banner" />
-        <h1>제조기술1팀 공장 대시보드 - 2025년 20주차</h1>
+        <h1>제조기술1팀 공장 대시보드 - {getCurrentWeek()}</h1>
         <p>실행 시간: {currentTime}</p>
       </div>
       {loading ? (
