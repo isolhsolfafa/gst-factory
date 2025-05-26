@@ -35,13 +35,30 @@ body {
     margin: 30px auto;
     max-width: 1300px;
   }
+
+  .defect-metrics-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+  
+  .defect-metrics-section {
+    max-width: 1200px;   /* 원하는 너비로 조절 가능 */
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
   .card-container {
     display: grid;
-    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 반응형으로 변경 */
     gap: 20px;
     max-height: 500px;
     overflow-y: auto;
     padding-right: 10px;
+    max-width: 100%; /* 컨테이너 최대 너비 설정 */
   }
   .summary-card {
     background: white;
@@ -52,6 +69,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-width: 200px; /* 최소 너비 설정 */
+    max-width: 300px; /* 최대 너비 설정 */
   }
   .summary-card h3 {
     margin: 0 0 10px;
@@ -124,49 +143,18 @@ body {
   .slide-indicators span.active {
     background: #007bff;
   }
-  .kpi-card {
-    position: relative;
-    width: 140px;
-    height: 140px;
+  .kpi-metrics-wrapper {
+    width: 100%;
+    margin: 20px auto;
+  }
+  
+  .kpi-metrics-section {
+    max-width: 1200px;
+    margin: 0 auto;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
-    padding-top: 30px;
-    font-family: 'NanumGothic', sans-serif;
-    transition: transform 0.2s ease-in-out;
-    z-index: 5;
-  }
-  .kpi-card:hover {
-    transform: scale(1.05);
-  }
-  .kpi-card .emoji {
-    font-size: 40px;
-  }
-  .kpi-card .label {
-    font-size: 16px;
-    margin-top: 8px;
-  }
-  .kpi-card .tooltip {
-    visibility: hidden;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 10px;
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    font-size: 13px;
-    white-space: nowrap;
-  }
-  .kpi-card:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
   @media (max-width: 768px) {
     .top-grid, .bottom-grid {
