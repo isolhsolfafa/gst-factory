@@ -35,7 +35,7 @@ const MonthlyChart = ({ data }) => {
         ticks: { font: { size: 12 }, stepSize: 1 }
       },
       x: {
-        title: { display: true, text: '모델', font: { size: 14 } },
+        title: { display: false, text: '모델', font: { size: 14 } },
         ticks: { font: { size: 12 } }
       }
     },
