@@ -59,18 +59,21 @@ const FactoryDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const currentMonth = getCurrentMonth();
-        const response = await axios.get(`https://pda-api-extract.up.railway.app/api/factory`);
-        console.log("API Response (/api/factory):", response.data);
+        // ✅ 주간 생산지표: public 폴더의 weekly_production.json에서 불러오기
+        const weeklyRes = await fetch("/weekly_production.json");
+        const weeklyProduction = await weeklyRes.json();
 
-        const infoResponse = await axios.get(`https://pda-api-extract.up.railway.app/api/info?mode=monthly&month=${currentMonth}`);
-        console.log("API Response (/api/info):", infoResponse.data);
+        // 월간 생산지표 및 info 등 기존 API 그대로 사용
+        const currentMonth = getCurrentMonth();
+        const infoResponse = await axios.get(
+          `https://pda-api-extract.up.railway.app/api/info?mode=monthly&month=${currentMonth}`
+        );
 
         setDashboardData({
-          weekly_production: response.data.weekly_production || [],
-          monthly_production: response.data.monthly_production || [],
+          weekly_production: weeklyProduction, // 여기만 수정!
+          monthly_production: [],
           summary_table: infoResponse.data.summary_table || [],
-          weekly_production_message: response.data.weekly_production_message || ''
+          weekly_production_message: ''
         });
         setLoading(false);
       } catch (err) {
