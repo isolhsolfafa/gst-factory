@@ -59,25 +59,22 @@ const FactoryDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // ✅ 주간 생산지표: public 폴더의 weekly_production.json에서 불러오기
-        const weeklyRes = await fetch("/weekly_production.json");
-        const weeklyProduction = await weeklyRes.json();
-
-        // 월간 생산지표 및 info 등 기존 API 그대로 사용
         const currentMonth = getCurrentMonth();
-        const infoResponse = await axios.get(
-          `https://pda-api-extract.up.railway.app/api/info?mode=monthly&month=${currentMonth}`
-        );
+
+        // 1. 주간 생산 정적 파일
+        const weeklyResponse = await axios.get('/weekly_production.json');
+        // 2. 월간 생산(및 기타) API
+        const response = await axios.get(`https://pda-api-extract.up.railway.app/api/factory`);
+        const infoResponse = await axios.get(`https://pda-api-extract.up.railway.app/api/info?mode=monthly&month=${currentMonth}`);
 
         setDashboardData({
-          weekly_production: weeklyProduction, // 여기만 수정!
-          monthly_production: [],
+          weekly_production: weeklyResponse.data || [],
+          monthly_production: response.data.monthly_production || [],
           summary_table: infoResponse.data.summary_table || [],
-          weekly_production_message: ''
+          weekly_production_message: response.data.weekly_production_message || ''
         });
         setLoading(false);
       } catch (err) {
-        console.error("API Error:", err);
         setError('데이터를 불러오는 데 실패했습니다.');
         setLoading(false);
       }
