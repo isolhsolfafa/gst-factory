@@ -1,0 +1,10 @@
+[
+  { "model": "GAIA-P", "count": 2, "week": "2025-05-29" },
+  { "model": "GAIA-P DUAL", "count": 0, "week": "2025-05-29" },
+  { "model": "GAIA-II", "count": 0, "week": "2025-05-29" },
+  { "model": "GAIA-I", "count": 4, "week": "2025-05-29" },
+  { "model": "GAIA-I DUAL", "count": 29, "week": "2025-05-29" },
+  { "model": "SOOPIA-C DUAL", "count": 0, "week": "2025-05-29" },
+  { "model": "DRAGON", "count": 2, "week": "2025-05-29" },
+  { "model": "DRAGON DUAL", "count": 3, "week": "2025-05-29" }
+]
