@@ -37,7 +37,7 @@ const WeeklyChart = ({ data }) => {
     },
     scales: {
       y: {
-        title: { display: true, text: '대수', font: { size: 14 } },
+        title: { display: false, text: '대수', font: { size: 14 } },
         ticks: { stepSize: 1, precision: 0 }
       },
       x: {
