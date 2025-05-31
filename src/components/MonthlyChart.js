@@ -31,7 +31,7 @@ const MonthlyChart = ({ data }) => {
     },
     scales: {
       y: {
-        title: { display: true, text: '대수', font: { size: 14 } },
+        title: { display: false, text: '대수', font: { size: 14 } },
         ticks: { font: { size: 12 }, stepSize: 1 }
       },
       x: {
