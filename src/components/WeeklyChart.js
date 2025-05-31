@@ -41,7 +41,7 @@ const WeeklyChart = ({ data }) => {
         ticks: { stepSize: 1, precision: 0 }
       },
       x: {
-        title: { display: true, text: '모델', font: { size: 14 } },
+        title: { display: false, text: '모델', font: { size: 14 } },
         ticks: { maxRotation: 45, minRotation: 30 }
       }
     }
