@@ -1,7 +1,27 @@
 [
-  { "model": "GAIA-P", "count": 2, "week": "2025-05-29" },
-  { "model": "GAIA-I", "count": 4, "week": "2025-05-29" },
-  { "model": "GAIA-I DUAL", "count": 29, "week": "2025-05-29" },
-  { "model": "DRAGON", "count": 2, "week": "2025-05-29" },
-  { "model": "DRAGON DUAL", "count": 3, "week": "2025-05-29" }
+  {
+    "model": "GAIA-I DUAL",
+    "count": 16,
+    "week": "23W"
+  },
+  {
+    "model": "GAIA-P",
+    "count": 1,
+    "week": "23W"
+  },
+  {
+    "model": "GAIA-II",
+    "count": 1,
+    "week": "23W"
+  },
+  {
+    "model": "GAIA-I",
+    "count": 5,
+    "week": "23W"
+  },
+  {
+    "model": "DRAGON DUAL",
+    "count": 2,
+    "week": "23W"
+  }
 ]
