@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="180"> <!-- 3분마다 새로고침 -->
+  <title>공장 대시보드 (Factory Monitor)</title>
+  <style>
+    body { margin: 0; font-family: sans-serif; background: #f8f9fa; }
+    .slide-container { width: 100%; height: 100vh; overflow: hidden; position: relative; }
+    .slide { width: 100%; height: 100vh; position: absolute; top: 0; left: 100%; opacity: 0; transition: all 1s ease-in-out; }
+    .slide.active { left: 0; opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="slide active" id="slide1">
+      <iframe src="/weekly_chart.html" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+    <div class="slide" id="slide2">
+      <iframe src="/monthly_chart.html" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+    <div class="slide" id="slide3">
+      <iframe src="/summary_table.html" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+    <div class="slide" id="slide4">
+      <iframe src="/defect_cards.html" style="width:100%; height:100%; border:none;"></iframe>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    setInterval(() => {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }, 15000); // 15초마다 슬라이드 전환
+  </script>
+</body>
+</html>
