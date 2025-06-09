@@ -27,9 +27,11 @@
       height: 95vh;
       border: none;
     }
+    #dashboardContainer { display: none; }
+    #authContainer { text-align: center; padding: 50px; }
   </style>
 
-  <!-- ✅ Google Analytics (선택사항) -->
+  <!-- Google Analytics (선택사항) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7HTZVLPLF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -38,20 +40,41 @@
     gtag('config', 'G-F7HTZVLPLF');
   </script>
 </head>
-<body>
 
-  <!-- ✅ 탭 메뉴 -->
-  <div class="tab">
-    <button class="tablinks active" onclick="openTab('factory.html', this)">🏭 공장 대시보드</button>
-    <button class="tablinks" onclick="openTab('partner.html', this)">🤝 협력사 대시보드</button>
-    <button class="tablinks" onclick="openProtectedTab('internal.html', this)">🔒 내부 대시보드</button>
+<body onload="promptPassword()">
+
+  <div id="authContainer">
+    <h2>🔐 인증이 필요합니다</h2>
+    <p>비밀번호를 입력해주세요.</p>
   </div>
 
-  <!-- ✅ 최초 iframe에 factory.html 로딩 -->
-  <iframe id="dashboardFrame" src="factory.html"></iframe>
+  <div id="dashboardContainer">
+    <div class="tab">
+      <button class="tablinks active" onclick="openTab('factory.html', this)">🏭 공장 대시보드</button>
+      <button class="tablinks" onclick="openTab('partner.html', this)">🤝 협력사 대시보드</button>
+      <button class="tablinks" onclick="openProtectedTab('internal.html', this)">🔒 내부 대시보드</button>
+    </div>
+    <iframe id="dashboardFrame" src="factory.html"></iframe>
+  </div>
 
-  <!-- ✅ 탭 전환 스크립트 -->
   <script>
+    let isAuthenticated = false;
+
+    // 1. **초기 진입 비밀번호(2025)**
+    function promptPassword() {
+      const password = prompt("🔐 페이지 접근을 위한 비밀번호를 입력하세요:");
+      if (password === "2025") {
+        isAuthenticated = true;
+        document.getElementById("authContainer").style.display = "none";
+        document.getElementById("dashboardContainer").style.display = "block";
+      } else {
+        alert("❌ 비밀번호가 틀렸습니다. 접근이 제한됩니다.");
+        document.getElementById("authContainer").innerHTML = "<h2>접근이 제한되었습니다</h2><p>올바른 비밀번호를 입력해주세요.</p>";
+        setTimeout(promptPassword, 1000);
+      }
+    }
+
+    // 2. 탭 전환
     function openTab(page, btn) {
       document.getElementById("dashboardFrame").src = page;
       const tabs = document.getElementsByClassName("tablinks");
@@ -61,7 +84,12 @@
       btn.classList.add("active");
     }
 
+    // 3. 내부 대시보드만 별도 비번(0979)
     function openProtectedTab(page, btn) {
+      if (!isAuthenticated) {
+        promptPassword();
+        return;
+      }
       const password = prompt("🔐 내부 대시보드 접근을 위한 비밀번호를 입력하세요:");
       if (password === "0979") {
         openTab(page, btn);
