@@ -79,6 +79,10 @@ const FactoryDashboard = () => {
         const token = await getAccessTokenSilently();
         const headers = { Authorization: `Bearer ${token}` };
 
+        // 여기에 추가!
+        console.log("토큰 값:", token);
+        console.log("보낼 헤더:", headers);
+        
         const response = await axios.get(`https://pda-api-extract.up.railway.app/api/factory`, { headers });
         const infoResponse = await axios.get(`https://pda-api-extract.up.railway.app/api/info?mode=monthly&month=${currentMonth}`, { headers });
 
