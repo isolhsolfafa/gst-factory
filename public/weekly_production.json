@@ -6,16 +6,16 @@
   },
   {
     "model": "GAIA-I",
-    "count": 13,
+    "count": 15,
+    "week": "24W"
+  },
+  {
+    "model": "GAIA-II",
+    "count": 6,
     "week": "24W"
   },
   {
     "model": "GAIA-ADVANCE",
-    "count": 1,
-    "week": "24W"
-  },
-  {
-    "model": "DRAGON DUAL",
     "count": 1,
     "week": "24W"
   },
@@ -25,8 +25,8 @@
     "week": "24W"
   },
   {
-    "model": "GAIA-II",
-    "count": 6,
+    "model": "DRAGON DUAL",
+    "count": 1,
     "week": "24W"
   },
   {
