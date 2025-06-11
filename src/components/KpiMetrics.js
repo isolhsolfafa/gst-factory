@@ -5,7 +5,7 @@ const KpiMetrics = () => {
     <div className="kpi-metrics-wrapper">
       <div className="kpi-metrics-section">
         <iframe
-          src="https://isolhsolfafa.github.io/gst-factory/partner_kpi.html
+          src="https://isolhsolfafa.github.io/gst-factory/partner_kpi.html"
           style={{ width: '100%', height: '670px', border: 'none' }}
           onError={(e) =>
             (e.target.parentNode.innerHTML =
