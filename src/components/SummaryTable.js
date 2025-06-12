@@ -1,21 +1,17 @@
+// 파일 경로: src/components/SummaryTable.js
+
 import React, { useState, useEffect } from 'react';
+import ProgressBar from './ProgressBar'; // ProgressBar 컴포넌트 가져오기
+
+// --- Helper Functions (컴포넌트 외부에 위치시켜 재사용성 증대) ---
 
 // 한국 공휴일 리스트 (2025년 기준 예시)
 const holidays = [
-  new Date('2025-01-01'),
-  new Date('2025-03-01'),
-  new Date('2025-05-05'),
-  new Date('2025-05-06'),
-  new Date('2025-05-15'),
-  new Date('2025-06-06'),
-  new Date('2025-08-15'),
-  new Date('2025-10-03'),
-  new Date('2025-10-05'),
-  new Date('2025-10-06'),
-  new Date('2025-10-07'),
-  new Date('2025-10-08'),
-  new Date('2025-10-09'),
-  new Date('2025-12-25'),
+  new Date('2025-01-01'), new Date('2025-01-28'), new Date('2025-01-29'),
+  new Date('2025-01-30'), new Date('2025-03-01'), new Date('2025-05-05'),
+  new Date('2025-05-06'), new Date('2025-05-29'), new Date('2025-06-06'),
+  new Date('2025-08-15'), new Date('2025-10-03'), new Date('2025-10-06'),
+  new Date('2025-10-07'), new Date('2025-10-08'), new Date('2025-12-25'),
 ];
 
 // 공휴일 체크 함수
@@ -33,7 +29,6 @@ const countWorkingDays = (start, end) => {
   const curDate = new Date(start);
   while (curDate <= end) {
     const day = curDate.getDay();
-    // 일요일(0), 토요일(6) 제외 + 공휴일 제외
     if (day !== 0 && day !== 6 && !isHoliday(curDate)) {
       count++;
     }
@@ -50,45 +45,37 @@ const calculateProgress = (manufacturingStartStr, testStartStr) => {
   const testStart = new Date(testStartStr);
   const today = new Date();
 
-  if (isNaN(manufacturingStart) || isNaN(testStart) || manufacturingStart > testStart) {
-    console.warn("Invalid dates detected:", { manufacturingStartStr, testStartStr });
+  if (isNaN(manufacturingStart.getTime()) || isNaN(testStart.getTime()) || manufacturingStart > testStart) {
     return 0;
   }
 
+  const todayClamped = today > testStart ? testStart : today;
   const totalDays = countWorkingDays(manufacturingStart, testStart);
-  const elapsedDays = countWorkingDays(manufacturingStart, today > testStart ? testStart : today);
+  const elapsedDays = countWorkingDays(manufacturingStart, todayClamped);
 
-  if (totalDays === 0) return 0;
+  if (totalDays === 0) return 100;
 
   const progress = (elapsedDays / totalDays) * 100;
-  return progress > 100 ? 100 : progress;
+  return Math.min(progress, 100);
 };
 
+// --- SummaryTable Component ---
+
 const SummaryTable = ({ data = { summary_table: [], weekly_production: [], weekly_production_message: '' } }) => {
-  console.log("SummaryTable data:", data); // 디버깅용 로그 추가
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // data가 undefined이거나 summary_table이 없는 경우를 처리
-  const summaryTableData = data && data.summary_table
-    ? [...data.summary_table].sort((a, b) => {
-        // title_number 앞 6자리 YYMMDD 추출
-        const dateStrA = a.title_number ? a.title_number.split('/')[0] : '';
-        const dateStrB = b.title_number ? b.title_number.split('/')[0] : '';
-
-        // YYMMDD -> Date 객체 생성 (2000년대 기준으로 가정)
-        const dateA = new Date(`20${dateStrA.slice(0,2)}-${dateStrA.slice(2,4)}-${dateStrA.slice(4,6)}`);
-        const dateB = new Date(`20${dateStrB.slice(0,2)}-${dateStrB.slice(2,4)}-${dateStrB.slice(4,6)}`);
-
-        return dateA - dateB;
-      })
+  const summaryTableData = data?.summary_table
+    ? [...data.summary_table].sort((a, b) => (a.title_number || '').localeCompare(b.title_number || ''))
     : [];
-  const weeklyProductionData = data && data.weekly_production ? data.weekly_production : [];
-  const weeklyProductionMessage = data && data.weekly_production_message ? data.weekly_production_message : "최근 1주일 동안 생산 데이터가 없습니다.";
+
+  const weeklyProductionData = data?.weekly_production || [];
+  const weeklyProductionMessage = data?.weekly_production_message || "최근 1주일 동안 생산 데이터가 없습니다.";
 
   useEffect(() => {
+    if (summaryTableData.length <= 7) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % Math.ceil(summaryTableData.length / 7));
-    }, 5000);
+    }, 7000);
     return () => clearInterval(interval);
   }, [summaryTableData]);
 
@@ -97,30 +84,9 @@ const SummaryTable = ({ data = { summary_table: [], weekly_production: [], weekl
     slides.push(summaryTableData.slice(i, i + 7));
   }
 
-  const renderProgressBar = (progress, customColor) => {
-    if (progress === 100) {
-      return <span style={{ fontSize: '16px' }}>✅</span>;
-    } else if (progress >= 50) {
-      return (
-        <>
-          <div style={{ width: `${progress}%`, backgroundColor: customColor || 'orange', height: '12px', borderRadius: '3px' }}></div>
-          <span style={{ fontSize: '12px' }}>{progress.toFixed(1)}%</span>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <div style={{ width: `${progress}%`, backgroundColor: customColor || 'red', height: '12px', borderRadius: '3px' }}></div>
-          <span style={{ fontSize: '12px' }}>{progress.toFixed(1)}%</span>
-        </>
-      );
-    }
-  };
-
   return (
     <div>
       <h2>📋 생산 요약 테이블 [Planned Mech]</h2>
-      {/* Weekly Production Message 표시 */}
       {weeklyProductionData.length === 0 && (
         <div style={{ marginBottom: '10px', color: '#888' }}>
           {weeklyProductionMessage}
@@ -130,37 +96,50 @@ const SummaryTable = ({ data = { summary_table: [], weekly_production: [], weekl
         {slides.length > 0 ? (
           slides.map((slide, index) => (
             <div className={`slide ${index === currentSlide ? 'active' : ''}`} key={index}>
-              <table border="1" style={{ borderCollapse: 'collapse', width: '100%', fontSize: '13px' }}>
-                <thead>
-                  <tr style={{ backgroundColor: '#f2f2f2' }}>
-                    <th>Title Number</th>
-                    <th>모델명</th>
-                    <th>기구협력사</th>
-                    <th>전장협력사</th>
-                    <th>기구 진행률</th>
-                    <th>전장 진행률</th>
-                    <th>반제품 진행률</th>
-                    <th>⏱️일정 기준 진행률</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {slide.map(item => {
-                    const expectedProgress = calculateProgress(item.manufacturing_start, item.test_start);
-                    return (
-                      <tr key={item.title_number}>
-                        <td>{item.title_number}</td>
-                        <td>{item.model_name}</td>
-                        <td>{item.mech_partner}</td>
-                        <td>{item.elec_partner}</td>
-                    <td>{renderProgressBar(item.mech_progress)}</td>
-                    <td>{renderProgressBar(item.elec_progress)}</td>
-                    <td>{renderProgressBar(item.tms_progress)}</td>
-                    <td>{renderProgressBar(expectedProgress, '#005bbb')}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              {/* ▼▼▼ 핵심 수정: 테이블 전체를 가로 스크롤이 가능한 div로 감쌉니다. ▼▼▼ */}
+              <div style={{ overflowX: 'auto', paddingBottom: '10px' }}>
+                {/* table-layout:fixed를 제거하여 auto(유동적) 레이아웃으로 되돌립니다. */}
+                {/* 대신 min-width를 주어 테이블이 너무 작아지는 것을 방지합니다. */}
+                <table border="1" style={{ borderCollapse: 'collapse', width: '100%', minWidth: '800px', fontSize: '13px' }}>
+                  <thead>
+                    <tr style={{ backgroundColor: '#f2f2f2' }}>
+                      <th style={{padding: '8px'}}>Title Number</th>
+                      <th style={{padding: '8px'}}>모델명</th>
+                      <th style={{padding: '8px'}}>기구협력사</th>
+                      <th style={{padding: '8px'}}>전장협력사</th>
+                      <th style={{padding: '8px'}}>기구 진행률</th>
+                      <th style={{padding: '8px'}}>전장 진행률</th>
+                      <th style={{padding: '8px'}}>반제품 진행률</th>
+                      <th style={{padding: '8px'}}>⏱️일정 기준 진행률</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {slide.map((item, itemIndex) => {
+                      const expectedProgress = calculateProgress(item.manufacturing_start, item.test_start);
+                      return (
+                        <tr key={`${item.title_number}-${itemIndex}`}>
+                          <td style={{padding: '8px'}}>{item.title_number}</td>
+                          <td style={{padding: '8px'}}>{item.model_name}</td>
+                          <td style={{padding: '8px'}}>{item.mech_partner}</td>
+                          <td style={{padding: '8px'}}>{item.elec_partner}</td>
+                          {/* 진행률 바가 너무 좁아지지 않도록 min-width를 설정합니다. */}
+                          <td style={{padding: '8px', minWidth: '120px'}}><ProgressBar progress={item.mech_progress} color="orange" /></td>
+                          <td style={{padding: '8px', minWidth: '120px'}}><ProgressBar progress={item.elec_progress} color="orange" /></td>
+                          <td style={{padding: '8px', minWidth: '120px'}}><ProgressBar progress={item.tms_progress} color="orange" /></td>
+                          <td style={{padding: '8px', minWidth: '120px'}}>
+                            <ProgressBar
+                              progress={expectedProgress}
+                              color="#005bbb"
+                              showCheckmark={false}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+               {/* ▲▲▲ 핵심 수정: div 끝 ▲▲▲ */}
             </div>
           ))
         ) : (
