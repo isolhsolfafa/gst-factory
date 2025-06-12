@@ -97,12 +97,20 @@ const FactoryDashboard = () => {
     fetchData();
   }, [isAuthenticated]);
 
+  // 10분마다 새로고침
+  useEffect(() => {
+    const interval = setInterval(() => {
+      window.location.reload();
+    }, 600000); // 600,000ms = 10분
+
+    return () => clearInterval(interval);
+  }, []);
+  
   const currentTime = formatDateTime(new Date());
 
   return (
     <div>
       <div className="header">
-        <img src="https://rainbow-haupia-cd8290.netlify.app/GST_banner.jpg" alt="Build up GST Banner" />
         <h1>제조기술1팀 공장 대시보드 - {getCurrentWeek()}</h1>
         <p>실행 시간: {currentTime}</p>
       </div>
