@@ -97,20 +97,20 @@ const SummaryTable = ({ data = { summary_table: [], weekly_production: [], weekl
     slides.push(summaryTableData.slice(i, i + 7));
   }
 
-  const renderProgressBar = (progress) => {
+  const renderProgressBar = (progress, customColor) => {
     if (progress === 100) {
       return <span style={{ fontSize: '16px' }}>✅</span>;
     } else if (progress >= 50) {
       return (
         <>
-          <div style={{ width: `${progress}%`, backgroundColor: 'orange', height: '12px', borderRadius: '3px' }}></div>
+          <div style={{ width: `${progress}%`, backgroundColor: customColor || 'orange', height: '12px', borderRadius: '3px' }}></div>
           <span style={{ fontSize: '12px' }}>{progress.toFixed(1)}%</span>
         </>
       );
     } else {
       return (
         <>
-          <div style={{ width: `${progress}%`, backgroundColor: 'red', height: '12px', borderRadius: '3px' }}></div>
+          <div style={{ width: `${progress}%`, backgroundColor: customColor || 'red', height: '12px', borderRadius: '3px' }}></div>
           <span style={{ fontSize: '12px' }}>{progress.toFixed(1)}%</span>
         </>
       );
@@ -152,10 +152,10 @@ const SummaryTable = ({ data = { summary_table: [], weekly_production: [], weekl
                         <td>{item.model_name}</td>
                         <td>{item.mech_partner}</td>
                         <td>{item.elec_partner}</td>
-                        <td>{renderProgressBar(item.mech_progress)}</td>
-                        <td>{renderProgressBar(item.elec_progress)}</td>
-                        <td>{renderProgressBar(item.tms_progress)}</td>
-                        <td>{renderProgressBar(expectedProgress)}</td>
+                    <td>{renderProgressBar(item.mech_progress)}</td>
+                    <td>{renderProgressBar(item.elec_progress)}</td>
+                    <td>{renderProgressBar(item.tms_progress)}</td>
+                    <td>{renderProgressBar(expectedProgress, '#005bbb')}</td>
                       </tr>
                     );
                   })}
