@@ -140,7 +140,7 @@ const SummaryTable = ({ data = { summary_table: [], weekly_production: [], weekl
                     <th>기구 진행률</th>
                     <th>전장 진행률</th>
                     <th>반제품 진행률</th>
-                    <th>예상 진행률</th>
+                    <th>⏱️일정 기준 진행률</th>
                   </tr>
                 </thead>
                 <tbody>
