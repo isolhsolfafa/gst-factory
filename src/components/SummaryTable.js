@@ -75,7 +75,7 @@ const SummaryTable = ({ data = { summary_table: [], weekly_production: [], weekl
     if (summaryTableData.length <= 7) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % Math.ceil(summaryTableData.length / 7));
-    }, 7000);
+    }, 300000);
     return () => clearInterval(interval);
   }, [summaryTableData]);
 
