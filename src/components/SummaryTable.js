@@ -118,7 +118,13 @@ const SummaryTable = ({ data = { summary_table: [], weekly_production: [], weekl
                       const expectedProgress = calculateProgress(item.manufacturing_start, item.test_start);
                       return (
                         <tr key={`${item.title_number}-${itemIndex}`}>
-                          <td style={{padding: '8px'}}>{item.title_number}</td>
+                        <td style={{padding: '8px'}}>
+                          {/* ▼▼▼ 핵심 수정 ▼▼▼ */}
+                          <a href={item.spreadsheet_link} target="_blank" rel="noopener noreferrer">
+                            {item.title_number}
+                          </a>
+                          {/* ▲▲▲ 핵심 수정 ▲▲▲ */}
+                        </td>
                           <td style={{padding: '8px'}}>{item.model_name}</td>
                           <td style={{padding: '8px'}}>{item.mech_partner}</td>
                           <td style={{padding: '8px'}}>{item.elec_partner}</td>
