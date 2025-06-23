@@ -1,0 +1,168 @@
+
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>PDA Dashboard</title>
+      <style>
+        body { font-family: 'NanumGothic', sans-serif; font-size: 12px; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        details { margin-bottom: 10px; }
+        summary { cursor: pointer; font-weight: bold; color: #333; }
+        details[open] summary { color: #0056b3; }
+        details > *:not(summary) { display: block; margin-left: 20px; }
+        ul { margin: 5px 0; padding-left: 20px; }
+        p { margin: 5px 0; }
+        hr { margin: 20px 0; }
+        a { color: #0056b3; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+      </style>
+    </head>
+    <body><div style="text-align: center; margin-bottom: 20px;"><img src="https://rainbow-haupia-cd8290.netlify.app/GST_banner.jpg" alt="Build up GST Banner" style="max-width: 100%; height: auto;"></div>
+<div class="chart-section" style="margin-top: 30px;">
+<iframe src="partner_entry_chart.html" width="100%" height="420" frameborder="0"></iframe>
+</div>
+<h1>PDA Dashboard - 2025년 26주차</h1>
+<h3>📌 [알림] PDA Overtime 및 NaN 체크 결과 (총 1건 처리)</h3>
+<p>📅 실행 시간: 2025-06-23 10:55:55 (KST)</p>
+<p>📊 대시보드에서 상세 내용 확인하세요! (<a href="https://gst-factory.netlify.app">대시보드 바로가기</a>
+<p><strong>📊트렌드 지표</strong></p><ul>
+<li>📅 주간 협력사 NaN 히트맵: <a href="https://drive.google.com/uc?export=view&id=1uSctIOfxVVW-M0n7_tEbCx9hbqxTjJfu" target="_blank">그래프 보기</a></li>
+<li>🗓️ 월간 협력사 NaN 히트맵: <a href="https://drive.google.com/uc?export=view&id=1sC-ECg6fGZ76pIkCMCJjzdxU7z1O01Te" target="_blank">그래프 보기</a></li>
+<li>📈 월간 모델별 NaN 히트맵: <a href="https://drive.google.com/uc?export=view&id=1GjdJ1pKkkKD152ELm6U3XF64pOvIs-Tj" target="_blank">그래프 보기</a></li>
+</ul>
+)</p>
+<h4>요약 테이블</h4>
+<table id="summaryTable" border="1" style="border-collapse: collapse; width: 95%; font-size: 13px;">
+<tr style="background-color: #f2f2f2;">
+<th data-column="Order">Order<br><select onchange="filterTable('Order')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="250516/5692/5637">250516/5692/5637</option>
+</select></th>
+<th data-column="모델명">모델명<br><select onchange="filterTable('모델명')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="GAIA-I DUAL">GAIA-I DUAL</option>
+</select></th>
+<th data-column="기구협력사">기구협력사<br><select onchange="filterTable('기구협력사')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="BAT">BAT</option>
+</select></th>
+<th data-column="전장협력사">전장협력사<br><select onchange="filterTable('전장협력사')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="TMS">TMS</option>
+</select></th>
+<th data-column="총 작업 수">총 작업 수<br><select onchange="filterTable('총 작업 수')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="38">38</option>
+</select></th>
+<th data-column="기구 NaN">기구 NaN<br><select onchange="filterTable('기구 NaN')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="0">0</option>
+</select></th>
+<th data-column="기구 OT">기구 OT<br><select onchange="filterTable('기구 OT')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="6">6</option>
+</select></th>
+<th data-column="기구 진행률">기구 진행률<br><select onchange="filterTable('기구 진행률')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="100.0">100.0</option>
+</select></th>
+<th data-column="전장 NaN">전장 NaN<br><select onchange="filterTable('전장 NaN')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="0">0</option>
+</select></th>
+<th data-column="전장 OT">전장 OT<br><select onchange="filterTable('전장 OT')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="2">2</option>
+</select></th>
+<th data-column="전장 진행률">전장 진행률<br><select onchange="filterTable('전장 진행률')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="100.0">100.0</option>
+</select></th>
+<th data-column="TMS NaN">TMS NaN<br><select onchange="filterTable('TMS NaN')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="0">0</option>
+</select></th>
+<th data-column="TMS OT">TMS OT<br><select onchange="filterTable('TMS OT')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="4">4</option>
+</select></th>
+<th data-column="TMS 진행률">TMS 진행률<br><select onchange="filterTable('TMS 진행률')" style="width: 100%; font-size: 12px;"><option value="">전체</option>
+<option value="100.0">100.0</option>
+</select></th>
+</tr>
+<tr><td><a href="https://docs.google.com/spreadsheets/d/1MFuyJrYULwJ4UOjYnF0iObZ97tzRVpzhSiZTzP-dG_s/edit">250516/5692/5637</a></td><td>GAIA-I DUAL</td><td>BAT</td><td>TMS</td><td>38</td><td>0</td><td style="color: red; font-weight: bold;">6</td><td><span title="기구 완료: 0 / 0건" style="font-size: 16px;">✅</span></td><td>0</td><td style="color: red; font-weight: bold;">2</td><td><span title="전장 완료: 0 / 0건" style="font-size: 16px;">✅</span></td><td>0</td><td style="color: red; font-weight: bold;">4</td><td><span title="TMS 완료: 5 / 5건" style="font-size: 16px;">✅</span></td></tr>
+</table><br>
+
+    <script>
+    function filterTable(column) {
+        const table = document.getElementById("summaryTable");
+        const select = table.querySelector(`th[data-column="${column}"] select`);
+        const filterValue = select.value.toLowerCase();
+        const rows = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < rows.length; i++) { // Skip header row
+            const cells = rows[i].getElementsByTagName("td");
+            const cellIndex = Array.from(table.getElementsByTagName("th")).findIndex(th => th.dataset.column === column);
+            let cellValue = cells[cellIndex].innerText.toLowerCase();
+            // 진행률 열의 경우 숫자 부분만 추출 (예: "85.7%" → "85.7")
+            if (column.includes("진행률")) {
+                const match = cellValue.match(/\d+\.\d/); // 숫자.소수점 패턴
+                cellValue = match ? match[0] : "0.0";
+            }
+            // Order 열의 경우 하이퍼링크 텍스트 추출
+            if (column === "Order") {
+                cellValue = cells[cellIndex].querySelector("a") ? cells[cellIndex].querySelector("a").innerText.toLowerCase() : cellValue;
+            }
+            let showRow = true;
+
+            // 모든 필터 확인
+            table.querySelectorAll("th select").forEach(sel => {
+                const col = sel.parentElement.dataset.column;
+                const val = sel.value.toLowerCase();
+                if (val) {
+                    const idx = Array.from(table.getElementsByTagName("th")).findIndex(th => th.dataset.column === col);
+                    let compareValue = cells[idx].innerText.toLowerCase();
+                    if (col.includes("진행률")) {
+                        const match = compareValue.match(/\d+\.\d/);
+                        compareValue = match ? match[0] : "0.0";
+                    }
+                    if (col === "Order") {
+                        compareValue = cells[idx].querySelector("a") ? cells[idx].querySelector("a").innerText.toLowerCase() : compareValue;
+                    }
+                    if (compareValue !== val) {
+                        showRow = false;
+                    }
+                }
+            });
+
+            rows[i].style.display = showRow ? "" : "none";
+        }
+    }
+    </script>
+    
+<details><summary><strong>📍 Order: 250516/5692/5637, 모델명: GAIA-I DUAL</strong></summary>
+<p>🏭 기구협력사: BAT, ⚡ 전장협력사: TMS</p>
+<p>📋 <strong>모델 스프레드시트</strong>: <a href="https://docs.google.com/spreadsheets/d/1MFuyJrYULwJ4UOjYnF0iObZ97tzRVpzhSiZTzP-dG_s/edit">바로가기</a></p>
+<p>📊 대시보드 링크: <a href="https://gst-factory.netlify.app">대시보드 바로가기</a></p>
+<p>📊 그래프 링크:</p><ul><li>Working Hours: <a href="None">바로가기</a></li><li>Legend Chart: <a href="None">바로가기</a></li><li>WD Chart: <a href="None">바로가기</a></li></ul>
+<p><b>🔹 기구 작업</b><br> - 전체 작업 수: 19 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span style="color: red;">⏳ 오버타임: 6 건 (비율: 31.58%)</span><br>
+   - CDA LINE ASSY 6h 43m<br>   - N2 LINE ASSY 6h 43m<br>   - PCW LINE ASSY 6h 53m<br>   - BCW LINE ASSY 6h 53m<br>   - LNG LINE ASSY 7h 29m<br>   - O2 LINE ASSY 7h 29m<br>
+</p>
+<p><b>🔹 TMS_반제품 작업</b><br> - 전체 작업 수: 5 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span style="color: red;">⏳ 오버타임: 4 건 (비율: 80.00%)</span><br>
+   - WET TANK ASSY(TMS) 6h 5m<br>   - COOLING UNIT(TMS) 6h 60m<br>   - BURNER ASSY(TMS) 7h 9m<br>   - REACTOR ASSY(TMS) 13h 52m<br>
+</p>
+<p><b>🔹 전장 작업</b><br> - 전체 작업 수: 6 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span style="color: red;">⏳ 오버타임: 2 건 (비율: 33.33%)</span><br>
+   - 케비넷 준비 작업(덕트, 철거작업) 4h 29m<br>   - 내, 외부 작업 8h 39m<br>
+</p>
+<p><b>🔹 검사 작업</b><br> - 전체 작업 수: 3 건<br>
+ <span>⚠️ 누락(NaN): 0 건 (비율: 0.00%)</span><br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 마무리 작업</b><br> - 전체 작업 수: 1 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 1 건 (비율: 100.00%)</span><br>
+   - 상부 마무리<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+<p><b>🔹 기타 작업</b><br> - 전체 작업 수: 4 건<br>
+ <span style="color: red;">⚠️ 누락(NaN): 2 건 (비율: 50.00%)</span><br>
+   - 캐비넷 커버 장착<br>   - HOOK-UP 준비 및 포장<br>
+ <span>⏳ 오버타임: 0 건 (비율: 0.00%)</span><br>
+</p>
+</details><hr></body></html>
+    
