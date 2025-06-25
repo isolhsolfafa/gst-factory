@@ -39,7 +39,7 @@
             <div class="stats">
                 <div class="stat-item">📊 총 회사: 8개</div>
                 <div class="stat-item">👥 총 인원: 109명</div>
-                <div class="stat-item">🕐 생성일시: 2025년 06월 25일 22시 39분</div>
+                <div class="stat-item">🕐 생성일시: 2025년 06월 25일 22시 58분</div>
                 <div class="stat-item">📋 관리방식: 일자별 독립 관리</div>
             </div>
         </div>
@@ -1405,10 +1405,20 @@
             xaxis: { title: '회사명' },
             yaxis: { title: '인원 수' },
             barmode: 'stack',
-            font: { family: 'Malgun Gothic, sans-serif' }
+            font: { family: 'Malgun Gothic, sans-serif' },
+            dragmode: false
         };
         
-        Plotly.newPlot('bar-chart', [trace1, trace2], layout);
+        var config = {
+            displayModeBar: false,
+            scrollZoom: false,
+            doubleClick: false,
+            showTips: false,
+            staticPlot: false,
+            dragmode: false
+        };
+        
+        Plotly.newPlot('bar-chart', [trace1, trace2], layout, config);
         
         // 회사 섹션 토글
         function toggleCompany(companyId) {
