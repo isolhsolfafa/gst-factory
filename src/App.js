@@ -146,7 +146,7 @@ const InternalDashboard = () => {
       title="Internal Dashboard"
       style={{ width: '100%', height: '95vh', border: 'none' }}
     />
-  );
+);
 
 const AuthButtons = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
