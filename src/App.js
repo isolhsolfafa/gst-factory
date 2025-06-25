@@ -142,7 +142,7 @@ const PartnerDashboard = () => (
 // 협력사 출입 현황 컴포넌트 (iframe으로 partner_entry_chart.html 연동)
 const partner_entryDashboard = () => (
   <iframe
-    src="/partner_entry_chart.html"
+    src="https://partnerentry.netlify.app/"
     title="Partner Entry Dashboard"
     style={{ width: '100%', height: '95vh', border: 'none' }}
   />
