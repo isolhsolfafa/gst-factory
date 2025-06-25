@@ -140,7 +140,7 @@ const PartnerDashboard = () => (
 );
 
 // 협력사 출입 현황 컴포넌트 (iframe으로 partner_entry_chart.html 연동)
-const InternalDashboard = () => (
+const partner_entryDashboard = () => (
   <iframe
     src="/partner_entry_chart.html"
     title="Partner Entry Dashboard"
@@ -209,15 +209,15 @@ const App = () => {
         <Link to="/partner" style={{ textDecoration: 'none', flex: 1 }}>
           <button style={getButtonStyle('/partner')}>🤝 협력사 대시보드</button>
         </Link>
-        <Link to="/internal" style={{ textDecoration: 'none', flex: 1 }}>
-          <button style={getButtonStyle('/internal')}>🚶 협력사 출입 현황</button>
+        <Link to="/partner_entry" style={{ textDecoration: 'none', flex: 1 }}>
+          <button style={getButtonStyle('/partner_entry')}>🚶 협력사 출입 현황</button>
         </Link>
       </div>
       <div style={{ padding: '20px' }}>
         <Routes>
           <Route path="/" element={<FactoryDashboard />} />
           <Route path="/partner" element={<PartnerDashboard />} />
-          <Route path="/internal" element={<InternalDashboard />} />
+          <Route path="/partner_entry" element={<partner_entryDashboard />} />
         </Routes>
       </div>
     </div>
