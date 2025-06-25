@@ -4,7 +4,7 @@
   command = "npm run build"
 
 [[redirects]]
-from = "/"
+from = "/*"
 to = "/index.html"    # ✅ 메뉴탭 포함된 index.html로 변경
 status = 200
 
