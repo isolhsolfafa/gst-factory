@@ -210,7 +210,7 @@ const App = () => {
           <button style={getButtonStyle('/partner')}>🤝 협력사 대시보드</button>
         </Link>
         <Link to="/internal" style={{ textDecoration: 'none', flex: 1 }}>
-          <button style={getButtonStyle('/internal')}>🔒 내부 대시보드</button>
+          <button style={getButtonStyle('/internal')}>🚶 협력사 출입 현황</button>
         </Link>
       </div>
       <div style={{ padding: '20px' }}>
