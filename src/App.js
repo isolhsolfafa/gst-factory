@@ -141,11 +141,11 @@ const PartnerDashboard = () => (
 
 // 내부 대시보드 컴포넌트 (비밀번호 보호 포함, iframe으로 internal.html 연동)
 const InternalDashboard = () => {
-    <iframe
-      src="/partner_entry_chart.html"
-      title="Internal Dashboard"
-      style={{ width: '100%', height: '95vh', border: 'none' }}
-    />
+  <iframe
+    src="/partner_entry_chart.html"
+    title="Internal Dashboard"
+    style={{ width: '100%', height: '95vh', border: 'none' }}
+  />
 );
 
 const AuthButtons = () => {
