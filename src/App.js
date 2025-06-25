@@ -141,29 +141,12 @@ const PartnerDashboard = () => (
 
 // 내부 대시보드 컴포넌트 (비밀번호 보호 포함, iframe으로 internal.html 연동)
 const InternalDashboard = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const password = prompt("🔐 내부 대시보드 접근을 위한 비밀번호를 입력하세요:");
-    if (password === "0979") {
-      setIsAuthenticated(true);
-    } else {
-      alert("❌ 비밀번호가 틀렸습니다. 접근이 제한됩니다.");
-      navigate('/');
-    }
-  }, [navigate]);
-
-  if (!isAuthenticated) return null;
-
-  return (
     <iframe
       src="/partner_entry_chart.html"
       title="Internal Dashboard"
       style={{ width: '100%', height: '95vh', border: 'none' }}
     />
   );
-};
 
 const AuthButtons = () => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
