@@ -158,7 +158,7 @@ const InternalDashboard = () => {
 
   return (
     <iframe
-      src="/internal.html"
+      src="/partner_entry_chart.html"
       title="Internal Dashboard"
       style={{ width: '100%', height: '95vh', border: 'none' }}
     />
