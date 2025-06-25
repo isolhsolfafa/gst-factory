@@ -1,6 +1,6 @@
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate, useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import WeeklyChart from './components/WeeklyChart';
 import MonthlyChart from './components/MonthlyChart';
@@ -48,24 +48,24 @@ const getWeekNumber = (date) => {
 
 // 공장 대시보드 컴포넌트
 const FactoryDashboard = () => {
-  const [dashboardData, setDashboardData] = useState({
+  const [dashboardData, setDashboardData] = React.useState({
     weekly_production: [],
     monthly_production: [],
     summary_table: [],
     weekly_production_message: ''
   });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
 
   const { getAccessTokenSilently, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       loginWithRedirect();  // Automatically redirect to login
     }
-  }, [isLoading, isAuthenticated]);
+  }, [isLoading, isAuthenticated, loginWithRedirect]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isAuthenticated) return;  // If not authenticated, stop the function
 
     const fetchData = async () => {
@@ -95,7 +95,7 @@ const FactoryDashboard = () => {
     };
 
     fetchData();
-  }, [isAuthenticated]);
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   const currentTime = formatDateTime(new Date());
 
@@ -139,11 +139,11 @@ const PartnerDashboard = () => (
   />
 );
 
-// 내부 대시보드 컴포넌트 (비밀번호 보호 포함, iframe으로 internal.html 연동)
-const InternalDashboard = () => {
+// 협력사 출입 현황 컴포넌트 (iframe으로 partner_entry_chart.html 연동)
+const InternalDashboard = () => (
   <iframe
     src="/partner_entry_chart.html"
-    title="Internal Dashboard"
+    title="Partner Entry Dashboard"
     style={{ width: '100%', height: '95vh', border: 'none' }}
   />
 );
