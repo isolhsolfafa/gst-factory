@@ -36,6 +36,10 @@ body {
     max-width: 1300px;
   }
 
+  .chart-section.defect-chart {
+  padding: 15px !important;   /* 기존 15px → 5px */
+  }
+
   .defect-metrics-wrapper {
     width: 100%;
     margin: 0 auto;
