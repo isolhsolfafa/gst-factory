@@ -30,9 +30,8 @@
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       width: 95%;
-      height: 85%;
-      max-width: 400px;
-      max-height: 300px;
+      height: 95%;
+      max-width: 450px;
       overflow: hidden;
       display: flex;
       justify-content: center;
@@ -42,17 +41,20 @@
     
     .card {
       display: none;
-      padding: 18px;
+      padding: 20px;
       border-radius: 12px;
       background: linear-gradient(145deg, #ffffff, #f8f9fa);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       animation: slideIn 0.6s ease-out;
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.5;
-      width: 95%;
-      height: 95%;
+      width: 100%;
+      height: 100%;
       box-sizing: border-box;
       border-left: 4px solid #667eea;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     
     .card h3 {
@@ -79,8 +81,8 @@
     .info-item {
       display: flex;
       align-items: center;
-      margin: 8px 0;
-      padding: 6px 0;
+      margin: 10px 0;
+      padding: 8px 0;
     }
     
     .info-icon {
@@ -227,7 +229,7 @@
       data.predictions.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.style.display = index === 0 ? 'block' : 'none';
+        card.style.display = index === 0 ? 'flex' : 'none';
         
         const riskLevel = getRiskLevel(item.예상불량률);
         const riskText = getRiskText(item.예상불량률);
@@ -298,7 +300,7 @@
         
         // 다음 카드 보여주기
         currentIndex = (currentIndex + 1) % cards.length;
-        cards[currentIndex].style.display = 'block';
+        cards[currentIndex].style.display = 'flex';
         dots[currentIndex].classList.add('active');
       }
       
