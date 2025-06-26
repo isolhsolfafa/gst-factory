@@ -144,29 +144,29 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "1_0_25",
+          "pattern": "5_0_30",
           "frequency": 6,
           "percentage": 3.614457831325301,
           "keywords": [
             [
-              "Nut",
+              "O2",
               6
             ],
             [
-              "BCW",
-              5
+              "Pnuematic",
+              6
             ],
             [
-              "Male",
-              3
+              "Valve",
+              6
             ],
             [
-              "Elbow",
-              3
+              "역방향",
+              6
             ],
             [
-              "PP",
-              2
+              "조립",
+              6
             ]
           ],
           "risk_level": "MEDIUM"
@@ -200,29 +200,49 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "5_0_30",
+          "pattern": "1_0_25",
           "frequency": 6,
           "percentage": 3.614457831325301,
           "keywords": [
             [
-              "O2",
+              "Nut",
               6
             ],
             [
-              "Pnuematic",
-              6
+              "BCW",
+              5
             ],
             [
-              "Valve",
-              6
+              "Male",
+              3
             ],
             [
-              "역방향",
-              6
+              "Elbow",
+              3
             ],
             [
-              "조립",
-              6
+              "PP",
+              2
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "2_0_39",
+          "frequency": 5,
+          "percentage": 3.0120481927710845,
+          "keywords": [
+            [
+              "Sprinkler",
+              5
+            ],
+            [
+              "Teflon",
+              5
+            ],
+            [
+              "부족",
+              5
             ]
           ],
           "risk_level": "MEDIUM"
@@ -256,49 +276,29 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "2_0_39",
-          "frequency": 5,
-          "percentage": 3.0120481927710845,
-          "keywords": [
-            [
-              "Sprinkler",
-              5
-            ],
-            [
-              "Teflon",
-              5
-            ],
-            [
-              "부족",
-              5
-            ]
-          ],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "3_0_11",
+          "pattern": "2_0_24",
           "frequency": 4,
           "percentage": 2.4096385542168677,
           "keywords": [
             [
-              "BCW",
-              4
+              "Male",
+              3
             ],
             [
-              "열교환기",
-              4
+              "Connector",
+              3
             ],
             [
-              "FEMALE",
-              4
+              "Teflon",
+              3
             ],
             [
-              "Fitting",
-              4
+              "N2",
+              2
             ],
             [
-              "Nut",
-              4
+              "Sensor",
+              2
             ]
           ],
           "risk_level": "MEDIUM"
@@ -500,6 +500,6 @@
       "LOW": 1
     }
   },
-  "generated_at": "2025-06-27T00:07:42.943768",
+  "generated_at": "2025-06-27T00:09:44.862638",
   "analysis_version": "2.0_ADVANCED"
 }
