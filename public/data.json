@@ -4,35 +4,35 @@
       "모델": "GAIA-I",
       "검출단계": "조립검사",
       "부품": "HEATING JACKET",
-      "예상불량률": 23.0,
+      "예상불량률": 25.0,
       "키워드": "클리닝, 상태, 불량, 자켓, 마킹, 오염"
     },
     {
       "모델": "GAIA-I DUAL",
       "검출단계": "제조품질검사",
       "부품": "LEAK SENSOR",
-      "예상불량률": 16.0,
+      "예상불량률": 18.0,
       "키워드": "넘버링, 튜브"
-    },
-    {
-      "모델": "GAIA-I DUAL",
-      "검출단계": "조립검사",
-      "부품": NaN,
-      "예상불량률": 14.000000000000002,
-      "키워드": "조립도, 조립, 방향, 반대, 적용"
     },
     {
       "모델": "GAIA-I DUAL",
       "검출단계": "제조품질검사",
       "부품": "TOUCH SCREEN",
-      "예상불량률": 12.0,
+      "예상불량률": 16.0,
       "키워드": "통신, 불가"
+    },
+    {
+      "모델": "GAIA-I DUAL",
+      "검출단계": "조립검사",
+      "부품": "미분류",
+      "예상불량률": 14.0,
+      "키워드": "조립도, 조립, 방향, 반대, 적용"
     },
     {
       "모델": "GAIA-I DUAL",
       "검출단계": "가압검사",
       "부품": "FEMALE CONNECTOR",
-      "예상불량률": 7.000000000000001,
+      "예상불량률": 6.0,
       "키워드": "조립, 불량"
     }
   ],
@@ -40,7 +40,7 @@
     "failure_patterns": {
       "top_patterns": [
         {
-          "pattern": "3_3_95",
+          "pattern": "3_4_93",
           "frequency": 20,
           "percentage": 6.079027355623101,
           "keywords": [
@@ -96,7 +96,7 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "2_0_95",
+          "pattern": "2_0_93",
           "frequency": 13,
           "percentage": 3.951367781155015,
           "keywords": [
@@ -124,35 +124,7 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "3_0_23",
-          "frequency": 9,
-          "percentage": 2.735562310030395,
-          "keywords": [
-            [
-              "체결불량",
-              5
-            ],
-            [
-              "Exhaust",
-              2
-            ],
-            [
-              "Clamp(125A)",
-              2
-            ],
-            [
-              "CLAMP(NW40)",
-              2
-            ],
-            [
-              "CLAMP(NW50)",
-              2
-            ]
-          ],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "7_3_95",
+          "pattern": "7_4_93",
           "frequency": 9,
           "percentage": 2.735562310030395,
           "keywords": [
@@ -180,28 +152,28 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "8_3_95",
-          "frequency": 8,
-          "percentage": 2.43161094224924,
+          "pattern": "3_0_23",
+          "frequency": 9,
+          "percentage": 2.735562310030395,
           "keywords": [
             [
-              "Drain",
+              "체결불량",
+              5
+            ],
+            [
+              "Exhaust",
               2
             ],
             [
-              "Valve",
+              "Clamp(125A)",
               2
             ],
             [
-              "Tag",
+              "CLAMP(NW40)",
               2
             ],
             [
-              "Cabinet",
-              2
-            ],
-            [
-              "오류",
+              "CLAMP(NW50)",
               2
             ]
           ],
@@ -236,7 +208,35 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "3_0_95",
+          "pattern": "8_4_93",
+          "frequency": 8,
+          "percentage": 2.43161094224924,
+          "keywords": [
+            [
+              "Drain",
+              2
+            ],
+            [
+              "Valve",
+              2
+            ],
+            [
+              "Tag",
+              2
+            ],
+            [
+              "Cabinet",
+              2
+            ],
+            [
+              "오류",
+              2
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "3_0_93",
           "frequency": 7,
           "percentage": 2.127659574468085,
           "keywords": [
@@ -264,7 +264,7 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "1_0_95",
+          "pattern": "1_0_93",
           "frequency": 7,
           "percentage": 2.127659574468085,
           "keywords": [
@@ -292,29 +292,29 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "1_0_53",
+          "pattern": "3_0_43",
           "frequency": 6,
           "percentage": 1.82370820668693,
           "keywords": [
             [
-              "Nut",
-              6
+              "KEY",
+              7
             ],
             [
-              "BCW",
-              5
+              "OPERATION",
+              7
             ],
             [
-              "Male",
-              3
+              "VALVE",
+              7
             ],
             [
-              "Elbow",
-              3
+              "LNG",
+              4
             ],
             [
-              "PP",
-              2
+              "LINE",
+              4
             ]
           ],
           "risk_level": "LOW"
@@ -331,43 +331,44 @@
       "risk_levels": [
         {
           "part": "HEATING JACKET",
-          "defect_rate": 23.0,
+          "defect_rate": 25.0,
           "risk_level": "CRITICAL"
         },
         {
           "part": "LEAK SENSOR",
+          "defect_rate": 18.0,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "TOUCH SCREEN",
           "defect_rate": 16.0,
           "risk_level": "CRITICAL"
         },
         {
-          "part": NaN,
-          "defect_rate": 14.000000000000002,
-          "risk_level": "HIGH"
-        },
-        {
-          "part": "TOUCH SCREEN",
-          "defect_rate": 12.0,
+          "part": "미분류",
+          "defect_rate": 14.0,
           "risk_level": "HIGH"
         },
         {
           "part": "FEMALE CONNECTOR",
-          "defect_rate": 7.000000000000001,
+          "defect_rate": 6.0,
           "risk_level": "HIGH"
         }
       ],
       "distribution": {
-        "CRITICAL": 2,
-        "HIGH": 3
+        "CRITICAL": 3,
+        "HIGH": 2
       },
       "critical_parts": [
         "HEATING JACKET",
-        "LEAK SENSOR"
+        "LEAK SENSOR",
+        "TOUCH SCREEN"
       ]
     },
     "trend_analysis": {}
   },
   "improvement_suggestions": [],
   "analysis_summary": null,
-  "generated_at": "2025-06-27T01:19:08.704625",
+  "generated_at": "2025-06-27T01:24:41.432802",
   "analysis_version": "2.0"
 }
