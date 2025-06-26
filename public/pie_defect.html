@@ -1,61 +1,178 @@
-
 <html>
 <head>
   <meta charset="utf-8" />
   <title>모델별 불량예상 대시보드</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+    
     body {
-      font-family: 'NanumGothic', sans-serif;
-      background: white;
-      margin: 0; padding: 5px;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #f8f9fa;
+      margin: 0; 
+      padding: 10px;
+      color: #333;
     }
+    
     .container {
-      width: 350px;
-      height: 250px;
+      width: 400px;
+      height: 280px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+    
     .cards {
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 10px;
-      background-color: transparent;
+      border: none;
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
       width: 100%;
       height: 100%;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     }
+    
     .card {
       display: none;
-      border: 2px solid #ddd;
-      padding: 10px;
-      border-radius: 10px;
-      background-color: #fff;
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-      animation: fadein 0.5s;
-      font-size: 12px;
-      line-height: 1.5;
-      width: 90%;
-      height: 90%;
+      padding: 15px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #ffffff, #f8f9fa);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      animation: slideIn 0.6s ease-out;
+      font-size: 13px;
+      line-height: 1.6;
+      width: 95%;
+      height: 95%;
       box-sizing: border-box;
+      border-left: 4px solid #667eea;
     }
-    @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    
+    .card h3 {
+      margin: 0 0 15px 0;
+      color: #2c3e50;
+      font-weight: 700;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+    
+    .risk-level {
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    
+    .risk-high { background: #fee; color: #d63384; }
+    .risk-medium { background: #fff3cd; color: #f57c00; }
+    .risk-low { background: #d1e7dd; color: #198754; }
+    
+    .info-item {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      padding: 6px 0;
+    }
+    
+    .info-icon {
+      font-size: 16px;
+      margin-right: 8px;
+      width: 20px;
+    }
+    
+    .info-label {
+      font-weight: 500;
+      color: #495057;
+      margin-right: 8px;
+    }
+    
+    .info-value {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #e9ecef;
+      border-radius: 3px;
+      margin: 5px 0;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 3px;
+      transition: width 0.8s ease;
+    }
+    
+    .suggestion-box {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px;
+      border-left: 3px solid #28a745;
+    }
+    
+    @keyframes slideIn {
+      from { 
+        opacity: 0; 
+        transform: translateX(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateX(0); 
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    
+    .card:hover {
+      animation: pulse 2s infinite;
+    }
+    
     .error {
-      color: red;
+      color: #dc3545;
       font-size: 14px;
       text-align: center;
+      font-weight: 500;
+    }
+    
+    .indicator {
+      position: absolute;
+      bottom: 10px;
+      right: 15px;
+      display: flex;
+      gap: 5px;
+    }
+    
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #dee2e6;
+      transition: background 0.3s ease;
+    }
+    
+    .dot.active {
+      background: #667eea;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="cards" id="cards"></div>
+    <div class="cards" id="cards">
+      <div class="indicator" id="indicator"></div>
+    </div>
   </div>
 
   <script>
@@ -74,9 +191,26 @@
         cardsContainer.appendChild(errorDiv);
       });
 
+    function getRiskLevel(percentage) {
+      if (percentage >= 15) return 'risk-high';
+      if (percentage >= 5) return 'risk-medium';
+      return 'risk-low';
+    }
+
+    function getRiskText(percentage) {
+      if (percentage >= 15) return '높음';
+      if (percentage >= 5) return '보통';
+      return '낮음';
+    }
+
     function renderCards(data) {
       const cardsContainer = document.getElementById('cards');
-      cardsContainer.innerHTML = '';
+      const indicator = document.getElementById('indicator');
+      
+      // 기존 내용 제거
+      const existingCards = cardsContainer.querySelectorAll('.card');
+      existingCards.forEach(card => card.remove());
+      
       if (!data.predictions || data.predictions.length === 0) {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error';
@@ -84,31 +218,88 @@
         cardsContainer.appendChild(errorDiv);
         return;
       }
+
+      // 카드 생성
       data.predictions.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'card';
         card.style.display = index === 0 ? 'block' : 'none';
+        
+        const riskLevel = getRiskLevel(item.예상불량률);
+        const riskText = getRiskText(item.예상불량률);
+        
         card.innerHTML = `
-          <h3>${item.모델} <span style='font-size:12px'>(${item.예상불량률.toFixed(1)}%)</span></h3>
-          <p>🛠 불량유형: <b>${item.불량유형}</b></p>
-          <p>🔧 주요부품: <b>${item.부품}</b></p>
-          <p>📊 누적 건수: <b>${item.누적}건</b></p>
-          <p>🔍 주요 키워드: <b>${item.키워드}</b></p>
-          <p>💡 제안: <b>${item.제안}</b></p>
+          <h3>
+            ${item.모델}
+            <span class="risk-level ${riskLevel}">${riskText} ${item.예상불량률.toFixed(1)}%</span>
+          </h3>
+          
+          <div class="info-item">
+            <span class="info-icon">🛠</span>
+            <span class="info-label">불량유형:</span>
+            <span class="info-value">${item.불량유형}</span>
+          </div>
+          
+          <div class="info-item">
+            <span class="info-icon">🔧</span>
+            <span class="info-label">주요부품:</span>
+            <span class="info-value">${item.부품}</span>
+          </div>
+          
+          <div class="info-item">
+            <span class="info-icon">📊</span>
+            <span class="info-label">예상 불량률:</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: ${Math.min(item.예상불량률, 100)}%"></div>
+          </div>
+          
+          <div class="info-item">
+            <span class="info-icon">📈</span>
+            <span class="info-label">누적 건수:</span>
+            <span class="info-value">${item.누적}건</span>
+          </div>
+          
+          <div class="info-item">
+            <span class="info-icon">🔍</span>
+            <span class="info-label">키워드:</span>
+            <span class="info-value">${item.키워드}</span>
+          </div>
+          
+          <div class="suggestion-box">
+            <div style="font-weight: 500; margin-bottom: 5px;">💡 개선 제안</div>
+            <div style="font-size: 12px; color: #495057;">${item.제안}</div>
+          </div>
         `;
         cardsContainer.appendChild(card);
       });
 
+      // 인디케이터 생성
+      indicator.innerHTML = '';
+      data.predictions.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        indicator.appendChild(dot);
+      });
+
+      // 자동 슬라이드
       let cards = document.querySelectorAll('.card');
-      let index = 0;
+      let dots = document.querySelectorAll('.dot');
+      let currentIndex = 0;
+      
       function showNextCard() {
-        cards.forEach((card, i) => {
-          card.style.display = (i === index) ? 'block' : 'none';
-        });
-        index = (index + 1) % cards.length;
+        // 현재 카드 숨기기
+        cards[currentIndex].style.display = 'none';
+        dots[currentIndex].classList.remove('active');
+        
+        // 다음 카드 보여주기
+        currentIndex = (currentIndex + 1) % cards.length;
+        cards[currentIndex].style.display = 'block';
+        dots[currentIndex].classList.add('active');
       }
-      setInterval(showNextCard, 5000);
+      
+      setInterval(showNextCard, 6000); // 6초마다 전환
     }
   </script>
 </body>
-</html>
+</html> 
