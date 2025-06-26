@@ -6,9 +6,10 @@
       "부품": "CENTER O-RING",
       "예상불량률": 22.0,
       "키워드": "내부, 이탈",
-      "불량유형": "기구작업불량",
-      "누적": 43,
-      "제안": "0 관련 공정 개선, 강도, 교체, 교환기 요인 집중 관리"
+      "제안": "O-링 규격 재검토 및 공차 관리 강화",
+      "근거": "근거: 가압 불량, 삽입 불량",
+      "예상효과": "불량률 15.4%p 감소 예상",
+      "우선순위": "IMMEDIATE"
     },
     {
       "모델": "GAIA-I DUAL",
@@ -16,9 +17,10 @@
       "부품": "UNION TEE",
       "예상불량률": 7.000000000000001,
       "키워드": "삽입, 불량",
-      "불량유형": "기구작업불량",
-      "누적": 56,
-      "제안": "0 관련 공정 개선, 강도, 교체, 교환기 요인 집중 관리"
+      "제안": "나사산 규격 및 체결 토크 표준화",
+      "근거": "근거: 체결 불량, 나사산 불량",
+      "예상효과": "불량률 3.5%p 감소 예상",
+      "우선순위": "URGENT"
     },
     {
       "모델": "GAIA-I",
@@ -26,9 +28,10 @@
       "부품": "HEATING PAB PIPE",
       "예상불량률": 2.0,
       "키워드": "포장재, 제거",
-      "불량유형": "기구작업불량",
-      "누적": 56,
-      "제안": "0 관련 공정 개선, 강도, 교체, 교환기 요인 집중 관리"
+      "제안": "용접 조건 최적화 및 작업자 기능 향상",
+      "근거": "근거: 용접 불량, 열변형",
+      "예상효과": "불량률 0.6%p 감소 예상",
+      "우선순위": "NORMAL"
     },
     {
       "모델": "GAIA-I DUAL",
@@ -36,9 +39,10 @@
       "부품": "MALE ADAPTER",
       "예상불량률": 1.0,
       "키워드": "하단, 타이트, 도포",
-      "불량유형": "기구작업불량",
-      "누적": 47,
-      "제안": "0 관련 공정 개선, 강도, 교체, 교환기 요인 집중 관리"
+      "제안": "가공 치수 정밀도 향상 및 검사 기준 강화",
+      "근거": "근거: 가공 정밀도, 삽입 불량",
+      "예상효과": "불량률 0.3%p 감소 예상",
+      "우선순위": "NORMAL"
     },
     {
       "모델": "GAIA-I",
@@ -46,41 +50,456 @@
       "부품": "MALE CONNECTOR",
       "예상불량률": 0.0,
       "키워드": "연결",
-      "불량유형": "기구작업불량",
-      "누적": 44,
-      "제안": "0 관련 공정 개선, 강도, 교체, 교환기 요인 집중 관리"
+      "제안": "커넥터 핀 접촉 압력 최적화",
+      "근거": "근거: 접촉 불량, 삽입 불량",
+      "예상효과": "불량률 0.0%p 감소 예상",
+      "우선순위": "NORMAL"
     }
   ],
-  "defect_analysis": [
+  "advanced_analysis": {
+    "failure_patterns": {
+      "top_patterns": [
+        {
+          "pattern": "3_0_24",
+          "frequency": 14,
+          "percentage": 8.433734939759036,
+          "keywords": [
+            [
+              "N2",
+              14
+            ],
+            [
+              "Male",
+              14
+            ],
+            [
+              "Connector",
+              13
+            ],
+            [
+              "Teflon",
+              13
+            ],
+            [
+              "부족",
+              7
+            ]
+          ],
+          "risk_level": "HIGH"
+        },
+        {
+          "pattern": "3_0_9",
+          "frequency": 9,
+          "percentage": 5.421686746987952,
+          "keywords": [
+            [
+              "체결불량",
+              5
+            ],
+            [
+              "Exhaust",
+              2
+            ],
+            [
+              "Clamp(125A)",
+              2
+            ],
+            [
+              "CLAMP(NW40)",
+              2
+            ],
+            [
+              "CLAMP(NW50)",
+              2
+            ]
+          ],
+          "risk_level": "HIGH"
+        },
+        {
+          "pattern": "3_0_2",
+          "frequency": 8,
+          "percentage": 4.819277108433735,
+          "keywords": [
+            [
+              "Nut",
+              9
+            ],
+            [
+              "UNION",
+              8
+            ],
+            [
+              "Fitting",
+              7
+            ],
+            [
+              "GN2",
+              4
+            ],
+            [
+              "BULK",
+              4
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "1_0_25",
+          "frequency": 6,
+          "percentage": 3.614457831325301,
+          "keywords": [
+            [
+              "Nut",
+              6
+            ],
+            [
+              "BCW",
+              5
+            ],
+            [
+              "Male",
+              3
+            ],
+            [
+              "Elbow",
+              3
+            ],
+            [
+              "PP",
+              2
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "7_0_24",
+          "frequency": 6,
+          "percentage": 3.614457831325301,
+          "keywords": [
+            [
+              "Flow",
+              6
+            ],
+            [
+              "Sensor",
+              6
+            ],
+            [
+              "부족",
+              6
+            ],
+            [
+              "PCW",
+              5
+            ],
+            [
+              "MALE",
+              5
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "5_0_30",
+          "frequency": 6,
+          "percentage": 3.614457831325301,
+          "keywords": [
+            [
+              "O2",
+              6
+            ],
+            [
+              "Pnuematic",
+              6
+            ],
+            [
+              "Valve",
+              6
+            ],
+            [
+              "역방향",
+              6
+            ],
+            [
+              "조립",
+              6
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "3_0_18",
+          "frequency": 5,
+          "percentage": 3.0120481927710845,
+          "keywords": [
+            [
+              "KEY",
+              6
+            ],
+            [
+              "OPERATION",
+              6
+            ],
+            [
+              "VALVE",
+              6
+            ],
+            [
+              "LINE",
+              4
+            ],
+            [
+              "NUT",
+              4
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "2_0_39",
+          "frequency": 5,
+          "percentage": 3.0120481927710845,
+          "keywords": [
+            [
+              "Sprinkler",
+              5
+            ],
+            [
+              "Teflon",
+              5
+            ],
+            [
+              "부족",
+              5
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "3_0_11",
+          "frequency": 4,
+          "percentage": 2.4096385542168677,
+          "keywords": [
+            [
+              "BCW",
+              4
+            ],
+            [
+              "열교환기",
+              4
+            ],
+            [
+              "FEMALE",
+              4
+            ],
+            [
+              "Fitting",
+              4
+            ],
+            [
+              "Nut",
+              4
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "2_0_38",
+          "frequency": 4,
+          "percentage": 2.4096385542168677,
+          "keywords": [
+            [
+              "Speed",
+              4
+            ],
+            [
+              "Controller",
+              4
+            ],
+            [
+              "미완체결",
+              2
+            ],
+            [
+              "삽입부",
+              2
+            ],
+            [
+              "Leak",
+              2
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        }
+      ],
+      "total_patterns": 67,
+      "concentration_index": 0.02692698504862824
+    },
+    "correlations": {
+      "product_part": 0.31046641367958144,
+      "stage_part": 0.9012287334593576
+    },
+    "risk_analysis": {
+      "risk_levels": [
+        {
+          "part": "CENTER O-RING",
+          "defect_rate": 22.0,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "UNION TEE",
+          "defect_rate": 7.000000000000001,
+          "risk_level": "HIGH"
+        },
+        {
+          "part": "HEATING PAB PIPE",
+          "defect_rate": 2.0,
+          "risk_level": "MEDIUM"
+        },
+        {
+          "part": "MALE ADAPTER",
+          "defect_rate": 1.0,
+          "risk_level": "MEDIUM"
+        },
+        {
+          "part": "MALE CONNECTOR",
+          "defect_rate": 0.0,
+          "risk_level": "LOW"
+        }
+      ],
+      "distribution": {
+        "CRITICAL": 1,
+        "HIGH": 1,
+        "MEDIUM": 2,
+        "LOW": 1
+      },
+      "critical_parts": [
+        "CENTER O-RING"
+      ]
+    },
+    "trend_analysis": {}
+  },
+  "improvement_suggestions": [
     {
-      "category": 0,
-      "count": 146,
-      "percentage": 87.95
+      "target": "GAIA-I DUAL - CENTER O-RING",
+      "defect_rate": 22.0,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "가압 불량",
+        "삽입 불량",
+        "누수"
+      ],
+      "specific_actions": [
+        "O-링 규격 재검토 및 공차 관리 강화",
+        "조립 시 O-링 손상 방지를 위한 작업자 교육"
+      ],
+      "inspection_points": [
+        "O-링 표면 상태",
+        "삽입 깊이",
+        "가압 시 누수점"
+      ],
+      "expected_improvement": "불량률 15.4%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
     },
     {
-      "category": 1,
-      "count": 18,
-      "percentage": 10.84
+      "target": "GAIA-I DUAL - UNION TEE",
+      "defect_rate": 7.000000000000001,
+      "urgency": "URGENT",
+      "root_causes": [
+        "체결 불량",
+        "나사산 불량",
+        "밀착 불량"
+      ],
+      "specific_actions": [
+        "나사산 규격 및 체결 토크 표준화",
+        "체결 순서 및 방법 작업지침서 재정비",
+        "유니온티 가공 정밀도 향상"
+      ],
+      "inspection_points": [
+        "나사산 상태",
+        "체결 토크",
+        "밀착면 평활도"
+      ],
+      "expected_improvement": "불량률 3.5%p 감소 예상",
+      "implementation_cost": "MEDIUM",
+      "timeline": "2-4주"
     },
     {
-      "category": 2,
-      "count": 2,
-      "percentage": 1.2
+      "target": "GAIA-I - HEATING PAB PIPE",
+      "defect_rate": 2.0,
+      "urgency": "NORMAL",
+      "root_causes": [
+        "용접 불량",
+        "열변형",
+        "재질 불량"
+      ],
+      "specific_actions": [
+        "용접 조건 최적화 및 작업자 기능 향상"
+      ],
+      "inspection_points": [
+        "용접 품질",
+        "치수 정밀도",
+        "내압 성능"
+      ],
+      "expected_improvement": "불량률 0.6%p 감소 예상",
+      "implementation_cost": "LOW",
+      "timeline": "1-2개월"
+    },
+    {
+      "target": "GAIA-I DUAL - MALE ADAPTER",
+      "defect_rate": 1.0,
+      "urgency": "NORMAL",
+      "root_causes": [
+        "가공 정밀도",
+        "삽입 불량",
+        "체결 불량"
+      ],
+      "specific_actions": [
+        "가공 치수 정밀도 향상 및 검사 기준 강화"
+      ],
+      "inspection_points": [
+        "치수 정밀도",
+        "표면 조도",
+        "삽입 저항"
+      ],
+      "expected_improvement": "불량률 0.3%p 감소 예상",
+      "implementation_cost": "LOW",
+      "timeline": "1-2개월"
+    },
+    {
+      "target": "GAIA-I - MALE CONNECTOR",
+      "defect_rate": 0.0,
+      "urgency": "NORMAL",
+      "root_causes": [
+        "접촉 불량",
+        "삽입 불량",
+        "부식"
+      ],
+      "specific_actions": [
+        "커넥터 핀 접촉 압력 최적화"
+      ],
+      "inspection_points": [
+        "접촉 저항",
+        "삽입력",
+        "방수 성능"
+      ],
+      "expected_improvement": "불량률 0.0%p 감소 예상",
+      "implementation_cost": "LOW",
+      "timeline": "1-2개월"
     }
   ],
-  "top_keywords": [
-    "강도",
-    "교체",
-    "교환기",
-    "내부",
-    "누락",
-    "단부",
-    "도포",
-    "리스",
-    "미완",
-    "반조"
-  ],
-  "suggestion": "0 관련 공정 개선, 강도, 교체, 교환기 요인 집중 관리",
-  "generated_at": "2025-06-26T23:59:25.428279",
-  "data_count": 5
+  "analysis_summary": {
+    "total_suggestions": 5,
+    "immediate_actions": 1,
+    "pattern_concentration": 0.02692698504862824,
+    "risk_distribution": {
+      "CRITICAL": 1,
+      "HIGH": 1,
+      "MEDIUM": 2,
+      "LOW": 1
+    }
+  },
+  "generated_at": "2025-06-27T00:07:42.943768",
+  "analysis_version": "2.0_ADVANCED"
 }
