@@ -279,8 +279,10 @@
           </div>
           
           <div class="suggestion-box">
-            <div style="font-weight: 500; margin-bottom: 5px;">💡 개선 제안</div>
-            <div style="font-size: 12px; color: #495057;">${item.제안}</div>
+            <div style="font-weight: 500; margin-bottom: 1px; font-size: 10px;">💡 Pin Point 제안</div>
+            <div style="font-size: 9px; color: #495057; line-height: 1.1; margin-bottom: 1px;">${item.제안}</div>
+            ${item.근거 ? `<div style="font-size: 8px; color: #6c757d; line-height: 1.0;">${item.근거}</div>` : ''}
+            ${item.예상효과 ? `<div style="font-size: 8px; color: #28a745; font-weight: 500; line-height: 1.0;">${item.예상효과}</div>` : ''}
           </div>
         `;
         cardsContainer.appendChild(card);
