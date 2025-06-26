@@ -5,35 +5,55 @@
       "검출단계": "조립검사",
       "부품": "HEATING JACKET",
       "예상불량률": 25.0,
-      "키워드": "클리닝, 상태, 불량, 자켓, 마킹, 오염"
+      "키워드": "클리닝, 상태, 불량, 자켓, 마킹, 오염",
+      "제안": "온도 센서 교정 및 점검",
+      "근거": "근거: 온도 제어 불량, 절연 손상, 히터 소손",
+      "예상효과": "불량률 17.5%p 감소 예상",
+      "우선순위": "IMMEDIATE"
     },
     {
       "모델": "GAIA-I DUAL",
       "검출단계": "제조품질검사",
       "부품": "LEAK SENSOR",
       "예상불량률": 18.0,
-      "키워드": "넘버링, 튜브"
+      "키워드": "넘버링, 튜브",
+      "제안": "센서 감도 재조정",
+      "근거": "근거: 센서 감도 불량, 오염, 신호 노이즈",
+      "예상효과": "불량률 12.6%p 감소 예상",
+      "우선순위": "IMMEDIATE"
     },
     {
       "모델": "GAIA-I DUAL",
       "검출단계": "제조품질검사",
       "부품": "TOUCH SCREEN",
       "예상불량률": 16.0,
-      "키워드": "통신, 불가"
+      "키워드": "통신, 불가",
+      "제안": "터치 스크린 캘리브레이션",
+      "근거": "근거: 터치 감도 불량, 화면 손상, 통신 오류",
+      "예상효과": "불량률 11.2%p 감소 예상",
+      "우선순위": "IMMEDIATE"
     },
     {
       "모델": "GAIA-I DUAL",
       "검출단계": "조립검사",
       "부품": "미분류",
       "예상불량률": 14.0,
-      "키워드": "조립도, 조립, 방향, 반대, 적용"
+      "키워드": "조립도, 조립, 방향, 반대, 적용",
+      "제안": "부품 식별 라벨링 시스템 구축",
+      "근거": "근거: 부품 식별 불가, 작업 지시서 미비, 검사 기준 불명확",
+      "예상효과": "불량률 7.0%p 감소 예상",
+      "우선순위": "URGENT"
     },
     {
       "모델": "GAIA-I DUAL",
       "검출단계": "가압검사",
       "부품": "FEMALE CONNECTOR",
       "예상불량률": 6.0,
-      "키워드": "조립, 불량"
+      "키워드": "조립, 불량",
+      "제안": "커넥터 핀 접촉 압력 조정",
+      "근거": "근거: 접촉 불량, 삽입 불량, 부식",
+      "예상효과": "불량률 3.0%p 감소 예상",
+      "우선순위": "URGENT"
     }
   ],
   "advanced_analysis": {
@@ -367,8 +387,121 @@
     },
     "trend_analysis": {}
   },
-  "improvement_suggestions": [],
+  "improvement_suggestions": [
+    {
+      "target": "GAIA-I - HEATING JACKET",
+      "defect_rate": 25.0,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "온도 제어 불량",
+        "절연 손상",
+        "히터 소손"
+      ],
+      "specific_actions": [
+        "온도 센서 교정 및 점검",
+        "히터 저항값 측정 및 교체"
+      ],
+      "inspection_points": [
+        "온도 정확도",
+        "절연 저항",
+        "히터 상태"
+      ],
+      "expected_improvement": "불량률 17.5%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
+    {
+      "target": "GAIA-I DUAL - LEAK SENSOR",
+      "defect_rate": 18.0,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "센서 감도 불량",
+        "오염",
+        "신호 노이즈"
+      ],
+      "specific_actions": [
+        "센서 감도 재조정",
+        "센서 청소 및 보호 강화"
+      ],
+      "inspection_points": [
+        "감도 설정",
+        "센서 청결도",
+        "신호 품질"
+      ],
+      "expected_improvement": "불량률 12.6%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
+    {
+      "target": "GAIA-I DUAL - TOUCH SCREEN",
+      "defect_rate": 16.0,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "터치 감도 불량",
+        "화면 손상",
+        "통신 오류"
+      ],
+      "specific_actions": [
+        "터치 스크린 캘리브레이션",
+        "화면 보호 필름 점검"
+      ],
+      "inspection_points": [
+        "터치 반응",
+        "화면 상태",
+        "통신 연결"
+      ],
+      "expected_improvement": "불량률 11.2%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
+    {
+      "target": "GAIA-I DUAL - 미분류",
+      "defect_rate": 14.0,
+      "urgency": "URGENT",
+      "root_causes": [
+        "부품 식별 불가",
+        "작업 지시서 미비",
+        "검사 기준 불명확"
+      ],
+      "specific_actions": [
+        "부품 식별 라벨링 시스템 구축",
+        "작업 지시서 및 도면 명확화",
+        "검사 체크리스트 표준화"
+      ],
+      "inspection_points": [
+        "부품 식별",
+        "작업 지시서",
+        "검사 기준"
+      ],
+      "expected_improvement": "불량률 7.0%p 감소 예상",
+      "implementation_cost": "MEDIUM",
+      "timeline": "2-4주"
+    },
+    {
+      "target": "GAIA-I DUAL - FEMALE CONNECTOR",
+      "defect_rate": 6.0,
+      "urgency": "URGENT",
+      "root_causes": [
+        "접촉 불량",
+        "삽입 불량",
+        "부식"
+      ],
+      "specific_actions": [
+        "커넥터 핀 접촉 압력 조정",
+        "삽입 가이드 정렬 점검",
+        "방청 처리 및 보관 환경 개선"
+      ],
+      "inspection_points": [
+        "접촉 저항",
+        "삽입력",
+        "부식 상태"
+      ],
+      "expected_improvement": "불량률 3.0%p 감소 예상",
+      "implementation_cost": "MEDIUM",
+      "timeline": "2-4주"
+    }
+  ],
   "analysis_summary": null,
-  "generated_at": "2025-06-27T01:32:13.387947",
+  "generated_at": "2025-06-27T01:33:42.036236",
   "analysis_version": "2.0"
 }
