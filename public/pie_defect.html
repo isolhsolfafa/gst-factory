@@ -125,10 +125,12 @@
     .suggestion-box {
       background: #f8f9fa;
       border-radius: 4px;
-      padding: 4px;
-      margin-top: 3px;
+      padding: 2px;
+      margin-top: 2px;
+      margin-bottom: 1px;
       border-left: 2px solid #28a745;
-      font-size: 10px;
+      font-size: 9px;
+      line-height: 1.1;
       flex-grow: 1;
     }
     
@@ -230,6 +232,10 @@
         cardsContainer.appendChild(errorDiv);
         return;
       }
+      
+      // 데이터 구조 확인 및 디버깅
+      console.log('Data structure:', data.predictions[0]);
+      console.log('Available keys:', Object.keys(data.predictions[0]));
 
       // 카드 생성
       data.predictions.forEach((item, index) => {
@@ -237,25 +243,35 @@
         card.className = 'card';
         card.style.display = index === 0 ? 'flex' : 'none';
         
-        const riskLevel = getRiskLevel(item.예상불량률);
-        const riskText = getRiskText(item.예상불량률);
+        // 안전한 데이터 접근
+        const defectRate = item.예상불량률 || 0;
+        const defectType = item.불량유형 || item.defect_type || '미분류';
+        const partName = item.부품 || item.part || '미지정';
+        const accumulatedCount = item.누적 || item.accumulated || 0;
+        const keywords = item.키워드 || item.keywords || '없음';
+        const suggestion = item.제안 || item.suggestion || '검토 필요';
+        const evidence = item.근거 || item.evidence || '';
+        const expectedEffect = item.예상효과 || item.expected_effect || '';
+        
+        const riskLevel = getRiskLevel(defectRate);
+        const riskText = getRiskText(defectRate);
         
         card.innerHTML = `
           <h3>
-            ${item.모델}
-            <span class="risk-level ${riskLevel}">${riskText} ${item.예상불량률.toFixed(1)}%</span>
+            ${item.모델 || item.model || '모델명 없음'}
+            <span class="risk-level ${riskLevel}">${riskText} ${defectRate.toFixed(1)}%</span>
           </h3>
           
           <div class="info-item">
             <span class="info-icon">🛠</span>
             <span class="info-label">불량유형:</span>
-            <span class="info-value">${item.불량유형}</span>
+            <span class="info-value">${defectType}</span>
           </div>
           
           <div class="info-item">
             <span class="info-icon">🔧</span>
             <span class="info-label">주요부품:</span>
-            <span class="info-value">${item.부품}</span>
+            <span class="info-value">${partName}</span>
           </div>
           
           <div class="info-item">
@@ -263,26 +279,26 @@
             <span class="info-label">예상 불량률:</span>
           </div>
           <div class="progress-bar">
-            <div class="progress-fill" style="width: ${Math.min(item.예상불량률, 100)}%"></div>
+            <div class="progress-fill" style="width: ${Math.min(defectRate, 100)}%"></div>
           </div>
           
           <div class="info-item">
             <span class="info-icon">📈</span>
             <span class="info-label">누적 건수:</span>
-            <span class="info-value">${item.누적}건</span>
+            <span class="info-value">${accumulatedCount}건</span>
           </div>
           
           <div class="info-item">
             <span class="info-icon">🔍</span>
             <span class="info-label">키워드:</span>
-            <span class="info-value">${item.키워드}</span>
+            <span class="info-value">${keywords}</span>
           </div>
           
           <div class="suggestion-box">
-            <div style="font-weight: 500; margin-bottom: 1px; font-size: 10px;">💡 Pin Point 제안</div>
-            <div style="font-size: 9px; color: #495057; line-height: 1.1; margin-bottom: 1px;">${item.제안}</div>
-            ${item.근거 ? `<div style="font-size: 8px; color: #6c757d; line-height: 1.0;">${item.근거}</div>` : ''}
-            ${item.예상효과 ? `<div style="font-size: 8px; color: #28a745; font-weight: 500; line-height: 1.0;">${item.예상효과}</div>` : ''}
+            <div style="font-weight: 500; margin-bottom: 0px; font-size: 9px; line-height: 1.0;">💡 Pin Point 제안</div>
+            <div style="font-size: 8px; color: #495057; line-height: 1.0; margin-bottom: 0px;">${suggestion}</div>
+            ${evidence ? `<div style="font-size: 7px; color: #6c757d; line-height: 1.0; margin-bottom: 0px;">${evidence}</div>` : ''}
+            ${expectedEffect ? `<div style="font-size: 7px; color: #28a745; font-weight: 500; line-height: 1.0;">${expectedEffect}</div>` : ''}
           </div>
         `;
         cardsContainer.appendChild(card);
