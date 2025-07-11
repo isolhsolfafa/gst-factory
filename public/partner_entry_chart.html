@@ -38,8 +38,8 @@
             <h1>🏢 협력사 출입 현황 (일자별 관리)</h1>
             <div class="stats">
                 <div class="stat-item">📊 총 회사: 6개</div>
-                <div class="stat-item">👥 총 인원: 98명</div>
-                <div class="stat-item">🕐 생성일시: 2025년 07월 11일 11시 26분</div>
+                <div class="stat-item">👥 총 인원: 99명</div>
+                <div class="stat-item">🕐 생성일시: 2025년 07월 11일 12시 02분</div>
                 <div class="stat-item">📋 관리방식: 일자별 독립 관리</div>
             </div>
         </div>
@@ -1098,11 +1098,11 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_5')">
                 <div>
-                    <h3>⚡ P&S (총 4명: 본사 1명, 현장 3명)</h3>
-                    <small style="opacity: 0.8;">상세: 본사 1명, 현장 3명</small>
+                    <h3>⚡ P&S (총 5명: 본사 1명, 현장 4명)</h3>
+                    <small style="opacity: 0.8;">상세: 본사 1명, 현장 4명</small>
                 </div>
                 <div>
-                    <span class="summary-badge">퇴근미체크: 4명</span>
+                    <span class="summary-badge">퇴근미체크: 5명</span>
                     <span class="toggle-icon">▼</span>
                 </div>
             </div>
@@ -1134,6 +1134,15 @@
                     <td>남민수</td>
                     <td>현장</td>
                     <td>2025. 7. 11 8:07:00</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>박광진</td>
+                    <td>현장</td>
+                    <td>2025. 7. 11 11:43:47</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -1176,9 +1185,9 @@
     <script>
                  // 차트 데이터 (단순화 - 본사 vs 현장)
          var companies = ["TMS(E)", "C&A", "FNI", "BAT", "TMS(M)", "P&S"];
-         var totals = [23, 22, 22, 19, 8, 4];
+         var totals = [23, 22, 22, 19, 8, 5];
          var hq_total_counts = [10, 13, 0, 0, 0, 1];
-         var factory_total_counts = [13, 9, 22, 19, 8, 3];
+         var factory_total_counts = [13, 9, 22, 19, 8, 4];
          
          // 협력사별 색상 정의
          var companyColors = {
