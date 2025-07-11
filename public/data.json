@@ -1,69 +1,69 @@
 {
   "predictions": [
     {
-      "모델": "GAIA-II",
+      "모델": "GAIA-I DUAL",
       "검출단계": "가압검사",
-      "부품": "QUICK COUPLER",
-      "예상불량률": 10.0,
+      "부품": "SPEED CONTROLLER",
+      "예상불량률": 95.1,
       "키워드": "",
-      "불량유형": "기타불량",
-      "누적": 1,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
-    },
-    {
-      "모델": "GAIA-P DUAL",
-      "검출단계": "가압검사",
-      "부품": "O-RING",
-      "예상불량률": 7.0,
-      "키워드": "손상",
-      "불량유형": "기타불량",
-      "누적": 20,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
-    },
-    {
-      "모델": "GAIA-ADVANCE",
-      "검출단계": "가압검사",
-      "부품": "ADJUSTABLE ELBOW",
-      "예상불량률": 3.0,
-      "키워드": "미완, 체결",
-      "불량유형": "기타불량",
-      "누적": 6,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
-    },
-    {
-      "모델": "미분류",
-      "검출단계": "미분류",
-      "부품": "미분류",
-      "예상불량률": 1.0,
-      "키워드": "",
-      "불량유형": "검사품질불량",
-      "누적": 1,
-      "제안": "부품 식별 라벨링 시스템 구축",
-      "근거": "근거: 부품명 누락/오기입, 조립도면 정보 불일치, 작업지시서 미비, 부품 코드 체계 미정립, 검사 기준 불명확",
-      "예상효과": "불량률 0.3%p 감소 예상",
-      "우선순위": "NORMAL"
+      "불량유형": "부품불량",
+      "누적": 78,
+      "제안": "Speed Controller 파트 교체 (미보증 부품)",
+      "근거": "근거: PFA 재질 leak, Body 재질 leak, 우레탄 재질 leak, He 가압검사 불합격",
+      "예상효과": "불량률 50.0%p 감소 예상",
+      "우선순위": "IMMEDIATE"
     },
     {
       "모델": "GAIA-I DUAL",
       "검출단계": "가압검사",
-      "부품": "MALE CONNECTOR",
-      "예상불량률": 0.0,
-      "키워드": "부족",
+      "부품": "SPEED CONTROLLER",
+      "예상불량률": 95.1,
+      "키워드": "",
+      "불량유형": "부품불량",
+      "누적": 78,
+      "제안": "Speed Controller 파트 교체 (미보증 부품)",
+      "근거": "근거: PFA 재질 leak, Body 재질 leak, 우레탄 재질 leak, He 가압검사 불합격",
+      "예상효과": "불량률 50.0%p 감소 예상",
+      "우선순위": "IMMEDIATE"
+    },
+    {
+      "모델": "GAIA-I DUAL",
+      "검출단계": "가압검사",
+      "부품": "SPEED CONTROLLER",
+      "예상불량률": 95.1,
+      "키워드": "",
+      "불량유형": "부품불량",
+      "누적": 78,
+      "제안": "Speed Controller 파트 교체 (미보증 부품)",
+      "근거": "근거: PFA 재질 leak, Body 재질 leak, 우레탄 재질 leak, He 가압검사 불합격",
+      "예상효과": "불량률 50.0%p 감소 예상",
+      "우선순위": "IMMEDIATE"
+    },
+    {
+      "모델": "GAIA-I DUAL",
+      "검출단계": "가압검사",
+      "부품": "BURNER SCRAPER LINE-01",
+      "예상불량률": 70.0,
+      "키워드": "배관, 발생",
+      "불량유형": "부품불량",
+      "누적": 1,
+      "제안": "Pipe Tee 배관 교체",
+      "근거": "근거: Pipe Tee 배관 Crack, Leak 발생",
+      "예상효과": "불량률 49.0%p 감소 예상",
+      "우선순위": "IMMEDIATE"
+    },
+    {
+      "모델": "GAIA-I DUAL",
+      "검출단계": "가압검사",
+      "부품": "UNION ELBOW",
+      "예상불량률": 6.0,
+      "키워드": "",
       "불량유형": "기구작업불량",
-      "누적": 23,
-      "제안": "커넥터 핀 접촉 압력 최적화",
-      "근거": "근거: 접촉 불량, 삽입 불량, 부식",
-      "예상효과": "불량률 0.0%p 감소 예상",
-      "우선순위": "NORMAL"
+      "누적": 8,
+      "제안": "Fitting Nut 체결 토크 표준화",
+      "근거": "근거: Fitting Nut 체결불량, Tube 삽입 불량, Ferrule 덜물림, Nut 체결 누락",
+      "예상효과": "불량률 3.0%p 감소 예상",
+      "우선순위": "URGENT"
     }
   ],
   "advanced_analysis": {
@@ -339,85 +339,161 @@
     "risk_analysis": {
       "risk_levels": [
         {
-          "part": "QUICK COUPLER",
-          "defect_rate": 10.0,
+          "part": "SPEED CONTROLLER",
+          "defect_rate": 95.1,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "SPEED CONTROLLER",
+          "defect_rate": 95.1,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "SPEED CONTROLLER",
+          "defect_rate": 95.1,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "BURNER SCRAPER LINE-01",
+          "defect_rate": 70.0,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "UNION ELBOW",
+          "defect_rate": 6.0,
           "risk_level": "HIGH"
-        },
-        {
-          "part": "O-RING",
-          "defect_rate": 7.0,
-          "risk_level": "HIGH"
-        },
-        {
-          "part": "ADJUSTABLE ELBOW",
-          "defect_rate": 3.0,
-          "risk_level": "MEDIUM"
-        },
-        {
-          "part": "미분류",
-          "defect_rate": 1.0,
-          "risk_level": "MEDIUM"
-        },
-        {
-          "part": "MALE CONNECTOR",
-          "defect_rate": 0.0,
-          "risk_level": "LOW"
         }
       ],
       "distribution": {
-        "HIGH": 2,
-        "MEDIUM": 2,
-        "LOW": 1
+        "CRITICAL": 4,
+        "HIGH": 1
       },
-      "critical_parts": []
+      "critical_parts": [
+        "SPEED CONTROLLER",
+        "SPEED CONTROLLER",
+        "SPEED CONTROLLER",
+        "BURNER SCRAPER LINE-01"
+      ]
     },
     "trend_analysis": {}
   },
   "improvement_suggestions": [
     {
-      "target": "미분류 - 미분류",
-      "defect_rate": 1.0,
-      "urgency": "NORMAL",
+      "target": "GAIA-I DUAL - SPEED CONTROLLER",
+      "defect_rate": 95.1,
+      "urgency": "IMMEDIATE",
       "root_causes": [
-        "부품명 누락/오기입",
-        "조립도면 정보 불일치",
-        "작업지시서 미비",
-        "부품 코드 체계 미정립",
-        "검사 기준 불명확"
+        "PFA 재질 leak",
+        "Body 재질 leak",
+        "우레탄 재질 leak",
+        "He 가압검사 불합격"
       ],
       "specific_actions": [
-        "부품 식별 라벨링 시스템 구축"
+        "Speed Controller 파트 교체 (미보증 부품)",
+        "PFA/Body/우레탄 재질 leak 점검"
       ],
       "inspection_points": [
-        "부품 라벨 부착 상태",
-        "작업 지시서 완성도",
-        "검사 기준서 명확성",
-        "작업자 부품 식별 능력"
+        "PFA 재질 상태",
+        "Body 재질 상태",
+        "우레탄 재질 상태",
+        "He leak 테스트"
       ],
-      "expected_improvement": "불량률 0.3%p 감소 예상",
-      "implementation_cost": "LOW",
-      "timeline": "1-2개월"
+      "expected_improvement": "불량률 50.0%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
     },
     {
-      "target": "GAIA-I DUAL - MALE CONNECTOR",
-      "defect_rate": 0.0,
-      "urgency": "NORMAL",
+      "target": "GAIA-I DUAL - SPEED CONTROLLER",
+      "defect_rate": 95.1,
+      "urgency": "IMMEDIATE",
       "root_causes": [
-        "접촉 불량",
-        "삽입 불량",
-        "부식"
+        "PFA 재질 leak",
+        "Body 재질 leak",
+        "우레탄 재질 leak",
+        "He 가압검사 불합격"
       ],
       "specific_actions": [
-        "커넥터 핀 접촉 압력 최적화"
+        "Speed Controller 파트 교체 (미보증 부품)",
+        "PFA/Body/우레탄 재질 leak 점검"
       ],
       "inspection_points": [
-        "접촉 저항",
-        "삽입력",
-        "방수 성능"
+        "PFA 재질 상태",
+        "Body 재질 상태",
+        "우레탄 재질 상태",
+        "He leak 테스트"
       ],
-      "expected_improvement": "불량률 0.0%p 감소 예상",
-      "implementation_cost": "LOW",
-      "timeline": "1-2개월"
+      "expected_improvement": "불량률 50.0%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
+    {
+      "target": "GAIA-I DUAL - SPEED CONTROLLER",
+      "defect_rate": 95.1,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "PFA 재질 leak",
+        "Body 재질 leak",
+        "우레탄 재질 leak",
+        "He 가압검사 불합격"
+      ],
+      "specific_actions": [
+        "Speed Controller 파트 교체 (미보증 부품)",
+        "PFA/Body/우레탄 재질 leak 점검"
+      ],
+      "inspection_points": [
+        "PFA 재질 상태",
+        "Body 재질 상태",
+        "우레탄 재질 상태",
+        "He leak 테스트"
+      ],
+      "expected_improvement": "불량률 50.0%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
+    {
+      "target": "GAIA-I DUAL - BURNER SCRAPER LINE-01",
+      "defect_rate": 70.0,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "Pipe Tee 배관 Crack",
+        "Leak 발생"
+      ],
+      "specific_actions": [
+        "Pipe Tee 배관 교체",
+        "Crack 발생 원인 분석"
+      ],
+      "inspection_points": [
+        "배관 Crack 상태",
+        "Leak 테스트",
+        "배관 재질"
+      ],
+      "expected_improvement": "불량률 49.0%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
+    {
+      "target": "GAIA-I DUAL - UNION ELBOW",
+      "defect_rate": 6.0,
+      "urgency": "URGENT",
+      "root_causes": [
+        "Fitting Nut 체결불량",
+        "Tube 삽입 불량",
+        "Ferrule 덜물림",
+        "Nut 체결 누락"
+      ],
+      "specific_actions": [
+        "Fitting Nut 체결 토크 표준화",
+        "Tube 삽입 깊이 검사 강화",
+        "Ferrule 물림 상태 점검"
+      ],
+      "inspection_points": [
+        "Fitting Nut 체결 상태",
+        "Tube 삽입 깊이",
+        "Ferrule 물림 상태"
+      ],
+      "expected_improvement": "불량률 3.0%p 감소 예상",
+      "implementation_cost": "MEDIUM",
+      "timeline": "2-4주"
     }
   ],
   "selection_criteria": {
@@ -427,7 +503,7 @@
         "factor": "예측 불량률",
         "weight": "40%",
         "description": "ML 모델이 예측한 부품별 불량 발생 확률",
-        "current_range": "10.0% ~ 0.0%"
+        "current_range": "95.1% ~ 6.0%"
       },
       {
         "factor": "생산량 가중치",
@@ -450,7 +526,7 @@
     ],
     "special_cases": {
       "미분류": {
-        "current_status": "1.0%",
+        "current_status": "0%",
         "impact": "전체 불량의 26.7% 차지",
         "priority": "HIGH - 품질 관리 체계 근본적 개선 필요",
         "main_issue": "조립도면/BOM 정보 불일치가 주원인"
@@ -465,6 +541,6 @@
     ]
   },
   "analysis_summary": null,
-  "generated_at": "2025-07-12 00:30:35",
+  "generated_at": "2025-07-12 00:35:34",
   "analysis_version": "2.1"
 }
