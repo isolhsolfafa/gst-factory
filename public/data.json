@@ -1,6 +1,32 @@
 {
   "predictions": [
     {
+      "모델": "GAIA-II",
+      "검출단계": "가압검사",
+      "부품": "SPEED CONTROLLER",
+      "예상불량률": 99.3,
+      "키워드": "",
+      "불량유형": "부품불량",
+      "누적": 78,
+      "제안": "Speed Controller 파트 교체 (미보증 부품)",
+      "근거": "근거: PFA 재질 leak, Body 재질 leak, 우레탄 재질 leak, He 가압검사 불합격",
+      "예상효과": "불량률 50.0%p 감소 예상",
+      "우선순위": "IMMEDIATE"
+    },
+    {
+      "모델": "GAIA-P",
+      "검출단계": "가압검사",
+      "부품": "REDUCER DOUBLE Y UNION",
+      "예상불량률": 99.0,
+      "키워드": "삽입부",
+      "불량유형": "부품불량",
+      "누적": 20,
+      "제안": "체결 토크 표준화",
+      "근거": "근거: 체결 불량, 누설, 가공 정밀도",
+      "예상효과": "불량률 50.0%p 감소 예상",
+      "우선순위": "IMMEDIATE"
+    },
+    {
       "모델": "GAIA-I",
       "검출단계": "가압검사",
       "부품": "SPEED CONTROLLER",
@@ -27,10 +53,10 @@
       "우선순위": "IMMEDIATE"
     },
     {
-      "모델": "GAIA-I DUAL",
+      "모델": "DRAGON",
       "검출단계": "가압검사",
       "부품": "SPEED CONTROLLER",
-      "예상불량률": 95.1,
+      "예상불량률": 93.0,
       "키워드": "",
       "불량유형": "부품불량",
       "누적": 78,
@@ -38,32 +64,6 @@
       "근거": "근거: PFA 재질 leak, Body 재질 leak, 우레탄 재질 leak, He 가압검사 불합격",
       "예상효과": "불량률 50.0%p 감소 예상",
       "우선순위": "IMMEDIATE"
-    },
-    {
-      "모델": "GAIA-I DUAL",
-      "검출단계": "가압검사",
-      "부품": "SPEED CONTROLLER",
-      "예상불량률": 95.1,
-      "키워드": "",
-      "불량유형": "부품불량",
-      "누적": 78,
-      "제안": "Speed Controller 파트 교체 (미보증 부품)",
-      "근거": "근거: PFA 재질 leak, Body 재질 leak, 우레탄 재질 leak, He 가압검사 불합격",
-      "예상효과": "불량률 50.0%p 감소 예상",
-      "우선순위": "IMMEDIATE"
-    },
-    {
-      "모델": "GAIA-I DUAL",
-      "검출단계": "가압검사",
-      "부품": "O-RING",
-      "예상불량률": 1.9,
-      "키워드": "",
-      "불량유형": "기타불량",
-      "누적": 20,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
     }
   ],
   "advanced_analysis": {
@@ -340,6 +340,16 @@
       "risk_levels": [
         {
           "part": "SPEED CONTROLLER",
+          "defect_rate": 99.3,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "REDUCER DOUBLE Y UNION",
+          "defect_rate": 99.0,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "SPEED CONTROLLER",
           "defect_rate": 98.9,
           "risk_level": "CRITICAL"
         },
@@ -350,26 +360,16 @@
         },
         {
           "part": "SPEED CONTROLLER",
-          "defect_rate": 95.1,
+          "defect_rate": 93.0,
           "risk_level": "CRITICAL"
-        },
-        {
-          "part": "SPEED CONTROLLER",
-          "defect_rate": 95.1,
-          "risk_level": "CRITICAL"
-        },
-        {
-          "part": "O-RING",
-          "defect_rate": 1.9,
-          "risk_level": "MEDIUM"
         }
       ],
       "distribution": {
-        "CRITICAL": 4,
-        "MEDIUM": 1
+        "CRITICAL": 5
       },
       "critical_parts": [
         "SPEED CONTROLLER",
+        "REDUCER DOUBLE Y UNION",
         "SPEED CONTROLLER",
         "SPEED CONTROLLER",
         "SPEED CONTROLLER"
@@ -378,6 +378,52 @@
     "trend_analysis": {}
   },
   "improvement_suggestions": [
+    {
+      "target": "GAIA-II - SPEED CONTROLLER",
+      "defect_rate": 99.3,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "PFA 재질 leak",
+        "Body 재질 leak",
+        "우레탄 재질 leak",
+        "He 가압검사 불합격"
+      ],
+      "specific_actions": [
+        "Speed Controller 파트 교체 (미보증 부품)",
+        "PFA/Body/우레탄 재질 leak 점검"
+      ],
+      "inspection_points": [
+        "PFA 재질 상태",
+        "Body 재질 상태",
+        "우레탄 재질 상태",
+        "He leak 테스트"
+      ],
+      "expected_improvement": "불량률 50.0%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
+    {
+      "target": "GAIA-P - REDUCER DOUBLE Y UNION",
+      "defect_rate": 99.0,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "체결 불량",
+        "누설",
+        "가공 정밀도"
+      ],
+      "specific_actions": [
+        "체결 토크 표준화",
+        "실링 재료 및 방법 개선"
+      ],
+      "inspection_points": [
+        "체결 토크",
+        "누설 여부",
+        "치수 정밀도"
+      ],
+      "expected_improvement": "불량률 50.0%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
     {
       "target": "GAIA-I - SPEED CONTROLLER",
       "defect_rate": 98.9,
@@ -427,32 +473,8 @@
       "timeline": "1주 이내"
     },
     {
-      "target": "GAIA-I DUAL - SPEED CONTROLLER",
-      "defect_rate": 95.1,
-      "urgency": "IMMEDIATE",
-      "root_causes": [
-        "PFA 재질 leak",
-        "Body 재질 leak",
-        "우레탄 재질 leak",
-        "He 가압검사 불합격"
-      ],
-      "specific_actions": [
-        "Speed Controller 파트 교체 (미보증 부품)",
-        "PFA/Body/우레탄 재질 leak 점검"
-      ],
-      "inspection_points": [
-        "PFA 재질 상태",
-        "Body 재질 상태",
-        "우레탄 재질 상태",
-        "He leak 테스트"
-      ],
-      "expected_improvement": "불량률 50.0%p 감소 예상",
-      "implementation_cost": "HIGH",
-      "timeline": "1주 이내"
-    },
-    {
-      "target": "GAIA-I DUAL - SPEED CONTROLLER",
-      "defect_rate": 95.1,
+      "target": "DRAGON - SPEED CONTROLLER",
+      "defect_rate": 93.0,
       "urgency": "IMMEDIATE",
       "root_causes": [
         "PFA 재질 leak",
@@ -482,7 +504,7 @@
         "factor": "예측 불량률",
         "weight": "40%",
         "description": "ML 모델이 예측한 부품별 불량 발생 확률",
-        "current_range": "98.9% ~ 1.9%"
+        "current_range": "99.3% ~ 93.0%"
       },
       {
         "factor": "생산량 가중치",
@@ -520,6 +542,6 @@
     ]
   },
   "analysis_summary": null,
-  "generated_at": "2025-07-12 00:24:57",
+  "generated_at": "2025-07-12 00:28:39",
   "analysis_version": "2.1"
 }
