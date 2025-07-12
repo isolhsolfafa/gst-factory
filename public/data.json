@@ -4,7 +4,7 @@
       "모델": "GAIA-II DUAL",
       "검출단계": "가압검사",
       "부품": "REDUCER DOUBLE Y UNION",
-      "예상불량률": 100.0,
+      "예상불량률": 99.8,
       "키워드": "삽입부",
       "불량유형": "부품불량",
       "누적": 20,
@@ -14,23 +14,10 @@
       "우선순위": "IMMEDIATE"
     },
     {
-      "모델": "DRAGON DUAL",
-      "검출단계": "가압검사",
-      "부품": "O-RING",
-      "예상불량률": 11.0,
-      "키워드": "",
-      "불량유형": "기타불량",
-      "누적": 20,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
-    },
-    {
       "모델": "GAIA-II",
       "검출단계": "가압검사",
       "부품": "QUICK COUPLER",
-      "예상불량률": 10.0,
+      "예상불량률": 23.0,
       "키워드": "",
       "불량유형": "기타불량",
       "누적": 1,
@@ -40,11 +27,11 @@
       "우선순위": "NORMAL"
     },
     {
-      "모델": "GAIA-P DUAL",
+      "모델": "DRAGON DUAL",
       "검출단계": "가압검사",
       "부품": "O-RING",
-      "예상불량률": 4.0,
-      "키워드": "손상",
+      "예상불량률": 10.0,
+      "키워드": "",
       "불량유형": "기타불량",
       "누적": 20,
       "제안": "개선 검토 필요",
@@ -56,10 +43,23 @@
       "모델": "GAIA-I DUAL",
       "검출단계": "가압검사",
       "부품": "BULKHEAD UNION",
-      "예상불량률": 1.0,
+      "예상불량률": 7.0,
       "키워드": "튜브, 부족",
       "불량유형": "기구작업불량",
       "누적": 10,
+      "제안": "개선 검토 필요",
+      "근거": "근거: 추가 분석 필요",
+      "예상효과": "효과 분석 중",
+      "우선순위": "NORMAL"
+    },
+    {
+      "모델": "DRAGON",
+      "검출단계": "가압검사",
+      "부품": "O-RING",
+      "예상불량률": 2.0,
+      "키워드": "",
+      "불량유형": "기타불량",
+      "누적": 20,
       "제안": "개선 검토 필요",
       "근거": "근거: 추가 분석 필요",
       "예상효과": "효과 분석 중",
@@ -340,37 +340,38 @@
       "risk_levels": [
         {
           "part": "REDUCER DOUBLE Y UNION",
-          "defect_rate": 100.0,
+          "defect_rate": 99.8,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "QUICK COUPLER",
+          "defect_rate": 23.0,
           "risk_level": "CRITICAL"
         },
         {
           "part": "O-RING",
-          "defect_rate": 11.0,
-          "risk_level": "HIGH"
-        },
-        {
-          "part": "QUICK COUPLER",
           "defect_rate": 10.0,
           "risk_level": "HIGH"
         },
         {
-          "part": "O-RING",
-          "defect_rate": 4.0,
-          "risk_level": "MEDIUM"
+          "part": "BULKHEAD UNION",
+          "defect_rate": 7.0,
+          "risk_level": "HIGH"
         },
         {
-          "part": "BULKHEAD UNION",
-          "defect_rate": 1.0,
+          "part": "O-RING",
+          "defect_rate": 2.0,
           "risk_level": "MEDIUM"
         }
       ],
       "distribution": {
-        "CRITICAL": 1,
+        "CRITICAL": 2,
         "HIGH": 2,
-        "MEDIUM": 2
+        "MEDIUM": 1
       },
       "critical_parts": [
-        "REDUCER DOUBLE Y UNION"
+        "REDUCER DOUBLE Y UNION",
+        "QUICK COUPLER"
       ]
     },
     "trend_analysis": {}
@@ -378,7 +379,7 @@
   "improvement_suggestions": [
     {
       "target": "GAIA-II DUAL - REDUCER DOUBLE Y UNION",
-      "defect_rate": 100.0,
+      "defect_rate": 99.8,
       "urgency": "IMMEDIATE",
       "root_causes": [
         "체결 불량",
@@ -406,7 +407,7 @@
         "factor": "예측 불량률",
         "weight": "40%",
         "description": "ML 모델이 예측한 부품별 불량 발생 확률",
-        "current_range": "100.0% ~ 1.0%"
+        "current_range": "99.8% ~ 2.0%"
       },
       {
         "factor": "생산량 가중치",
@@ -444,6 +445,6 @@
     ]
   },
   "analysis_summary": null,
-  "generated_at": "2025-07-12 00:46:18",
+  "generated_at": "2025-07-12 14:16:47",
   "analysis_version": "2.1"
 }
