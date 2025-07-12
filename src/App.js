@@ -146,7 +146,7 @@ const InternalDashboard = () => {
 
   useEffect(() => {
     const password = prompt("🔐 내부 대시보드 접근을 위한 비밀번호를 입력하세요:");
-    if (password === "0979") {
+    if (password === "7979") {
       setIsAuthenticated(true);
     } else {
       alert("❌ 비밀번호가 틀렸습니다. 접근이 제한됩니다.");
