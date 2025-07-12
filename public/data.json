@@ -1,10 +1,23 @@
 {
   "predictions": [
     {
+      "모델": "GAIA-P",
+      "검출단계": "가압검사",
+      "부품": "REDUCER DOUBLE Y UNION",
+      "예상불량률": 100.0,
+      "키워드": "삽입부",
+      "불량유형": "부품불량",
+      "누적": 20,
+      "제안": "체결 토크 표준화",
+      "근거": "근거: 체결 불량, 누설, 가공 정밀도",
+      "예상효과": "불량률 50.0%p 감소 예상",
+      "우선순위": "IMMEDIATE"
+    },
+    {
       "모델": "GAIA-II DUAL",
       "검출단계": "가압검사",
       "부품": "REDUCER DOUBLE Y UNION",
-      "예상불량률": 97.0,
+      "예상불량률": 100.0,
       "키워드": "삽입부",
       "불량유형": "부품불량",
       "누적": 20,
@@ -27,6 +40,19 @@
       "우선순위": "NORMAL"
     },
     {
+      "모델": "DRAGON DUAL",
+      "검출단계": "가압검사",
+      "부품": "O-RING",
+      "예상불량률": 5.0,
+      "키워드": "",
+      "불량유형": "기타불량",
+      "누적": 20,
+      "제안": "개선 검토 필요",
+      "근거": "근거: 추가 분석 필요",
+      "예상효과": "효과 분석 중",
+      "우선순위": "NORMAL"
+    },
+    {
       "모델": "GAIA-I DUAL",
       "검출단계": "가압검사",
       "부품": "BULKHEAD UNION",
@@ -34,32 +60,6 @@
       "키워드": "튜브, 부족",
       "불량유형": "기구작업불량",
       "누적": 10,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
-    },
-    {
-      "모델": "GAIA-II",
-      "검출단계": "가압검사",
-      "부품": "PNEUMATIC VALVE",
-      "예상불량률": 3.0,
-      "키워드": "역방향, 조립",
-      "불량유형": "기구작업불량",
-      "누적": 3,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
-    },
-    {
-      "모델": "GAIA-P DUAL",
-      "검출단계": "가압검사",
-      "부품": "O-RING",
-      "예상불량률": 3.0,
-      "키워드": "손상",
-      "불량유형": "기타불량",
-      "누적": 20,
       "제안": "개선 검토 필요",
       "근거": "근거: 추가 분석 필요",
       "예상효과": "효과 분석 중",
@@ -340,7 +340,12 @@
       "risk_levels": [
         {
           "part": "REDUCER DOUBLE Y UNION",
-          "defect_rate": 97.0,
+          "defect_rate": 100.0,
+          "risk_level": "CRITICAL"
+        },
+        {
+          "part": "REDUCER DOUBLE Y UNION",
+          "defect_rate": 100.0,
           "risk_level": "CRITICAL"
         },
         {
@@ -349,27 +354,23 @@
           "risk_level": "HIGH"
         },
         {
+          "part": "O-RING",
+          "defect_rate": 5.0,
+          "risk_level": "HIGH"
+        },
+        {
           "part": "BULKHEAD UNION",
           "defect_rate": 4.0,
-          "risk_level": "MEDIUM"
-        },
-        {
-          "part": "PNEUMATIC VALVE",
-          "defect_rate": 3.0,
-          "risk_level": "MEDIUM"
-        },
-        {
-          "part": "O-RING",
-          "defect_rate": 3.0,
           "risk_level": "MEDIUM"
         }
       ],
       "distribution": {
-        "CRITICAL": 1,
-        "HIGH": 1,
-        "MEDIUM": 3
+        "CRITICAL": 2,
+        "HIGH": 2,
+        "MEDIUM": 1
       },
       "critical_parts": [
+        "REDUCER DOUBLE Y UNION",
         "REDUCER DOUBLE Y UNION"
       ]
     },
@@ -377,8 +378,30 @@
   },
   "improvement_suggestions": [
     {
+      "target": "GAIA-P - REDUCER DOUBLE Y UNION",
+      "defect_rate": 100.0,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "체결 불량",
+        "누설",
+        "가공 정밀도"
+      ],
+      "specific_actions": [
+        "체결 토크 표준화",
+        "실링 재료 및 방법 개선"
+      ],
+      "inspection_points": [
+        "체결 토크",
+        "누설 여부",
+        "치수 정밀도"
+      ],
+      "expected_improvement": "불량률 50.0%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
+    {
       "target": "GAIA-II DUAL - REDUCER DOUBLE Y UNION",
-      "defect_rate": 97.0,
+      "defect_rate": 100.0,
       "urgency": "IMMEDIATE",
       "root_causes": [
         "체결 불량",
@@ -406,7 +429,7 @@
         "factor": "예측 불량률",
         "weight": "40%",
         "description": "ML 모델이 예측한 부품별 불량 발생 확률",
-        "current_range": "97.0% ~ 3.0%"
+        "current_range": "100.0% ~ 4.0%"
       },
       {
         "factor": "생산량 가중치",
@@ -444,6 +467,6 @@
     ]
   },
   "analysis_summary": null,
-  "generated_at": "2025-07-12 14:19:42",
+  "generated_at": "2025-07-12 14:25:24",
   "analysis_version": "2.1"
 }
