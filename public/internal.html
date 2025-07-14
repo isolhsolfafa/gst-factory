@@ -183,6 +183,12 @@
                         margin: 2px 0;
                     }
                     
+                    .example-text {
+                        font-size: 11px;
+                        color: #ffeb3b;
+                        font-style: italic;
+                    }
+                    
                     .tooltip-item {
                         display: flex;
                         align-items: center;
@@ -265,62 +271,84 @@
                                 <div class="tooltip-title">🔧 불량 조치 정의 가이드</div>
                                 
                                 <div class="tooltip-section">
-                                    <div class="tooltip-section-title">🎯 평가 목적</div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">①</span>
-                                        <span class="tooltip-text">기구·전장 협력사의 품질 수준을 불량률과 데이터 완성성(누락 비율)으로 객관적으로 평가</span>
-                                    </div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">②</span>
-                                        <span class="tooltip-text">상황별 배경·인센티브·개선 과제 부여 기준 마련</span>
-                                    </div>
-                                </div>
-                                
-                                <div class="tooltip-section">
-                                    <div class="tooltip-section-title">📊 평가 지표</div>
+                                    <div class="tooltip-section-title">📋 가압 불량 조치 정의</div>
                                     <div class="tooltip-table">
                                         <table>
                                             <tr>
-                                                <th>지표</th>
+                                                <th>조치</th>
                                                 <th>정의</th>
-                                                <th>가중치</th>
-                                                <th>등급 구간</th>
+                                                <th>예시</th>
                                             </tr>
                                             <tr>
-                                                <td><strong>불량률</strong></td>
-                                                <td>(월간 불량 건수 ÷ 월간 검사 건수) ×100</td>
-                                                <td class="weight-high">70%</td>
-                                                <td>
-                                                    <div class="grade-info">
-                                                        <div><span class="grade-a">기구</span>: A(&lt;6.0%) B(6.0~16.5%) C(16.5~27.6%) D(≥27.6%)</div>
-                                                        <div><span class="grade-b">전장</span>: A(&lt;1.0%) B(1.0~3.6%) C(3.6~6.2%) D(≥6.2%)</div>
-                                                    </div>
-                                                </td>
+                                                <td><strong>① 재체결</strong></td>
+                                                <td>단순한 조임 불량, 미완체결 등 재체결시 LEAK가 잡히는 경우<br>기존 ASSY나 부품을 유지한 채 풀었다 다시 조이는 작업</td>
+                                                <td class="example-text">클램프, 너트 등 체결이 제대로 되어있지 않은경우</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>NaN 비율</strong></td>
-                                                <td>(누락 건수 + 전체 대상 건수) ×100</td>
-                                                <td class="weight-medium">30%</td>
-                                                <td>A(&lt;1%) B(&lt;3%) C(&lt;6%) D(≥6%)</td>
+                                                <td><strong>② 재작업</strong></td>
+                                                <td>특정 부분의 LEAK가 재체결만으로 LEAK가 잡히지 않거나,<br>정상적인 기준 방식으로 조립이 되어있지 않는 경우<br>기존 ASSY를 분해 후, 정상 방식으로 재작업을 하는 작업</td>
+                                                <td class="example-text">역방향 체결, 조립 및 파트 누락, 구리스 락타이트 부족</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>③ 재조립</strong></td>
+                                                <td>특정부분의 LEAK가 재체결, 재작업으로도 LEAK가 잡히지 않거나,<br>조립 과정에서 파트가 파손되는 경우<br>기존 ASSY중 파손 및 LEAK가 지속되는 파트를 교체후 재조립하는 작업</td>
+                                                <td class="example-text">나사선 마모, 조립과정에서 파트 손상, O-RING 씹힘</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>④ Teflon 작업</strong></td>
+                                                <td>자체 Sealing만으로 LEAK가 잡히지 않는 경우<br>정상적인 기준 바퀴수로 체결했으나, Leak가 잡히지 않는경우<br>분해 후, 추가 Teflon 작업 실시</td>
+                                                <td class="example-text">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>⑤ 파트교체</strong></td>
+                                                <td>품질 불량으로 인하여 LEAK가 지속적으로 발생되어 작업으로 해결되지않거나,<br>He을 보증하지 않는 파트에 대해서 파트교체를 하는 경우</td>
+                                                <td class="example-text">SpeedController, 원터치 피팅, 부적합 파트</td>
                                             </tr>
                                         </table>
                                     </div>
                                 </div>
                                 
                                 <div class="tooltip-section">
-                                    <div class="tooltip-section-title">📈 최종 평가점수 계산</div>
-                                    <div class="tooltip-formula">
-                                        <div class="formula-main">최종점수 = (불량률 점수 × <span class="weight-high">70%</span>) + (NaN 비율 점수 × <span class="weight-medium">30%</span>)</div>
-                                        <div class="formula-note">
-                                            <div>• 기구/전장 협력사별로 분리하여 순위 산정</div>
-                                            <div>• 동점시 불량건수가 적은 협력사가 상위 순위</div>
-                                        </div>
+                                    <div class="tooltip-section-title">🔩 제조품질 불량 조치 정의</div>
+                                    <div class="tooltip-table">
+                                        <table>
+                                            <tr>
+                                                <th>조치</th>
+                                                <th>정의</th>
+                                                <th>예시</th>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>① 재체결</strong></td>
+                                                <td>단순한 체결 불량, 미완체결, 정상체결 등 재체결시 정상 작동하는 경우<br>기존 ASSY나 부품을 유지한 채 풀었다 다시 조이는 작업</td>
+                                                <td class="example-text">Clamp 체결불량, Fitting류 체결불량, Connector 체결불량 등</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>② 재작업</strong></td>
+                                                <td>잘못된 작업으로 인해 기능 이상을 불러 정상 기준으로 다시 재작업 하는 경우<br>실물이 도면과 상이하거나, 작업이 누락이 된 경우</td>
+                                                <td class="example-text">교차연결, 역방향 조립, 오배선, 작업 누락, 튜브 삽입불량 등</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>③ 식별 조치</strong></td>
+                                                <td>외관상으로 구분되는 불량을 조치하는 작업</td>
+                                                <td class="example-text">I-Marking, 라벨, 스티커, 넘버링 튜브 등</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>④ Teflon 작업</strong></td>
+                                                <td>자체 Sealing만으로 LEAK가 잡히지 않는 경우<br>정상적인 기준 바퀴수로 체결했으나, Leak가 잡히지 않는경우<br>분해 후, 추가 Teflon 작업 실시</td>
+                                                <td class="example-text">-</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>⑤ 파트교체</strong></td>
+                                                <td>파트 자체의 문제 혹은 파손으로 인해 파트를 교체하는 경우</td>
+                                                <td class="example-text">용접부 Leak, H/J Controller 이상 등</td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                                 
                                 <div class="tooltip-item">
                                     <span class="tooltip-icon">📈</span>
-                                    <span class="tooltip-text">업데이트: 2025-07-14 17:19</span>
+                                    <span class="tooltip-text">업데이트: 2025-07-14 17:21</span>
                                 </div>
                             </div>
                         </div>
@@ -385,7 +413,7 @@
                 </div>
                 
                 <div class="update-time">
-                    마지막 업데이트: 2025-07-14 17:19:01
+                    마지막 업데이트: 2025-07-14 17:21:21
                 </div>
                 
                 <script>
