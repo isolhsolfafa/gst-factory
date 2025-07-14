@@ -50,8 +50,8 @@
                         transform: translateY(-10px);
                         transition: all 0.3s ease;
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-                        min-width: 280px;
-                        max-width: 400px;
+                        min-width: 900px;
+                        max-width: 1200px;
                         white-space: normal;
                         pointer-events: none;
                     }
@@ -88,8 +88,24 @@
                         padding-bottom: 8px;
                     }
                     
+                    .tooltip-tables-container {
+                        display: flex;
+                        gap: 20px;
+                        margin-bottom: 15px;
+                    }
+                    
                     .tooltip-section {
                         margin-bottom: 15px;
+                    }
+                    
+                    .tooltip-section-left {
+                        flex: 1;
+                        min-width: 0;
+                    }
+                    
+                    .tooltip-section-right {
+                        flex: 1;
+                        min-width: 0;
                     }
                     
                     .tooltip-section-title {
@@ -108,7 +124,7 @@
                     .tooltip-table table {
                         width: 100%;
                         border-collapse: collapse;
-                        font-size: 12px;
+                        font-size: 11px;
                         background: rgba(255, 255, 255, 0.05);
                         border-radius: 6px;
                         overflow: hidden;
@@ -124,9 +140,11 @@
                     }
                     
                     .tooltip-table td {
-                        padding: 8px 6px;
+                        padding: 6px 4px;
                         border-bottom: 1px solid #444;
                         vertical-align: top;
+                        font-size: 10px;
+                        line-height: 1.3;
                     }
                     
                     .tooltip-table tr:last-child td {
@@ -270,85 +288,87 @@
                             <div class="tooltip-content">
                                 <div class="tooltip-title">🔧 불량 조치 정의 가이드</div>
                                 
-                                <div class="tooltip-section">
-                                    <div class="tooltip-section-title">📋 가압 불량 조치 정의</div>
-                                    <div class="tooltip-table">
-                                        <table>
-                                            <tr>
-                                                <th>조치</th>
-                                                <th>정의</th>
-                                                <th>예시</th>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>① 재체결</strong></td>
-                                                <td>단순한 조임 불량, 미완체결 등 재체결시 LEAK가 잡히는 경우<br>기존 ASSY나 부품을 유지한 채 풀었다 다시 조이는 작업</td>
-                                                <td class="example-text">클램프, 너트 등 체결이 제대로 되어있지 않은경우</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>② 재작업</strong></td>
-                                                <td>특정 부분의 LEAK가 재체결만으로 LEAK가 잡히지 않거나,<br>정상적인 기준 방식으로 조립이 되어있지 않는 경우<br>기존 ASSY를 분해 후, 정상 방식으로 재작업을 하는 작업</td>
-                                                <td class="example-text">역방향 체결, 조립 및 파트 누락, 구리스 락타이트 부족</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>③ 재조립</strong></td>
-                                                <td>특정부분의 LEAK가 재체결, 재작업으로도 LEAK가 잡히지 않거나,<br>조립 과정에서 파트가 파손되는 경우<br>기존 ASSY중 파손 및 LEAK가 지속되는 파트를 교체후 재조립하는 작업</td>
-                                                <td class="example-text">나사선 마모, 조립과정에서 파트 손상, O-RING 씹힘</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>④ Teflon 작업</strong></td>
-                                                <td>자체 Sealing만으로 LEAK가 잡히지 않는 경우<br>정상적인 기준 바퀴수로 체결했으나, Leak가 잡히지 않는경우<br>분해 후, 추가 Teflon 작업 실시</td>
-                                                <td class="example-text">-</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>⑤ 파트교체</strong></td>
-                                                <td>품질 불량으로 인하여 LEAK가 지속적으로 발생되어 작업으로 해결되지않거나,<br>He을 보증하지 않는 파트에 대해서 파트교체를 하는 경우</td>
-                                                <td class="example-text">SpeedController, 원터치 피팅, 부적합 파트</td>
-                                            </tr>
-                                        </table>
+                                <div class="tooltip-tables-container">
+                                    <div class="tooltip-section tooltip-section-left">
+                                        <div class="tooltip-section-title">📋 가압 불량 조치 정의</div>
+                                        <div class="tooltip-table">
+                                            <table>
+                                                <tr>
+                                                    <th>조치</th>
+                                                    <th>정의</th>
+                                                    <th>예시</th>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>① 재체결</strong></td>
+                                                    <td>단순한 조임 불량, 미완체결 등 재체결시 LEAK가 잡히는 경우<br>기존 ASSY나 부품을 유지한 채 풀었다 다시 조이는 작업</td>
+                                                    <td class="example-text">클램프, 너트 등 체결이 제대로 되어있지 않은경우</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>② 재작업</strong></td>
+                                                    <td>특정 부분의 LEAK가 재체결만으로 LEAK가 잡히지 않거나,<br>정상적인 기준 방식으로 조립이 되어있지 않는 경우<br>기존 ASSY를 분해 후, 정상 방식으로 재작업을 하는 작업</td>
+                                                    <td class="example-text">역방향 체결, 조립 및 파트 누락, 구리스 락타이트 부족</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>③ 재조립</strong></td>
+                                                    <td>특정부분의 LEAK가 재체결, 재작업으로도 LEAK가 잡히지 않거나,<br>조립 과정에서 파트가 파손되는 경우<br>기존 ASSY중 파손 및 LEAK가 지속되는 파트를 교체후 재조립하는 작업</td>
+                                                    <td class="example-text">나사선 마모, 조립과정에서 파트 손상, O-RING 씹힘</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>④ Teflon 작업</strong></td>
+                                                    <td>자체 Sealing만으로 LEAK가 잡히지 않는 경우<br>정상적인 기준 바퀴수로 체결했으나, Leak가 잡히지 않는경우<br>분해 후, 추가 Teflon 작업 실시</td>
+                                                    <td class="example-text">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>⑤ 파트교체</strong></td>
+                                                    <td>품질 불량으로 인하여 LEAK가 지속적으로 발생되어 작업으로 해결되지않거나,<br>He을 보증하지 않는 파트에 대해서 파트교체를 하는 경우</td>
+                                                    <td class="example-text">SpeedController, 원터치 피팅, 부적합 파트</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <div class="tooltip-section">
-                                    <div class="tooltip-section-title">🔩 제조품질 불량 조치 정의</div>
-                                    <div class="tooltip-table">
-                                        <table>
-                                            <tr>
-                                                <th>조치</th>
-                                                <th>정의</th>
-                                                <th>예시</th>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>① 재체결</strong></td>
-                                                <td>단순한 체결 불량, 미완체결, 정상체결 등 재체결시 정상 작동하는 경우<br>기존 ASSY나 부품을 유지한 채 풀었다 다시 조이는 작업</td>
-                                                <td class="example-text">Clamp 체결불량, Fitting류 체결불량, Connector 체결불량 등</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>② 재작업</strong></td>
-                                                <td>잘못된 작업으로 인해 기능 이상을 불러 정상 기준으로 다시 재작업 하는 경우<br>실물이 도면과 상이하거나, 작업이 누락이 된 경우</td>
-                                                <td class="example-text">교차연결, 역방향 조립, 오배선, 작업 누락, 튜브 삽입불량 등</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>③ 식별 조치</strong></td>
-                                                <td>외관상으로 구분되는 불량을 조치하는 작업</td>
-                                                <td class="example-text">I-Marking, 라벨, 스티커, 넘버링 튜브 등</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>④ Teflon 작업</strong></td>
-                                                <td>자체 Sealing만으로 LEAK가 잡히지 않는 경우<br>정상적인 기준 바퀴수로 체결했으나, Leak가 잡히지 않는경우<br>분해 후, 추가 Teflon 작업 실시</td>
-                                                <td class="example-text">-</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>⑤ 파트교체</strong></td>
-                                                <td>파트 자체의 문제 혹은 파손으로 인해 파트를 교체하는 경우</td>
-                                                <td class="example-text">용접부 Leak, H/J Controller 이상 등</td>
-                                            </tr>
-                                        </table>
+                                    
+                                    <div class="tooltip-section tooltip-section-right">
+                                        <div class="tooltip-section-title">🔩 제조품질 불량 조치 정의</div>
+                                        <div class="tooltip-table">
+                                            <table>
+                                                <tr>
+                                                    <th>조치</th>
+                                                    <th>정의</th>
+                                                    <th>예시</th>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>① 재체결</strong></td>
+                                                    <td>단순한 체결 불량, 미완체결, 정상체결 등 재체결시 정상 작동하는 경우<br>기존 ASSY나 부품을 유지한 채 풀었다 다시 조이는 작업</td>
+                                                    <td class="example-text">Clamp 체결불량, Fitting류 체결불량, Connector 체결불량 등</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>② 재작업</strong></td>
+                                                    <td>잘못된 작업으로 인해 기능 이상을 불러 정상 기준으로 다시 재작업 하는 경우<br>실물이 도면과 상이하거나, 작업이 누락이 된 경우</td>
+                                                    <td class="example-text">교차연결, 역방향 조립, 오배선, 작업 누락, 튜브 삽입불량 등</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>③ 식별 조치</strong></td>
+                                                    <td>외관상으로 구분되는 불량을 조치하는 작업</td>
+                                                    <td class="example-text">I-Marking, 라벨, 스티커, 넘버링 튜브 등</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>④ Teflon 작업</strong></td>
+                                                    <td>자체 Sealing만으로 LEAK가 잡히지 않는 경우<br>정상적인 기준 바퀴수로 체결했으나, Leak가 잡히지 않는경우<br>분해 후, 추가 Teflon 작업 실시</td>
+                                                    <td class="example-text">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>⑤ 파트교체</strong></td>
+                                                    <td>파트 자체의 문제 혹은 파손으로 인해 파트를 교체하는 경우</td>
+                                                    <td class="example-text">용접부 Leak, H/J Controller 이상 등</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                                 
                                 <div class="tooltip-item">
                                     <span class="tooltip-icon">📈</span>
-                                    <span class="tooltip-text">업데이트: 2025-07-14 17:21</span>
+                                    <span class="tooltip-text">업데이트: 2025-07-14 17:24</span>
                                 </div>
                             </div>
                         </div>
@@ -413,7 +433,7 @@
                 </div>
                 
                 <div class="update-time">
-                    마지막 업데이트: 2025-07-14 17:21:21
+                    마지막 업데이트: 2025-07-14 17:24:10
                 </div>
                 
                 <script>
