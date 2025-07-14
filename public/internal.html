@@ -83,7 +83,22 @@
                         font-weight: bold;
                         font-size: 16px;
                         color: #4fc3f7;
-                        margin-bottom: 4px;
+                        margin-bottom: 12px;
+                        border-bottom: 1px solid #444;
+                        padding-bottom: 8px;
+                    }
+                    
+                    .tooltip-section {
+                        margin-bottom: 15px;
+                    }
+                    
+                    .tooltip-section-title {
+                        font-size: 14px;
+                        font-weight: bold;
+                        margin-bottom: 8px;
+                        color: #87ceeb;
+                        border-bottom: 1px solid #555;
+                        padding-bottom: 4px;
                     }
                     
                     .tooltip-item {
@@ -165,26 +180,59 @@
                     <h1 id="dashboard-title">GST 불량 분석 대시보드
                         <div class="tooltip" id="title-tooltip">
                             <div class="tooltip-content">
-                                <div class="tooltip-title">🏭 GST 불량 분석 시스템</div>
-                                <div class="tooltip-item">
-                                    <span class="tooltip-icon">📊</span>
-                                    <span class="tooltip-text">실시간 불량 데이터 분석 및 예측</span>
+                                <div class="tooltip-title">🔧 불량 조치 정의 가이드</div>
+                                
+                                <div class="tooltip-section">
+                                    <div class="tooltip-section-title">📋 가압 불량 조치 정의</div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">①</span>
+                                        <span class="tooltip-text"><strong>재체결</strong>: 단순한 조임 불량, 미완체결 등 재체결시 LEAK가 잡히는 경우</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">②</span>
+                                        <span class="tooltip-text"><strong>재작업</strong>: 특정 부분의 LEAK가 재체결만으로 잡히지 않거나, 정상적인 기준 방식으로 조립이 되어있지 않는 경우</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">③</span>
+                                        <span class="tooltip-text"><strong>재조립</strong>: 특정부분의 LEAK가 재체결, 재작업으로도 잡히지 않거나, 조립 과정에서 파트가 파손되는 경우</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">④</span>
+                                        <span class="tooltip-text"><strong>Teflon 작업</strong>: 자체 Sealing만으로 LEAK가 잡히지 않는 경우</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">⑤</span>
+                                        <span class="tooltip-text"><strong>파트교체</strong>: 품질 불량으로 인하여 LEAK가 지속적으로 발생되어 작업으로 해결되지않는 경우</span>
+                                    </div>
                                 </div>
-                                <div class="tooltip-item">
-                                    <span class="tooltip-icon">🔍</span>
-                                    <span class="tooltip-text">Microsoft Teams 연동 자동 데이터 수집</span>
+                                
+                                <div class="tooltip-section">
+                                    <div class="tooltip-section-title">🔩 제조품질 불량 조치 정의</div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">①</span>
+                                        <span class="tooltip-text"><strong>재체결</strong>: 단순한 체결 불량, 미완체결, 정상체결 등 재체결시 정상 작동하는 경우</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">②</span>
+                                        <span class="tooltip-text"><strong>재작업</strong>: 잘못된 작업으로 인해 기능 이상을 불러 정상 기준으로 다시 재작업 하는 경우</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">③</span>
+                                        <span class="tooltip-text"><strong>식별 조치</strong>: 외관상으로 구분되는 불량을 조치하는 작업</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">④</span>
+                                        <span class="tooltip-text"><strong>Teflon 작업</strong>: 자체 Sealing만으로 LEAK가 잡히지 않는 경우</span>
+                                    </div>
+                                    <div class="tooltip-item">
+                                        <span class="tooltip-icon">⑤</span>
+                                        <span class="tooltip-text"><strong>파트교체</strong>: 파트 자체의 문제 혹은 파손으로 인해 파트를 교체하는 경우</span>
+                                    </div>
                                 </div>
-                                <div class="tooltip-item">
-                                    <span class="tooltip-icon">🤖</span>
-                                    <span class="tooltip-text">AI 기반 불량 패턴 분석 및 Pin Point 제안</span>
-                                </div>
-                                <div class="tooltip-item">
-                                    <span class="tooltip-icon">⚡</span>
-                                    <span class="tooltip-text">가압검사 불량 현황 모니터링</span>
-                                </div>
+                                
                                 <div class="tooltip-item">
                                     <span class="tooltip-icon">📈</span>
-                                    <span class="tooltip-text">업데이트: 2025-07-14 17:13</span>
+                                    <span class="tooltip-text">업데이트: 2025-07-14 17:16</span>
                                 </div>
                             </div>
                         </div>
@@ -249,7 +297,7 @@
                 </div>
                 
                 <div class="update-time">
-                    마지막 업데이트: 2025-07-14 17:13:02
+                    마지막 업데이트: 2025-07-14 17:16:34
                 </div>
                 
                 <script>
