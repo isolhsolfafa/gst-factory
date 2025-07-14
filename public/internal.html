@@ -101,6 +101,88 @@
                         padding-bottom: 4px;
                     }
                     
+                    .tooltip-table {
+                        margin: 10px 0;
+                    }
+                    
+                    .tooltip-table table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        font-size: 12px;
+                        background: rgba(255, 255, 255, 0.05);
+                        border-radius: 6px;
+                        overflow: hidden;
+                    }
+                    
+                    .tooltip-table th {
+                        background: rgba(79, 195, 247, 0.3);
+                        color: #4fc3f7;
+                        padding: 8px 6px;
+                        font-weight: bold;
+                        text-align: center;
+                        border-bottom: 1px solid #555;
+                    }
+                    
+                    .tooltip-table td {
+                        padding: 8px 6px;
+                        border-bottom: 1px solid #444;
+                        vertical-align: top;
+                    }
+                    
+                    .tooltip-table tr:last-child td {
+                        border-bottom: none;
+                    }
+                    
+                    .weight-high {
+                        color: #ff6b6b;
+                        font-weight: bold;
+                    }
+                    
+                    .weight-medium {
+                        color: #ffd93d;
+                        font-weight: bold;
+                    }
+                    
+                    .grade-info {
+                        font-size: 11px;
+                        line-height: 1.4;
+                    }
+                    
+                    .grade-a {
+                        color: #4fc3f7;
+                        font-weight: bold;
+                    }
+                    
+                    .grade-b {
+                        color: #81c784;
+                        font-weight: bold;
+                    }
+                    
+                    .tooltip-formula {
+                        background: rgba(255, 255, 255, 0.05);
+                        border-radius: 6px;
+                        padding: 10px;
+                        margin: 8px 0;
+                    }
+                    
+                    .formula-main {
+                        font-size: 13px;
+                        font-weight: bold;
+                        color: #4fc3f7;
+                        margin-bottom: 8px;
+                        text-align: center;
+                    }
+                    
+                    .formula-note {
+                        font-size: 11px;
+                        color: #ccc;
+                        line-height: 1.4;
+                    }
+                    
+                    .formula-note div {
+                        margin: 2px 0;
+                    }
+                    
                     .tooltip-item {
                         display: flex;
                         align-items: center;
@@ -183,56 +265,62 @@
                                 <div class="tooltip-title">🔧 불량 조치 정의 가이드</div>
                                 
                                 <div class="tooltip-section">
-                                    <div class="tooltip-section-title">📋 가압 불량 조치 정의</div>
+                                    <div class="tooltip-section-title">🎯 평가 목적</div>
                                     <div class="tooltip-item">
                                         <span class="tooltip-icon">①</span>
-                                        <span class="tooltip-text"><strong>재체결</strong>: 단순한 조임 불량, 미완체결 등 재체결시 LEAK가 잡히는 경우</span>
+                                        <span class="tooltip-text">기구·전장 협력사의 품질 수준을 불량률과 데이터 완성성(누락 비율)으로 객관적으로 평가</span>
                                     </div>
                                     <div class="tooltip-item">
                                         <span class="tooltip-icon">②</span>
-                                        <span class="tooltip-text"><strong>재작업</strong>: 특정 부분의 LEAK가 재체결만으로 잡히지 않거나, 정상적인 기준 방식으로 조립이 되어있지 않는 경우</span>
-                                    </div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">③</span>
-                                        <span class="tooltip-text"><strong>재조립</strong>: 특정부분의 LEAK가 재체결, 재작업으로도 잡히지 않거나, 조립 과정에서 파트가 파손되는 경우</span>
-                                    </div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">④</span>
-                                        <span class="tooltip-text"><strong>Teflon 작업</strong>: 자체 Sealing만으로 LEAK가 잡히지 않는 경우</span>
-                                    </div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">⑤</span>
-                                        <span class="tooltip-text"><strong>파트교체</strong>: 품질 불량으로 인하여 LEAK가 지속적으로 발생되어 작업으로 해결되지않는 경우</span>
+                                        <span class="tooltip-text">상황별 배경·인센티브·개선 과제 부여 기준 마련</span>
                                     </div>
                                 </div>
                                 
                                 <div class="tooltip-section">
-                                    <div class="tooltip-section-title">🔩 제조품질 불량 조치 정의</div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">①</span>
-                                        <span class="tooltip-text"><strong>재체결</strong>: 단순한 체결 불량, 미완체결, 정상체결 등 재체결시 정상 작동하는 경우</span>
+                                    <div class="tooltip-section-title">📊 평가 지표</div>
+                                    <div class="tooltip-table">
+                                        <table>
+                                            <tr>
+                                                <th>지표</th>
+                                                <th>정의</th>
+                                                <th>가중치</th>
+                                                <th>등급 구간</th>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>불량률</strong></td>
+                                                <td>(월간 불량 건수 ÷ 월간 검사 건수) ×100</td>
+                                                <td class="weight-high">70%</td>
+                                                <td>
+                                                    <div class="grade-info">
+                                                        <div><span class="grade-a">기구</span>: A(&lt;6.0%) B(6.0~16.5%) C(16.5~27.6%) D(≥27.6%)</div>
+                                                        <div><span class="grade-b">전장</span>: A(&lt;1.0%) B(1.0~3.6%) C(3.6~6.2%) D(≥6.2%)</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>NaN 비율</strong></td>
+                                                <td>(누락 건수 + 전체 대상 건수) ×100</td>
+                                                <td class="weight-medium">30%</td>
+                                                <td>A(&lt;1%) B(&lt;3%) C(&lt;6%) D(≥6%)</td>
+                                            </tr>
+                                        </table>
                                     </div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">②</span>
-                                        <span class="tooltip-text"><strong>재작업</strong>: 잘못된 작업으로 인해 기능 이상을 불러 정상 기준으로 다시 재작업 하는 경우</span>
-                                    </div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">③</span>
-                                        <span class="tooltip-text"><strong>식별 조치</strong>: 외관상으로 구분되는 불량을 조치하는 작업</span>
-                                    </div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">④</span>
-                                        <span class="tooltip-text"><strong>Teflon 작업</strong>: 자체 Sealing만으로 LEAK가 잡히지 않는 경우</span>
-                                    </div>
-                                    <div class="tooltip-item">
-                                        <span class="tooltip-icon">⑤</span>
-                                        <span class="tooltip-text"><strong>파트교체</strong>: 파트 자체의 문제 혹은 파손으로 인해 파트를 교체하는 경우</span>
+                                </div>
+                                
+                                <div class="tooltip-section">
+                                    <div class="tooltip-section-title">📈 최종 평가점수 계산</div>
+                                    <div class="tooltip-formula">
+                                        <div class="formula-main">최종점수 = (불량률 점수 × <span class="weight-high">70%</span>) + (NaN 비율 점수 × <span class="weight-medium">30%</span>)</div>
+                                        <div class="formula-note">
+                                            <div>• 기구/전장 협력사별로 분리하여 순위 산정</div>
+                                            <div>• 동점시 불량건수가 적은 협력사가 상위 순위</div>
+                                        </div>
                                     </div>
                                 </div>
                                 
                                 <div class="tooltip-item">
                                     <span class="tooltip-icon">📈</span>
-                                    <span class="tooltip-text">업데이트: 2025-07-14 17:16</span>
+                                    <span class="tooltip-text">업데이트: 2025-07-14 17:19</span>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +385,7 @@
                 </div>
                 
                 <div class="update-time">
-                    마지막 업데이트: 2025-07-14 17:16:34
+                    마지막 업데이트: 2025-07-14 17:19:01
                 </div>
                 
                 <script>
