@@ -53,6 +53,8 @@
             font-weight: 300;
             letter-spacing: 3px;
             margin-bottom: 0.5rem;
+            position: relative;
+            cursor: pointer;
         }
         
         .header p {
@@ -298,7 +300,7 @@
             padding-bottom: 0.5rem;
         }
         
-        /* 툴팁 스타일 */
+        /* 툴팁 스타일 - 최고 우선순위 */
         .tooltip {
             position: absolute;
             top: 100%;
@@ -311,7 +313,7 @@
             font-size: 11px;
             line-height: 1.6;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
+            z-index: 99999 !important;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -325,6 +327,7 @@
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(10px);
+            z-index: 99999 !important;
         }
         
         .tooltip-content {
@@ -448,7 +451,91 @@
 <body>
     <div class="header">
         <div class="header-content">
-            <h1>GST 통합 검사 분석 대시보드</h1>
+            <h1 id="dashboard-title">GST 통합 검사 분석 대시보드
+                <div class="tooltip" id="title-tooltip">
+                    <div class="tooltip-content">
+                        <div class="tooltip-title">🔧 불량 조치 정의 가이드</div>
+                        
+                        <div class="tooltip-tables-container">
+                            <div class="tooltip-section tooltip-section-left">
+                                <div class="tooltip-section-title">📋 가압 불량 조치 정의</div>
+                                <div class="tooltip-table">
+                                    <table>
+                                        <tr>
+                                            <th>조치</th>
+                                            <th>정의</th>
+                                            <th>예시</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>① 재체결</strong></td>
+                                            <td>단순한 조임 불량, 미완체결 등 재체결시 LEAK가 잡히는 경우<br>기존 ASSY나 부품을 유지한 채 풀었다 다시 조이는 작업</td>
+                                            <td class="example-text">클램프, 너트 등 체결이 제대로 되어있지 않은경우</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>② 재작업</strong></td>
+                                            <td>LEAK가 재체결만으로 잡히지 않는 경우<br>부품이나 ASSY를 분해 후 다시 조립하는 작업</td>
+                                            <td class="example-text">Union, Elbow 등 이음 부위에서 누설이 계속 발생하는 경우</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>③ 재조립</strong></td>
+                                            <td>파트가 파손되는 경우<br>파손된 부품을 새것으로 교체 후 재조립</td>
+                                            <td class="example-text">조립 과정에서 O-ring, 가스켓 등이 손상된 경우</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>④ Teflon 작업</strong></td>
+                                            <td>자체 Sealing으로 LEAK가 잡히지 않는 경우<br>Teflon 테이프나 실런트 추가 적용</td>
+                                            <td class="example-text">나사산 부위에서 미세한 누설이 지속되는 경우</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>⑤ 파트교체</strong></td>
+                                            <td>품질 불량으로 지속적 발생<br>해당 부품 자체를 새것으로 완전 교체</td>
+                                            <td class="example-text">부품 자체의 치수 불량이나 재질 문제가 있는 경우</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="tooltip-section tooltip-section-right">
+                                <div class="tooltip-section-title">🏭 제조품질 불량 조치 정의</div>
+                                <div class="tooltip-table">
+                                    <table>
+                                        <tr>
+                                            <th>조치</th>
+                                            <th>정의</th>
+                                            <th>예시</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>① 재체결</strong></td>
+                                            <td>단순한 체결 불량<br>볼트, 나사 등의 조임이 부족하거나 과다한 경우</td>
+                                            <td class="example-text">커버, 브라켓 등의 체결 토크 부족</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>② 재작업</strong></td>
+                                            <td>잘못된 작업으로 인한 기능 이상<br>작업 순서나 방법을 다시 수행</td>
+                                            <td class="example-text">배선 연결 오류, 부품 장착 위치 오류</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>③ 식별 조치</strong></td>
+                                            <td>외관상 구분되는 불량<br>라벨링, 마킹 등의 식별 관련 조치</td>
+                                            <td class="example-text">제품 라벨 부착 누락, 모델명 표시 오류</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>④ Teflon 작업</strong></td>
+                                            <td>밀봉 관련 보완 작업<br>가압 공정과 동일한 실링 보강</td>
+                                            <td class="example-text">연결부 누설 방지를 위한 추가 실링</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>⑤ 파트교체</strong></td>
+                                            <td>파트 자체 문제<br>불량 부품을 정상 부품으로 교체</td>
+                                            <td class="example-text">센서, 커넥터 등 전자 부품의 기능 불량</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h1>
             <p>2025년 통합 검사(가압검사 + 제조품질) 불량 현황 및 분석</p>
         </div>
     </div>
@@ -465,92 +552,9 @@
         <div id="pressure-tab" class="tab-content active">
             <!-- KPI 카드 섹션 (가압검사용) -->
             <div class="kpi-section">
-                <div class="kpi-card tooltip-trigger" id="defect-tooltip-trigger">
+                <div class="kpi-card">
                     <div class="kpi-value">302</div>
                     <div class="kpi-label">총 불량 건수</div>
-                    <div class="tooltip" id="defect-tooltip">
-                        <div class="tooltip-content">
-                            <div class="tooltip-title">🔧 불량 조치 정의 가이드</div>
-                            
-                            <div class="tooltip-tables-container">
-                                <div class="tooltip-section tooltip-section-left">
-                                    <div class="tooltip-section-title">📋 가압 불량 조치 정의</div>
-                                    <div class="tooltip-table">
-                                        <table>
-                                            <tr>
-                                                <th>조치</th>
-                                                <th>정의</th>
-                                                <th>예시</th>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>① 재체결</strong></td>
-                                                <td>단순한 조임 불량, 미완체결 등 재체결시 LEAK가 잡히는 경우<br>기존 ASSY나 부품을 유지한 채 풀었다 다시 조이는 작업</td>
-                                                <td class="example-text">클램프, 너트 등 체결이 제대로 되어있지 않은경우</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>② 재작업</strong></td>
-                                                <td>LEAK가 재체결만으로 잡히지 않는 경우<br>부품이나 ASSY를 분해 후 다시 조립하는 작업</td>
-                                                <td class="example-text">Union, Elbow 등 이음 부위에서 누설이 계속 발생하는 경우</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>③ 재조립</strong></td>
-                                                <td>파트가 파손되는 경우<br>파손된 부품을 새것으로 교체 후 재조립</td>
-                                                <td class="example-text">조립 과정에서 O-ring, 가스켓 등이 손상된 경우</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>④ Teflon 작업</strong></td>
-                                                <td>자체 Sealing으로 LEAK가 잡히지 않는 경우<br>Teflon 테이프나 실런트 추가 적용</td>
-                                                <td class="example-text">나사산 부위에서 미세한 누설이 지속되는 경우</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>⑤ 파트교체</strong></td>
-                                                <td>품질 불량으로 지속적 발생<br>해당 부품 자체를 새것으로 완전 교체</td>
-                                                <td class="example-text">부품 자체의 치수 불량이나 재질 문제가 있는 경우</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                
-                                <div class="tooltip-section tooltip-section-right">
-                                    <div class="tooltip-section-title">🏭 제조품질 불량 조치 정의</div>
-                                    <div class="tooltip-table">
-                                        <table>
-                                            <tr>
-                                                <th>조치</th>
-                                                <th>정의</th>
-                                                <th>예시</th>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>① 재체결</strong></td>
-                                                <td>단순한 체결 불량<br>볼트, 나사 등의 조임이 부족하거나 과다한 경우</td>
-                                                <td class="example-text">커버, 브라켓 등의 체결 토크 부족</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>② 재작업</strong></td>
-                                                <td>잘못된 작업으로 인한 기능 이상<br>작업 순서나 방법을 다시 수행</td>
-                                                <td class="example-text">배선 연결 오류, 부품 장착 위치 오류</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>③ 식별 조치</strong></td>
-                                                <td>외관상 구분되는 불량<br>라벨링, 마킹 등의 식별 관련 조치</td>
-                                                <td class="example-text">제품 라벨 부착 누락, 모델명 표시 오류</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>④ Teflon 작업</strong></td>
-                                                <td>밀봉 관련 보완 작업<br>가압 공정과 동일한 실링 보강</td>
-                                                <td class="example-text">연결부 누설 방지를 위한 추가 실링</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>⑤ 파트교체</strong></td>
-                                                <td>파트 자체 문제<br>불량 부품을 정상 부품으로 교체</td>
-                                                <td class="example-text">센서, 커넥터 등 전자 부품의 기능 불량</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-value">1395</div>
@@ -728,21 +732,21 @@
             }, 1000);
         });
         
-        // 툴팁 기능 (총 불량 건수 카드에 적용)
+        // 툴팁 기능 (메인 타이틀에 적용 - 최고 우선순위)
         document.addEventListener('DOMContentLoaded', function() {
-            const triggerElement = document.getElementById('defect-tooltip-trigger');
-            const tooltip = document.getElementById('defect-tooltip');
+            const title = document.getElementById('dashboard-title');
+            const tooltip = document.getElementById('title-tooltip');
             let showTimeout, hideTimeout;
             
-            if (triggerElement && tooltip) {
-                triggerElement.addEventListener('mouseenter', function() {
+            if (title && tooltip) {
+                title.addEventListener('mouseenter', function() {
                     clearTimeout(hideTimeout);
                     showTimeout = setTimeout(() => {
                         tooltip.classList.add('show');
                     }, 300);
                 });
                 
-                triggerElement.addEventListener('mouseleave', function() {
+                title.addEventListener('mouseleave', function() {
                     clearTimeout(showTimeout);
                     hideTimeout = setTimeout(() => {
                         tooltip.classList.remove('show');
