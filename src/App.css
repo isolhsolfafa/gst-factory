@@ -4,12 +4,25 @@ body {
     background: #f8f9fa;
   }
   .header {
-    text-align: center;
+    text-align: center !important;
     margin-bottom: 20px;
+    width: 100%;
+    display: block;
+    clear: both;
   }
   .header img {
     max-width: 100%;
     height: auto;
+  }
+  .header h1 {
+    text-align: center !important;
+    margin: 10px auto;
+    width: 100%;
+  }
+  .header p {
+    text-align: center !important;
+    margin: 5px auto;
+    width: 100%;
   }
   .top-grid {
     display: grid;
