@@ -214,7 +214,7 @@ const InternalDashboard = () => {
 
   useEffect(() => {
     const password = prompt("🔐 내부 대시보드 접근을 위한 비밀번호를 입력하세요:");
-    if (password === "7979") {
+    if (password === "0979") {
       setIsAuthenticated(true);
     } else {
       alert("❌ 비밀번호가 틀렸습니다. 접근이 제한됩니다.");
@@ -239,7 +239,7 @@ const AuthButtons = () => {
   // 개발 환경에서는 Auth 버튼 숨기기
   if (process.env.NODE_ENV === 'development') {
     return (
-      <div style={{ textAlign: 'right', padding: '10px' }}>
+      <div style={{ textAlign: 'right', padding: '10px', position: 'relative', zIndex: 1 }}>
         <span style={{ color: '#666', fontSize: '14px' }}>🔧 개발 모드</span>
       </div>
     );
@@ -294,7 +294,7 @@ const App = () => {
   });
 
   return (
-    <div>
+    <div className="App">
       <AuthButtons />
       <div className="tab" style={{ display: 'flex', background: '#1a1a1a', color: 'white' }}>
         <Link to="/" style={{ textDecoration: 'none', flex: 1 }}>
