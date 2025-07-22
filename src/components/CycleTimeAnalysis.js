@@ -11,10 +11,17 @@ const API_BASE_URL = process.env.NODE_ENV === 'production'
 const generateMonthOptions = () => {
   const options = [];
   const now = new Date();
+  const startDate = new Date(2025, 5, 1); // 2025년 6월 (월은 0부터 시작하므로 5)
   
-  // 최근 12개월 생성 (현재 월부터 역순으로)
-  for (let i = 0; i < 12; i++) {
+  // 현재 월부터 역순으로 생성하되, 2025년 6월 이후만 포함
+  for (let i = 0; i < 24; i++) { // 최대 24개월 범위로 확장
     const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    
+    // 2025년 6월 이전 데이터는 제외
+    if (date < startDate) {
+      break;
+    }
+    
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const value = `${year}-${month}`;
@@ -252,7 +259,7 @@ const CycleTimeAnalysis = () => {
   
   // 동적 월 옵션 생성 및 현재 월을 기본값으로 설정
   const monthOptions = generateMonthOptions();
-  const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]?.value || '2025-07');
+  const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]?.value || '2025-06');
   
   const [selectedModel, setSelectedModel] = useState(null);
   const [selectedProductCode, setSelectedProductCode] = useState(null);
