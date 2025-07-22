@@ -141,17 +141,16 @@ const FactoryDashboard = () => {
         // 2. Fetch monthly production data and other info
         let headers = {};
         if (process.env.NODE_ENV !== 'development') {
-          const token = await getAccessTokenSilently();
+        const token = await getAccessTokenSilently();
           headers = { Authorization: `Bearer ${token}` };
         }
 
         const response = await axios.get(`https://pda-api-extract.up.railway.app/api/factory`, { headers });
-        const infoResponse = await axios.get(`https://pda-api-extract.up.railway.app/api/info?mode=monthly&month=${currentMonth}`, { headers });
 
         setDashboardData({
           weekly_production: weeklyResponse.data || [],
           monthly_production: response.data.monthly_production || [],
-          summary_table: infoResponse.data.summary_table || [],
+          summary_table: response.data.summary_table || [],
           weekly_production_message: response.data.weekly_production_message || ''
         });
         setLoading(false);
