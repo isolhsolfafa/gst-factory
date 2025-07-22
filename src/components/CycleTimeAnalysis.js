@@ -7,6 +7,25 @@ const API_BASE_URL = process.env.NODE_ENV === 'production'
   ? 'https://pda-api-extract.up.railway.app'
   : 'http://localhost:5003';
 
+// 동적 월 옵션 생성 함수
+const generateMonthOptions = () => {
+  const options = [];
+  const now = new Date();
+  
+  // 최근 12개월 생성 (현재 월부터 역순으로)
+  for (let i = 0; i < 12; i++) {
+    const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const value = `${year}-${month}`;
+    const label = `${year}년 ${month}월`;
+    
+    options.push({ value, label });
+  }
+  
+  return options;
+};
+
 // S/N 드롭다운 메뉴 컴포넌트
 const SerialNumberDropdown = ({ modelName, productCode, selectedMonth, isOpen, onToggle, position }) => {
   const [serials, setSerials] = useState([]);
@@ -194,7 +213,7 @@ const CategorySummaryCards = ({ selectedProductCode }) => {
 
   return (
     <div className="category-summary-cards">
-      <h3>📊 카테고리별 토탈 시간</h3>
+      <h3>📊 공정별 누적 작업 시간</h3>
       <div className="summary-cards-grid">
         {Object.entries(categoryTotals).map(([category, totalHours]) => {
           const style = getCategoryStyle(category);
@@ -230,7 +249,11 @@ const CycleTimeAnalysis = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedMonth, setSelectedMonth] = useState('2025-05');
+  
+  // 동적 월 옵션 생성 및 현재 월을 기본값으로 설정
+  const monthOptions = generateMonthOptions();
+  const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]?.value || '2025-07');
+  
   const [selectedModel, setSelectedModel] = useState(null);
   const [selectedProductCode, setSelectedProductCode] = useState(null);
   
@@ -419,9 +442,11 @@ const CycleTimeAnalysis = () => {
             value={selectedMonth} 
             onChange={(e) => setSelectedMonth(e.target.value)}
           >
-            <option value="2025-05">2025년 5월</option>
-            <option value="2025-06">2025년 6월</option>
-            <option value="2025-04">2025년 4월</option>
+            {monthOptions.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
       </div>
