@@ -209,19 +209,117 @@ const PartnerDashboard = () => (
 // 내부 대시보드 컴포넌트 (비밀번호 보호 포함, iframe으로 internal.html 연동)
 const InternalDashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const password = prompt("🔐 내부 대시보드 접근을 위한 비밀번호를 입력하세요:");
-    if (password === "7979") {
+  
+  // 실제 비밀번호 (CT 분석과 동일한 방식)
+  const INTERNAL_DASHBOARD_PASSWORD = '7979';
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password === INTERNAL_DASHBOARD_PASSWORD) {
       setIsAuthenticated(true);
+      setError('');
     } else {
-      alert("❌ 비밀번호가 틀렸습니다. 접근이 제한됩니다.");
-      navigate('/');
+      setError('비밀번호가 올바르지 않습니다.');
+      setPassword('');
     }
-  }, [navigate]);
+  };
 
-  if (!isAuthenticated) return null;
+  const handleCancel = () => {
+    navigate('/');
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '80vh',
+        backgroundColor: '#f5f5f5'
+      }}>
+        <div style={{
+          background: 'white',
+          padding: '40px',
+          borderRadius: '12px',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+          width: '400px',
+          textAlign: 'center'
+        }}>
+          <h2 style={{ marginBottom: '10px', color: '#333' }}>
+            🔒 내부 대시보드 - 사내 직원 전용
+          </h2>
+          <p style={{ color: '#666', marginBottom: '30px' }}>
+            내부 대시보드 페이지는 사내 직원만 접근 가능합니다.
+          </p>
+          
+          <form onSubmit={handleSubmit}>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="비밀번호를 입력하세요"
+              style={{
+                width: '100%',
+                padding: '12px',
+                border: '2px solid #ddd',
+                borderRadius: '6px',
+                fontSize: '16px',
+                marginBottom: '20px',
+                outline: 'none',
+                borderColor: error ? '#ff4757' : '#ddd'
+              }}
+              autoFocus
+            />
+            
+            {error && (
+              <p style={{ color: '#ff4757', marginBottom: '20px', fontSize: '14px' }}>
+                ⚠️ {error}
+              </p>
+            )}
+            
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+              <button
+                type="submit"
+                style={{
+                  background: '#007acc',
+                  color: 'white',
+                  border: 'none',
+                  padding: '12px 24px',
+                  borderRadius: '6px',
+                  fontSize: '16px',
+                  cursor: 'pointer'
+                }}
+              >
+                접속하기
+              </button>
+              <button
+                type="button"
+                onClick={handleCancel}
+                style={{
+                  background: '#f1f3f4',
+                  color: '#333',
+                  border: 'none',
+                  padding: '12px 24px',
+                  borderRadius: '6px',
+                  fontSize: '16px',
+                  cursor: 'pointer'
+                }}
+              >
+                취소
+              </button>
+            </div>
+          </form>
+          
+          <p style={{ fontSize: '12px', color: '#999', marginTop: '20px' }}>
+            💡 사내 직원이시라면 관리자에게 비밀번호를 문의하세요.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <iframe
