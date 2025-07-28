@@ -1,12 +1,17 @@
 [
   {
     "model": "GAIA-II",
-    "count": 9,
+    "count": 11,
     "week": "31W"
   },
   {
     "model": "GAIA-I",
     "count": 13,
+    "week": "31W"
+  },
+  {
+    "model": "GAIA-I DUAL",
+    "count": 10,
     "week": "31W"
   },
   {
@@ -17,11 +22,6 @@
   {
     "model": "DRAGON",
     "count": 2,
-    "week": "31W"
-  },
-  {
-    "model": "GAIA-I DUAL",
-    "count": 9,
     "week": "31W"
   }
 ]
