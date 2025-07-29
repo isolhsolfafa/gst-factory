@@ -18,7 +18,7 @@ const CTAnalysisProtected = () => {
   const [error, setError] = useState('');
   
   // 실제 비밀번호 (실제 운영 시에는 환경변수나 보안 설정으로 관리)
-  const CT_ANALYSIS_PASSWORD = '7979';
+  const CT_ANALYSIS_PASSWORD = '2025';
   
   const handleSubmit = (e) => {
     e.preventDefault();
