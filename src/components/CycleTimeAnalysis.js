@@ -487,7 +487,10 @@ const CycleTimeAnalysis = () => {
   // 동적 월 옵션 생성 및 현재 월을 기본값으로 설정
   const monthOptions = generateMonthOptions();
   const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]?.value || '2025-06');
-  const [selectedModel, setSelectedModel] = useState('GAIA-I DUAL'); // 기본 모델 설정
+  
+  // 동적 모델 목록
+  const [availableModels, setAvailableModels] = useState([]);
+  const [selectedModel, setSelectedModel] = useState(''); // 초기값 빈 문자열로 설정
   
   // S/N 드롭다운 상태 관리
   const [dropdownState, setDropdownState] = useState({
@@ -496,6 +499,28 @@ const CycleTimeAnalysis = () => {
     productCode: null,
     position: { x: 0, y: 0 }
   });
+
+  // 사용 가능한 모델 목록 가져오기
+  const fetchAvailableModels = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/api/models`);
+      if (response.data && response.data.models) {
+        setAvailableModels(response.data.models);
+        // 첫 번째 모델을 기본값으로 설정
+        if (response.data.models.length > 0 && !selectedModel) {
+          setSelectedModel(response.data.models[0]);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to fetch models:', err);
+      // 오류 시 기본 모델 목록 사용
+      const defaultModels = ['GAIA-I DUAL', 'GAIA-I', 'DRAGON', 'GAIA-II DUAL', 'SWS-I', 'GAIA-II', 'GAIA-P DUAL', 'DRAGON DUAL', 'GALLANT-A'];
+      setAvailableModels(defaultModels);
+      if (!selectedModel) {
+        setSelectedModel(defaultModels[0]);
+      }
+    }
+  };
 
   // Task별 분석 데이터 가져오기 (새로운 API)
   const fetchTaskData = async () => {
@@ -537,12 +562,19 @@ const CycleTimeAnalysis = () => {
       }
     };
 
-  // 초기 데이터 로드
+  // 컴포넌트 마운트 시 모델 목록 불러오기
   useEffect(() => {
-    if (viewMode === 'task') {
-      fetchTaskData();
-    } else {
-      fetchProductCodeData();
+    fetchAvailableModels();
+  }, []);
+
+  // 데이터 로드 (selectedModel이 설정된 후에만 실행)
+  useEffect(() => {
+    if (selectedModel) {
+      if (viewMode === 'task') {
+        fetchTaskData();
+      } else {
+        fetchProductCodeData();
+      }
     }
   }, [selectedMonth, selectedModel, viewMode]);
 
@@ -698,15 +730,13 @@ const CycleTimeAnalysis = () => {
               onChange={(e) => setSelectedModel(e.target.value)}
               className="model-selector"
             >
-              <option value="GAIA-I DUAL">GAIA-I DUAL</option>
-              <option value="GAIA-I">GAIA-I</option>
-              <option value="DRAGON">DRAGON</option>
-              <option value="GAIA-II DUAL">GAIA-II DUAL</option>
-              <option value="SWS-I">SWS-I</option>
-              <option value="GAIA-II">GAIA-II</option>
-              <option value="GAIA-P DUAL">GAIA-P DUAL</option>
-              <option value="DRAGON DUAL">DRAGON DUAL</option>
-              <option value="GALLANT-A">GALLANT-A</option>
+              {availableModels.length === 0 ? (
+                <option value="">모델 불러오는 중...</option>
+              ) : (
+                availableModels.map(model => (
+                  <option key={model} value={model}>{model}</option>
+                ))
+              )}
           </select>
         </div>
 
