@@ -481,6 +481,11 @@ const CycleTimeAnalysis = () => {
   const [swappedTasks, setSwappedTasks] = useState(new Set()); // 스왑된 Task들 추적
   const [isModalOpen, setIsModalOpen] = useState(false); // 설명 팝업 상태
   
+  // 기간 분석 모드 상태 추가
+  const [periodMode, setPeriodMode] = useState('single'); // 'single' 또는 'range'
+  const [startMonth, setStartMonth] = useState('');
+  const [endMonth, setEndMonth] = useState('');
+  
   // 선택된 Product Code 상태 (첫 번째를 기본값으로)
   const [selectedProductCode, setSelectedProductCode] = useState(null);
   
@@ -522,17 +527,61 @@ const CycleTimeAnalysis = () => {
     }
   };
 
+  // 기간합산 모드 초기화
+  useEffect(() => {
+    if (monthOptions.length >= 2) {
+      // 가장 최근 2개월을 기본값으로 설정 (예: 2025-07, 2025-06)
+      setStartMonth(monthOptions[1]?.value || '2025-06'); // 두 번째가 6월
+      setEndMonth(monthOptions[0]?.value || '2025-07');   // 첫 번째가 7월
+    }
+  }, [monthOptions]);
+
+  // periodMode 변경 시 처리
+  const handlePeriodModeChange = (mode) => {
+    setPeriodMode(mode);
+    if (mode === 'range' && startMonth && endMonth) {
+      // 기간합산 모드로 전환 시 데이터 다시 로드
+      if (viewMode === 'task') {
+        fetchTaskData();
+      } else {
+        fetchProductCodeData();
+      }
+    } else if (mode === 'single') {
+      // 단일월 모드로 전환 시 데이터 다시 로드
+      if (viewMode === 'task') {
+        fetchTaskData();
+      } else {
+        fetchProductCodeData();
+      }
+    }
+  };
+
   // Task별 분석 데이터 가져오기 (새로운 API)
   const fetchTaskData = async () => {
     setLoading(true);
     setError(null);
     
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/task_analysis`, {
-        params: {
-          month: selectedMonth,
-          model_name: selectedModel
+      let apiParams = {
+        model_name: selectedModel
+      };
+      
+      // 기간 모드에 따라 파라미터 설정
+      if (periodMode === 'single') {
+        apiParams.month = selectedMonth;
+      } else if (periodMode === 'range') {
+        // 기간합산 모드: start_month, end_month 사용
+        if (!startMonth || !endMonth) {
+          setError('기간합산 분석을 위해 시작월과 종료월을 모두 선택해주세요.');
+          setLoading(false);
+          return;
         }
+        apiParams.start_month = startMonth;
+        apiParams.end_month = endMonth;
+      }
+      
+      const response = await axios.get(`${API_BASE_URL}/api/task_analysis`, {
+        params: apiParams
       });
       
       if (response.data && response.data.categories) {
@@ -549,11 +598,31 @@ const CycleTimeAnalysis = () => {
     setLoading(false);
   };
 
-  // 기존 Product Code별 데이터 가져오기
+  // 기존 Product Code별 데이터 가져오기 (기간합산 지원)
   const fetchProductCodeData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`${API_BASE_URL}/api/cycle_time/monthly?month=${selectedMonth}`);
+        setError(null);
+        
+        let apiParams = {};
+        
+        // 기간 모드에 따라 파라미터 설정
+        if (periodMode === 'single') {
+          apiParams.month = selectedMonth;
+        } else if (periodMode === 'range') {
+          // 기간합산 모드: start_month, end_month 사용
+          if (!startMonth || !endMonth) {
+            setError('기간합산 분석을 위해 시작월과 종료월을 모두 선택해주세요.');
+            setLoading(false);
+            return;
+          }
+          apiParams.start_month = startMonth;
+          apiParams.end_month = endMonth;
+        }
+        
+        const response = await axios.get(`${API_BASE_URL}/api/cycle_time/monthly`, {
+          params: apiParams
+        });
         setData(response.data);
       } catch (err) {
         setError(err.message);
@@ -568,16 +637,6 @@ const CycleTimeAnalysis = () => {
   }, []);
 
   // 데이터 로드 (selectedModel이 설정된 후에만 실행)
-  useEffect(() => {
-    if (selectedModel) {
-      if (viewMode === 'task') {
-        fetchTaskData();
-      } else {
-        fetchProductCodeData();
-      }
-    }
-  }, [selectedMonth, selectedModel, viewMode]);
-
 
 
   // 데이터가 로드되면 첫 번째 Product Code를 자동 선택
@@ -592,6 +651,34 @@ const CycleTimeAnalysis = () => {
       }
     }
   }, [data, selectedModel, viewMode, selectedProductCode]);
+
+  // 기간합산 모드에서 startMonth, endMonth 변경 시 자동 로드
+  useEffect(() => {
+    if (periodMode === 'range' && startMonth && endMonth && selectedModel) {
+      // 시작월이 종료월보다 늦지 않은지 검증
+      const start = new Date(startMonth + '-01');
+      const end = new Date(endMonth + '-01');
+      
+      if (start <= end) {
+        if (viewMode === 'task') {
+          fetchTaskData();
+        } else {
+          fetchProductCodeData();
+        }
+      }
+    }
+  }, [startMonth, endMonth, selectedModel, periodMode, viewMode]);
+
+  // 단일월 모드에서 selectedMonth 변경 시 자동 로드 (기존 useEffect 수정)
+  useEffect(() => {
+    if (periodMode === 'single' && selectedMonth && selectedModel) {
+      if (viewMode === 'task') {
+        fetchTaskData();
+      } else {
+        fetchProductCodeData();
+      }
+    }
+  }, [selectedMonth, selectedModel, periodMode, viewMode]);
 
   // 뷰 모드 토글
   const toggleViewMode = () => {
@@ -706,21 +793,82 @@ const CycleTimeAnalysis = () => {
       {/* 헤더 컨트롤 */}
       <div className="analysis-header">
         <div className="header-controls">
-          <div className="control-group">
-            <label htmlFor="month-select">📅 분석 월:</label>
-          <select 
-              id="month-select"
-            value={selectedMonth} 
-            onChange={(e) => setSelectedMonth(e.target.value)}
-              className="month-selector"
-            >
-              {monthOptions.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+          {/* 기간 모드 선택 */}
+          <div className="control-group period-mode-group">
+            <label>📅 분석 기간:</label>
+            <div className="period-mode-selector">
+              <label className="radio-option">
+                <input
+                  type="radio"
+                  name="periodMode"
+                  value="single"
+                  checked={periodMode === 'single'}
+                  onChange={(e) => handlePeriodModeChange(e.target.value)}
+                />
+                <span>단일월 분석</span>
+              </label>
+              <label className="radio-option">
+                <input
+                  type="radio"
+                  name="periodMode"
+                  value="range"
+                  checked={periodMode === 'range'}
+                  onChange={(e) => handlePeriodModeChange(e.target.value)}
+                />
+                <span>기간합산 분석</span>
+              </label>
+            </div>
           </div>
+
+          {/* 월 선택 (조건부 렌더링) */}
+          {periodMode === 'single' ? (
+            <div className="control-group">
+              <label htmlFor="month-select">📆 분석 월:</label>
+              <select 
+                id="month-select"
+                value={selectedMonth} 
+                onChange={(e) => setSelectedMonth(e.target.value)}
+                className="month-selector"
+              >
+                {monthOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ) : (
+            <div className="control-group range-selector">
+              <label>📅 분석 기간:</label>
+              <div className="range-inputs">
+                <select
+                  value={startMonth}
+                  onChange={(e) => setStartMonth(e.target.value)}
+                  className="month-selector"
+                >
+                  <option value="">시작월 선택</option>
+                  {monthOptions.map(option => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <span className="range-separator">~</span>
+                <select
+                  value={endMonth}
+                  onChange={(e) => setEndMonth(e.target.value)}
+                  className="month-selector"
+                >
+                  <option value="">종료월 선택</option>
+                  {monthOptions.map(option => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
 
           <div className="control-group">
             <label htmlFor="model-select">🏭 모델:</label>
