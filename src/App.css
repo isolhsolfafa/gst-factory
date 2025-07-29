@@ -2834,3 +2834,76 @@ body {
     gap: 8px;
   }
 }
+
+/* 기간 모드 선택 UI */
+.period-mode-group {
+  margin-bottom: 15px;
+}
+
+.period-mode-selector {
+  display: flex;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.radio-option input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.radio-option span {
+  color: #495057;
+  transition: color 0.2s ease;
+}
+
+.radio-option:hover span {
+  color: #007bff;
+}
+
+.radio-option input[type="radio"]:checked + span {
+  color: #007bff;
+  font-weight: 600;
+}
+
+/* 기간 범위 선택 UI */
+.range-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.range-separator {
+  font-size: 16px;
+  font-weight: 600;
+  color: #6c757d;
+  padding: 0 4px;
+}
+
+.range-inputs .month-selector {
+  min-width: 140px;
+}
+
+/* 기존 컨트롤 그룹 간격 조정 */
+.header-controls .control-group {
+  margin-bottom: 10px;
+}
+
+.header-controls .control-group:last-child {
+  margin-bottom: 0;
+}
