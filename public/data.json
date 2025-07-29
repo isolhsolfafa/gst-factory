@@ -7,7 +7,7 @@
       "예상불량률": 100.0,
       "키워드": "삽입부",
       "불량유형": "부품불량",
-      "누적": 20,
+      "누적": 23,
       "제안": "체결 토크 표준화",
       "근거": "근거: 체결 불량, 누설, 가공 정밀도",
       "예상효과": "불량률 50.0%p 감소 예상",
@@ -20,49 +20,49 @@
       "예상불량률": 100.0,
       "키워드": "삽입부",
       "불량유형": "부품불량",
-      "누적": 20,
+      "누적": 23,
       "제안": "체결 토크 표준화",
       "근거": "근거: 체결 불량, 누설, 가공 정밀도",
       "예상효과": "불량률 50.0%p 감소 예상",
       "우선순위": "IMMEDIATE"
     },
     {
+      "모델": "GAIA-P DUAL",
+      "검출단계": "가압검사",
+      "부품": "MALE CONNECTOR",
+      "예상불량률": 11.0,
+      "키워드": "연결",
+      "불량유형": "기구작업불량",
+      "누적": 25,
+      "제안": "N2 가압 압력 및 시간 표준화",
+      "근거": "근거: N2 가압 불량, Tube 삽입 불량, Teflon 작업 불량, Fitting 체결 불량",
+      "예상효과": "불량률 5.5%p 감소 예상",
+      "우선순위": "URGENT"
+    },
+    {
+      "모델": "SWS-I",
+      "검출단계": "가압검사",
+      "부품": "MALE ELBOW",
+      "예상불량률": 6.0,
+      "키워드": "부족",
+      "불량유형": "기구작업불량",
+      "누적": 45,
+      "제안": "개선 검토 필요",
+      "근거": "근거: 추가 분석 필요",
+      "예상효과": "효과 분석 중",
+      "우선순위": "NORMAL"
+    },
+    {
       "모델": "GAIA-II",
       "검출단계": "가압검사",
-      "부품": "QUICK COUPLER",
-      "예상불량률": 9.0,
-      "키워드": "",
-      "불량유형": "기타불량",
-      "누적": 1,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
-    },
-    {
-      "모델": "DRAGON DUAL",
-      "검출단계": "가압검사",
-      "부품": "O-RING",
-      "예상불량률": 5.0,
-      "키워드": "",
-      "불량유형": "기타불량",
-      "누적": 20,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
-    },
-    {
-      "모델": "GAIA-I DUAL",
-      "검출단계": "가압검사",
-      "부품": "BULKHEAD UNION",
+      "부품": "CENTER O-RING",
       "예상불량률": 4.0,
-      "키워드": "튜브, 부족",
-      "불량유형": "기구작업불량",
-      "누적": 10,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
+      "키워드": "",
+      "불량유형": "기타불량",
+      "누적": 3,
+      "제안": "O-링 규격 재검토 및 공차 관리 강화",
+      "근거": "근거: 가압 불량, 삽입 불량, 누수",
+      "예상효과": "불량률 1.2%p 감소 예상",
       "우선순위": "NORMAL"
     }
   ],
@@ -70,37 +70,72 @@
     "failure_patterns": {
       "top_patterns": [
         {
-          "pattern": "6_0_43",
-          "frequency": 44,
-          "percentage": 14.76510067114094,
+          "pattern": "7_0_68",
+          "frequency": 47,
+          "percentage": 11.270983213429256,
           "keywords": [
             [
               "Speed",
-              44
+              47
             ],
             [
               "Controller",
-              44
+              47
             ],
             [
               "Leak",
-              44
+              47
             ],
             [
               "(PFA)",
-              28
+              30
             ],
             [
               "(우레탄)",
-              16
+              17
             ]
           ],
           "risk_level": "HIGH"
         },
         {
-          "pattern": "6_0_24",
+          "pattern": "16_1_86",
+          "frequency": 17,
+          "percentage": 4.07673860911271,
+          "keywords": [],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "6_2_43",
+          "frequency": 13,
+          "percentage": 3.117505995203837,
+          "keywords": [
+            [
+              "MALE",
+              13
+            ],
+            [
+              "ELBOW",
+              13
+            ],
+            [
+              "Fitting",
+              13
+            ],
+            [
+              "nut",
+              13
+            ],
+            [
+              "Water",
+              13
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "7_0_42",
           "frequency": 10,
-          "percentage": 3.3557046979865772,
+          "percentage": 2.3980815347721824,
           "keywords": [
             [
               "Male",
@@ -126,37 +161,9 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "6_0_5",
+          "pattern": "6_0_68",
           "frequency": 9,
-          "percentage": 3.0201342281879198,
-          "keywords": [
-            [
-              "Nut",
-              8
-            ],
-            [
-              "UNION",
-              7
-            ],
-            [
-              "Fitting",
-              7
-            ],
-            [
-              "BULKHEAD",
-              6
-            ],
-            [
-              "BULK",
-              3
-            ]
-          ],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "5_0_43",
-          "frequency": 9,
-          "percentage": 3.0201342281879198,
+          "percentage": 2.158273381294964,
           "keywords": [
             [
               "Speed",
@@ -182,37 +189,37 @@
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "2_0_25",
-          "frequency": 8,
-          "percentage": 2.684563758389262,
+          "pattern": "7_0_8",
+          "frequency": 9,
+          "percentage": 2.158273381294964,
           "keywords": [
             [
-              "BCW",
-              4
-            ],
-            [
               "Nut",
-              4
+              8
             ],
             [
-              "MALE",
-              4
+              "UNION",
+              7
             ],
             [
-              "ELBOW",
-              4
+              "Fitting",
+              7
             ],
             [
-              "JACO",
+              "BULKHEAD",
+              6
+            ],
+            [
+              "BULK",
               3
             ]
           ],
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "6_0_12",
+          "pattern": "7_0_17",
           "frequency": 8,
-          "percentage": 2.684563758389262,
+          "percentage": 1.9184652278177456,
           "keywords": [
             [
               "체결불량",
@@ -235,12 +242,68 @@
               2
             ]
           ],
-          "risk_level": "MEDIUM"
+          "risk_level": "LOW"
         },
         {
-          "pattern": "2_0_30",
+          "pattern": "2_0_43",
           "frequency": 8,
-          "percentage": 2.684563758389262,
+          "percentage": 1.9184652278177456,
+          "keywords": [
+            [
+              "BCW",
+              4
+            ],
+            [
+              "Nut",
+              4
+            ],
+            [
+              "MALE",
+              4
+            ],
+            [
+              "ELBOW",
+              4
+            ],
+            [
+              "JACO",
+              3
+            ]
+          ],
+          "risk_level": "LOW"
+        },
+        {
+          "pattern": "7_2_43",
+          "frequency": 8,
+          "percentage": 1.9184652278177456,
+          "keywords": [
+            [
+              "MALE",
+              8
+            ],
+            [
+              "ELBOW",
+              8
+            ],
+            [
+              "Fitting",
+              8
+            ],
+            [
+              "nut",
+              8
+            ],
+            [
+              "Water",
+              8
+            ]
+          ],
+          "risk_level": "LOW"
+        },
+        {
+          "pattern": "2_0_49",
+          "frequency": 8,
+          "percentage": 1.9184652278177456,
           "keywords": [
             [
               "O-Ring",
@@ -263,78 +326,15 @@
               2
             ]
           ],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "14_1_56",
-          "frequency": 6,
-          "percentage": 2.013422818791946,
-          "keywords": [],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "6_0_35",
-          "frequency": 6,
-          "percentage": 2.013422818791946,
-          "keywords": [
-            [
-              "N2",
-              6
-            ],
-            [
-              "REDUCING",
-              6
-            ],
-            [
-              "DOUBLE",
-              6
-            ],
-            [
-              "Y",
-              6
-            ],
-            [
-              "삽입부",
-              6
-            ]
-          ],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "2_0_43",
-          "frequency": 6,
-          "percentage": 2.013422818791946,
-          "keywords": [
-            [
-              "Speed",
-              6
-            ],
-            [
-              "Controller",
-              6
-            ],
-            [
-              "Leak",
-              6
-            ],
-            [
-              "(PFA)",
-              5
-            ],
-            [
-              "(우레탄)",
-              1
-            ]
-          ],
-          "risk_level": "MEDIUM"
+          "risk_level": "LOW"
         }
       ],
-      "total_patterns": 117,
-      "concentration_index": 0.03321922435926309
+      "total_patterns": 184,
+      "concentration_index": 0.02220381967807049
     },
     "correlations": {
-      "product_part": 0.33361795611752265,
-      "stage_part": 1.0
+      "product_part": 0.32060305730268207,
+      "stage_part": 0.723922721954416
     },
     "risk_analysis": {
       "risk_levels": [
@@ -349,17 +349,17 @@
           "risk_level": "CRITICAL"
         },
         {
-          "part": "QUICK COUPLER",
-          "defect_rate": 9.0,
+          "part": "MALE CONNECTOR",
+          "defect_rate": 11.0,
           "risk_level": "HIGH"
         },
         {
-          "part": "O-RING",
-          "defect_rate": 5.0,
+          "part": "MALE ELBOW",
+          "defect_rate": 6.0,
           "risk_level": "HIGH"
         },
         {
-          "part": "BULKHEAD UNION",
+          "part": "CENTER O-RING",
           "defect_rate": 4.0,
           "risk_level": "MEDIUM"
         }
@@ -420,6 +420,51 @@
       "expected_improvement": "불량률 50.0%p 감소 예상",
       "implementation_cost": "HIGH",
       "timeline": "1주 이내"
+    },
+    {
+      "target": "GAIA-P DUAL - MALE CONNECTOR",
+      "defect_rate": 11.0,
+      "urgency": "URGENT",
+      "root_causes": [
+        "N2 가압 불량",
+        "Tube 삽입 불량",
+        "Teflon 작업 불량",
+        "Fitting 체결 불량"
+      ],
+      "specific_actions": [
+        "N2 가압 압력 및 시간 표준화",
+        "Tube 삽입 깊이 및 각도 검사 강화",
+        "Teflon 테이프 감기 작업 표준화"
+      ],
+      "inspection_points": [
+        "N2 가압 누설",
+        "Tube 삽입 상태",
+        "Teflon 작업 품질"
+      ],
+      "expected_improvement": "불량률 5.5%p 감소 예상",
+      "implementation_cost": "MEDIUM",
+      "timeline": "2-4주"
+    },
+    {
+      "target": "GAIA-II - CENTER O-RING",
+      "defect_rate": 4.0,
+      "urgency": "NORMAL",
+      "root_causes": [
+        "가압 불량",
+        "삽입 불량",
+        "누수"
+      ],
+      "specific_actions": [
+        "O-링 규격 재검토 및 공차 관리 강화"
+      ],
+      "inspection_points": [
+        "O-링 표면 상태",
+        "삽입 깊이",
+        "가압 시 누수점"
+      ],
+      "expected_improvement": "불량률 1.2%p 감소 예상",
+      "implementation_cost": "LOW",
+      "timeline": "1-2개월"
     }
   ],
   "selection_criteria": {
@@ -467,6 +512,6 @@
     ]
   },
   "analysis_summary": null,
-  "generated_at": "2025-07-12 14:25:24",
+  "generated_at": "2025-07-29 10:58:35",
   "analysis_version": "2.1"
 }
