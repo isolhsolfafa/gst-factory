@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// Recharts 대신 순수 HTML/CSS 바 차트 사용
 
 // API 기본 URL 설정 (기존 App.js 방식과 일관성 유지)
 const API_BASE_URL = process.env.NODE_ENV === 'production' 
@@ -33,7 +32,276 @@ const generateMonthOptions = () => {
   return options;
 };
 
-// S/N 드롭다운 메뉴 컴포넌트
+
+
+// 개별 Task 막대그래프 컴포넌트
+const TaskBarChart = ({ task, maxValue, isSwapped, onToggle, categoryColor }) => {
+  const { 
+    task_name, 
+    total_samples, 
+    original_avg_time, 
+    clustered_avg_time, 
+    difference_percent, 
+    reliability,
+    iqr_samples
+  } = task;
+
+  // 시간을 "X시간 Y분" 형태로 변환
+  const formatTime = (hours) => {
+    if (hours === 0) return "0분";
+    const h = Math.floor(hours);
+    const m = Math.round((hours - h) * 60);
+    
+    if (h === 0) return `${m}분`;
+    if (m === 0) return `${h}시간`;
+    return `${h}시간 ${m}분`;
+  };
+
+  // 신뢰도에 따른 스타일
+  const getReliabilityColor = (reliability) => {
+    const colors = {
+      'high': '#4CAF50',
+      'medium': '#FF9800', 
+      'low': '#F44336'
+    };
+    return colors[reliability] || '#9E9E9E';
+  };
+
+  // 막대 너비 계산 (최대값 대비 퍼센트)
+  const originalWidth = (original_avg_time / maxValue) * 100;
+  const clusteredWidth = (clustered_avg_time / maxValue) * 100;
+  
+  // 표시할 값 결정 (스왑 상태에 따라)
+  const primaryValue = isSwapped ? original_avg_time : clustered_avg_time;
+  const secondaryValue = isSwapped ? clustered_avg_time : original_avg_time;
+  const primaryWidth = isSwapped ? originalWidth : clusteredWidth;
+  const secondaryWidth = isSwapped ? clusteredWidth : originalWidth;
+  
+  const primaryColor = isSwapped ? categoryColor : getReliabilityColor(reliability);
+  const secondaryColor = isSwapped ? getReliabilityColor(reliability) : categoryColor;
+
+  return (
+    <div className="task-bar-chart" onClick={onToggle}>
+      <div className="task-header">
+        <div className="task-info">
+          <span className="task-name">{task_name}</span>
+          <span className="task-samples">({total_samples}개 샘플)</span>
+        </div>
+        <div className="task-values">
+          <span className="primary-value" style={{ color: primaryColor }}>
+            {primaryValue.toFixed(1)}h
+          </span>
+          <span className="value-separator">|</span>
+          <span className="secondary-value" style={{ color: secondaryColor }}>
+            {secondaryValue.toFixed(1)}h
+          </span>
+        </div>
+      </div>
+      
+      <div className="bar-container">
+        {/* 보조 막대 (배경, 반투명) */}
+        <div 
+          className="bar secondary-bar"
+          style={{ 
+            width: `${secondaryWidth}%`,
+            backgroundColor: secondaryColor,
+            opacity: 0.3
+          }}
+        />
+        
+        {/* 주요 막대 (전경, 선명) */}
+        <div 
+          className="bar primary-bar"
+          style={{ 
+            width: `${primaryWidth}%`,
+            backgroundColor: primaryColor,
+            opacity: 0.9
+          }}
+        />
+        
+        {/* 값 표시 */}
+        <span className="bar-label" style={{ color: primaryColor }}>
+          {formatTime(primaryValue)}
+        </span>
+      </div>
+      
+      <div className="task-footer">
+        <span className="reliability-badge" style={{ backgroundColor: getReliabilityColor(reliability) }}>
+          신뢰도: {reliability === 'high' ? '높음' : reliability === 'medium' ? '보통' : '낮음'}
+        </span>
+        <span className="difference-percent">
+          차이: {difference_percent}%
+        </span>
+        <span className="iqr-info">
+          IQR 샘플: {iqr_samples}개
+        </span>
+      </div>
+    </div>
+  );
+};
+
+// 작업분류별 총합 카드 컴포넌트
+const CategorySummaryCard = ({ category, tasks, isSwapped, onToggle, categoryColor }) => {
+  // 시간을 "X시간 Y분" 형태로 변환
+  const formatTime = (hours) => {
+    if (hours === 0) return "0분";
+    const h = Math.floor(hours);
+    const m = Math.round((hours - h) * 60);
+    
+    if (h === 0) return `${m}분`;
+    if (m === 0) return `${h}시간`;
+    return `${h}시간 ${m}분`;
+  };
+
+  // 카테고리별 색상과 아이콘
+  const getCategoryStyle = (category) => {
+    const styles = {
+      '기구': { color: '#8884d8', icon: '🔧' },
+      '전장': { color: '#82ca9d', icon: '⚡' },
+      'TMS_반제품': { color: '#ffc658', icon: '🏭' },
+      '검사': { color: '#ff7c7c', icon: '🔍' },
+      '마무리': { color: '#d084d0', icon: '✅' },
+      '기타': { color: '#8dd1e1', icon: '📋' }
+    };
+    return styles[category] || { color: '#8884d8', icon: '📊' };
+  };
+
+  const style = getCategoryStyle(category);
+
+  // 합계 계산
+  const originalSum = tasks.reduce((sum, task) => sum + task.original_avg_time, 0);
+  const clusteredSum = tasks.reduce((sum, task) => sum + task.clustered_avg_time, 0);
+  const totalTasks = tasks.length;
+  const totalSamples = tasks.reduce((sum, task) => sum + task.total_samples, 0);
+  
+  // 차이율 계산
+  const differencePercent = originalSum > 0 ? 
+    Math.abs(originalSum - clusteredSum) / originalSum * 100 : 0;
+
+  // 표시할 값 결정 (스왑 상태에 따라)
+  const primarySum = isSwapped ? originalSum : clusteredSum;
+  const secondarySum = isSwapped ? clusteredSum : originalSum;
+  const primaryLabel = isSwapped ? "평균시간 합계" : "IQR 군집도 합계";
+  const secondaryLabel = isSwapped ? "IQR 군집도 합계" : "평균시간 합계";
+
+  return (
+    <div className="category-summary-card" onClick={onToggle}>
+      <div className="summary-card-header">
+        <div className="category-info">
+          <span className="category-icon">{style.icon}</span>
+          <h4 style={{ color: style.color }}>{category} 총합</h4>
+          <span className="category-badge" style={{ backgroundColor: style.color }}>
+            {totalTasks}개 작업
+          </span>
+        </div>
+        <div className="swap-indicator">
+          🔄
+        </div>
+      </div>
+      
+      <div className="summary-values">
+        <div className="primary-sum" style={{ color: style.color }}>
+          <span className="sum-label">{primaryLabel}:</span>
+          <span className="sum-value">{primarySum.toFixed(1)}h</span>
+          <span className="sum-formatted">({formatTime(primarySum)})</span>
+        </div>
+        <div className="secondary-sum" style={{ opacity: 0.7 }}>
+          <span className="sum-label">{secondaryLabel}:</span>
+          <span className="sum-value">{secondarySum.toFixed(1)}h</span>
+          <span className="sum-formatted">({formatTime(secondarySum)})</span>
+        </div>
+      </div>
+      
+      <div className="summary-stats">
+        <span className="total-samples">📊 총 {totalSamples}개 샘플</span>
+        <span className="difference-badge" style={{ 
+          backgroundColor: differencePercent < 10 ? '#4CAF50' : 
+                          differencePercent < 30 ? '#FF9800' : '#F44336',
+          color: 'white'
+        }}>
+          차이: {differencePercent.toFixed(1)}%
+        </span>
+      </div>
+      
+      <div className="click-hint">
+        💡 클릭하여 평균 합계 ↔ IQR 합계 전환
+      </div>
+    </div>
+  );
+};
+
+// 작업분류별 섹션 컴포넌트
+const CategorySection = ({ category, tasks, swappedTasks, onTaskToggle, onCategoryToggle }) => {
+  // 카테고리별 색상과 아이콘
+  const getCategoryStyle = (category) => {
+    const styles = {
+      '기구': { color: '#8884d8', icon: '🔧' },
+      '전장': { color: '#82ca9d', icon: '⚡' },
+      'TMS_반제품': { color: '#ffc658', icon: '🏭' },
+      '검사': { color: '#ff7c7c', icon: '🔍' },
+      '마무리': { color: '#d084d0', icon: '✅' },
+      '기타': { color: '#8dd1e1', icon: '📋' }
+    };
+    return styles[category] || { color: '#8884d8', icon: '📊' };
+  };
+
+  const style = getCategoryStyle(category);
+  
+  // 최대값 계산 (Y축 스케일 통일)
+  const maxValue = Math.max(
+    ...tasks.map(task => Math.max(task.original_avg_time, task.clustered_avg_time))
+  ) * 1.1; // 10% 여유 공간
+
+  // 카테고리 스왑 상태 확인
+  const isCategorySwapped = swappedTasks.has(`category-${category}`);
+
+  return (
+    <div className="category-section" id={`category-${category}`}>
+      {/* 카테고리 총합 카드 */}
+      <CategorySummaryCard
+        category={category}
+        tasks={tasks}
+        isSwapped={isCategorySwapped}
+        onToggle={() => onCategoryToggle(`category-${category}`)}
+        categoryColor={style.color}
+      />
+      
+      <div className="category-header">
+        <div className="category-title">
+          <span className="category-icon">{style.icon}</span>
+          <h3 style={{ color: style.color }}>{category} 상세</h3>
+          <span className="task-count">({tasks.length}개 작업)</span>
+        </div>
+        <div className="category-description">
+          <span className="legend-item">
+            <span className="legend-dot primary" style={{ backgroundColor: style.color }}></span>
+            기존 평균시간
+          </span>
+          <span className="legend-item">
+            <span className="legend-dot secondary"></span>
+            IQR 군집도 시간
+          </span>
+          <span className="toggle-hint">📌 개별 Task 클릭하여 주/보조 전환</span>
+        </div>
+      </div>
+      
+      <div className="tasks-container">
+        {tasks.map((task, index) => (
+          <TaskBarChart
+            key={`${category}-${task.task_name}-${index}`}
+            task={task}
+            maxValue={maxValue}
+            isSwapped={swappedTasks.has(`${category}-${task.task_name}`)}
+            onToggle={() => onTaskToggle(`${category}-${task.task_name}`)}
+            categoryColor={style.color}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// S/N 드롭다운 메뉴 컴포넌트 (기존 유지)
 const SerialNumberDropdown = ({ modelName, productCode, selectedMonth, isOpen, onToggle, position }) => {
   const [serials, setSerials] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -99,12 +367,18 @@ const SerialNumberDropdown = ({ modelName, productCode, selectedMonth, isOpen, o
             {serials.map((serial, index) => (
               <div
                 key={index}
-                className={`dropdown-item ${serial.spreadsheet_link ? 'clickable' : 'no-link'}`}
+                className="dropdown-item"
                 onClick={() => handleSerialClick(serial)}
-                title={serial.spreadsheet_link ? '클릭하여 스프레드시트 열기' : '스프레드시트 링크 없음'}
+                title={serial.spreadsheet_link ? '스프레드시트로 이동' : '링크 없음'}
               >
                 <span className="serial-number">{serial.serial_number}</span>
-                {serial.spreadsheet_link && <span className="link-icon">🔗</span>}
+                <span className="serial-date">
+                  {serial.manufacturing_start ? 
+                    new Date(serial.manufacturing_start).toLocaleDateString('ko-KR') : 
+                    'N/A'
+                  }
+                </span>
+                {serial.spreadsheet_link && <span className="serial-link-icon">🔗</span>}
               </div>
             ))}
           </div>
@@ -114,139 +388,85 @@ const SerialNumberDropdown = ({ modelName, productCode, selectedMonth, isOpen, o
   );
 };
 
-// 카테고리별 합계 시간 카드 컴포넌트
-const CategorySummaryCards = ({ selectedProductCode }) => {
-  // 카테고리별 총 시간 계산
-  const calculateCategoryTotals = () => {
-    const categoryTotals = {
-      '기구': 0,
-      '전장': 0,
-      'TMS_반제품': 0,
-      '검사': 0,
-      '마무리': 0,
-      '기타': 0
-    };
-
-    if (!selectedProductCode || !selectedProductCode.categories) {
-      return categoryTotals;
-    }
-
-    selectedProductCode.categories.forEach(category => {
-      if (!category || !category.tasks || !Array.isArray(category.tasks)) return;
-      
-      const categoryName = category.category;
-      
-      // 해당 카테고리가 6개 카테고리 중 하나인지 확인
-      if (categoryTotals.hasOwnProperty(categoryName)) {
-        category.tasks.forEach(task => {
-          if (!task || typeof task !== 'object') return;
-          
-          let safeHours = 0;
-          const avgHours = task.avg_hours;
-          
-          if (typeof avgHours === 'number' && Number.isFinite(avgHours) && avgHours > 0) {
-            safeHours = avgHours;
-          } else if (typeof avgHours === 'string' && avgHours.trim() !== '') {
-            const parsed = parseFloat(avgHours);
-            if (Number.isFinite(parsed) && parsed > 0) {
-              safeHours = parsed;
-            }
-          }
-          
-          categoryTotals[categoryName] += safeHours;
-        });
-      } else {
-        // 6개 카테고리에 없는 것들은 '기타'로 분류
-        category.tasks.forEach(task => {
-          if (!task || typeof task !== 'object') return;
-          
-          let safeHours = 0;
-          const avgHours = task.avg_hours;
-          
-          if (typeof avgHours === 'number' && Number.isFinite(avgHours) && avgHours > 0) {
-            safeHours = avgHours;
-          } else if (typeof avgHours === 'string' && avgHours.trim() !== '') {
-            const parsed = parseFloat(avgHours);
-            if (Number.isFinite(parsed) && parsed > 0) {
-              safeHours = parsed;
-            }
-          }
-          
-          categoryTotals['기타'] += safeHours;
-        });
-      }
-    });
-
-    return categoryTotals;
-  };
-
-  // 시간을 "X시간 Y분" 형태로 변환
-  const formatTime = (hours) => {
-    if (hours === 0) return "0분";
-    const h = Math.floor(hours);
-    const m = Math.round((hours - h) * 60);
-    
-    if (h === 0) return `${m}분`;
-    if (m === 0) return `${h}시간`;
-    return `${h}시간 ${m}분`;
-  };
-
-  // 카테고리별 색상과 아이콘
-  const getCategoryStyle = (category) => {
-    const styles = {
-      '기구': { color: '#8884d8', icon: '🔧' },
-      '전장': { color: '#82ca9d', icon: '⚡' },
-      'TMS_반제품': { color: '#ffc658', icon: '🏭' },
-      '검사': { color: '#ff7c7c', icon: '🔍' },
-      '마무리': { color: '#d084d0', icon: '✅' },
-      '기타': { color: '#8dd1e1', icon: '📋' }
-    };
-    return styles[category] || { color: '#8884d8', icon: '📊' };
-  };
-
-  // 카테고리 클릭 시 해당 섹션으로 스크롤 이동
-  const scrollToCategory = (categoryName) => {
-    const element = document.getElementById(`category-section-${categoryName}`);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start',
-        inline: 'nearest'
-      });
-    }
-  };
-
-  const categoryTotals = calculateCategoryTotals();
+// 설명 팝업 컴포넌트
+const ExplanationModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
 
   return (
-    <div className="category-summary-cards">
-      <h3>📊 공정별 누적 작업 시간</h3>
-      <div className="summary-cards-grid">
-        {Object.entries(categoryTotals).map(([category, totalHours]) => {
-          const style = getCategoryStyle(category);
-          return (
-            <div 
-              key={category} 
-              className="summary-card clickable-card" 
-              style={{ borderColor: style.color }}
-              onClick={() => scrollToCategory(category)}
-              title={`${category} 섹션으로 이동`}
-            >
-              <div className="card-header">
-                <span className="category-icon">{style.icon}</span>
-                <span className="category-name">{category}</span>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <h3>📊 평균시간 vs IQR 군집도 평균시간 설명</h3>
+          <button className="modal-close" onClick={onClose}>✕</button>
+        </div>
+        
+        <div className="modal-body">
+          <div className="explanation-section">
+            <h4>🟦 평균시간 (일반 평균)</h4>
+            <div className="explanation-content">
+              <div><strong>정의:</strong> 모든 샘플의 단순 산술 평균</div>
+              <div><strong>계산:</strong> (모든 작업시간의 합) ÷ (총 샘플 수)</div>
+              <div><strong>특징:</strong> 이상치(outlier)에 민감함</div>
+              <div><strong>예시:</strong> [1h, 2h, 3h, 100h] → 평균 26.5시간</div>
+            </div>
+          </div>
+          
+          <div className="explanation-section">
+            <h4>🟨 IQR 군집도 평균시간 (사분위 평균)</h4>
+            <div className="explanation-content">
+              <div><strong>정의:</strong> 1사분위(Q1)~3사분위(Q3) 범위 내 데이터만의 평균</div>
+              <div><strong>계산:</strong> Q1 ≤ 작업시간 ≤ Q3 범위의 데이터만 사용</div>
+              <div><strong>특징:</strong> 이상치 제거로 더 신뢰성 있는 평균</div>
+              <div><strong>예시:</strong> [1h, 2h, 3h, 100h] → IQR 평균 2시간 (100h 제외)</div>
+            </div>
+          </div>
+          
+          <div className="explanation-section comparison">
+            <h4>🔍 왜 IQR 군집도 평균을 사용하나요?</h4>
+            <div className="comparison-grid">
+              <div className="comparison-item">
+                <h5>📈 일반 평균의 문제점</h5>
+                <p>작업자가 실수하거나 특별한 상황으로 인해 매우 오래 걸린 작업이 있으면, 전체 평균이 크게 왜곡됩니다.</p>
               </div>
-              <div className="card-content">
-                <div className="total-hours" style={{ color: style.color }}>
-                  {totalHours.toFixed(1)}h
-                </div>
-                <div className="formatted-time">
-                  {formatTime(totalHours)}
-                </div>
+              <div className="comparison-item">
+                <h5>🎯 IQR 평균의 장점</h5>
+                <p>상위 25%와 하위 25%를 제외한 중간 50% 데이터만 사용하여, 실제 작업 패턴을 더 정확히 반영합니다.</p>
               </div>
             </div>
-          );
-        })}
+          </div>
+          
+          <div className="explanation-section">
+            <h4>🚦 신뢰도 등급</h4>
+            <div className="reliability-guide">
+              <div className="reliability-item high">
+                <span className="reliability-badge high">🟢 높음</span>
+                <span>차이 10% 미만 - 매우 안정적인 작업시간</span>
+              </div>
+              <div className="reliability-item medium">
+                <span className="reliability-badge medium">🟡 보통</span>
+                <span>차이 10-30% - 보통 수준의 변동성</span>
+                </div>
+              <div className="reliability-item low">
+                <span className="reliability-badge low">🔴 낮음</span>
+                <span>차이 30% 이상 - 높은 변동성, 주의 필요</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="explanation-section">
+            <h4>💡 사용 팁</h4>
+            <div className="explanation-content">
+              <div><strong>계획 수립:</strong> IQR 군집도 평균을 기준으로 작업 계획 수립</div>
+              <div><strong>성과 평가:</strong> 일반 평균과 비교하여 작업 안정성 평가</div>
+              <div><strong>개선 포인트:</strong> 차이가 큰 작업은 표준화 필요</div>
+              <div><strong>클릭 기능:</strong> 카드를 클릭하여 두 평균을 비교해보세요</div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="modal-footer">
+          <button className="modal-button" onClick={onClose}>이해했습니다</button>
+        </div>
       </div>
     </div>
   );
@@ -254,15 +474,20 @@ const CategorySummaryCards = ({ selectedProductCode }) => {
 
 const CycleTimeAnalysis = () => {
   const [data, setData] = useState(null);
+  const [taskData, setTaskData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [viewMode, setViewMode] = useState('task'); // 'task' 또는 'product'
+  const [swappedTasks, setSwappedTasks] = useState(new Set()); // 스왑된 Task들 추적
+  const [isModalOpen, setIsModalOpen] = useState(false); // 설명 팝업 상태
+  
+  // 선택된 Product Code 상태 (첫 번째를 기본값으로)
+  const [selectedProductCode, setSelectedProductCode] = useState(null);
   
   // 동적 월 옵션 생성 및 현재 월을 기본값으로 설정
   const monthOptions = generateMonthOptions();
   const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]?.value || '2025-06');
-  
-  const [selectedModel, setSelectedModel] = useState(null);
-  const [selectedProductCode, setSelectedProductCode] = useState(null);
+  const [selectedModel, setSelectedModel] = useState('GAIA-I DUAL'); // 기본 모델 설정
   
   // S/N 드롭다운 상태 관리
   const [dropdownState, setDropdownState] = useState({
@@ -272,45 +497,39 @@ const CycleTimeAnalysis = () => {
     position: { x: 0, y: 0 }
   });
 
-  // Product Code 클릭 핸들러
-  const handleProductCodeClick = (event, modelName, productCode) => {
-    event.stopPropagation(); // 이벤트 버블링 방지
+  // Task별 분석 데이터 가져오기 (새로운 API)
+  const fetchTaskData = async () => {
+    setLoading(true);
+    setError(null);
     
-    setDropdownState(prev => ({
-      isOpen: !prev.isOpen || prev.productCode !== productCode,
-      modelName: modelName,
-      productCode: productCode,
-      position: { x: 0, y: 0 }
-    }));
+    try {
+      const response = await axios.get(`${API_BASE_URL}/api/task_analysis`, {
+        params: {
+          month: selectedMonth,
+          model_name: selectedModel
+        }
+      });
+      
+      if (response.data && response.data.categories) {
+        setTaskData(response.data);
+      } else {
+        setError('데이터 구조가 올바르지 않습니다.');
+      }
+    } catch (err) {
+      console.error('Task analysis data fetch failed:', err);
+      setError(`Task별 분석 데이터를 불러오는데 실패했습니다: ${err.message}`);
+      setTaskData(null);
+    }
+    
+    setLoading(false);
   };
 
-  // 드롭다운 외부 클릭 시 닫기
-  useEffect(() => {
-    const handleClickOutside = () => {
-      setDropdownState(prev => ({ ...prev, isOpen: false }));
-    };
-
-    if (dropdownState.isOpen) {
-      document.addEventListener('click', handleClickOutside);
-      return () => document.removeEventListener('click', handleClickOutside);
-    }
-  }, [dropdownState.isOpen]);
-
-  // API 호출
-  useEffect(() => {
-    const fetchData = async () => {
+  // 기존 Product Code별 데이터 가져오기
+  const fetchProductCodeData = async () => {
       try {
         setLoading(true);
         const response = await axios.get(`${API_BASE_URL}/api/cycle_time/monthly?month=${selectedMonth}`);
         setData(response.data);
-        
-        // 첫 번째 모델을 기본 선택
-        if (response.data.models && response.data.models.length > 0) {
-          setSelectedModel(response.data.models[0]);
-          if (response.data.models[0].product_codes.length > 0) {
-            setSelectedProductCode(response.data.models[0].product_codes[0]);
-          }
-        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -318,256 +537,542 @@ const CycleTimeAnalysis = () => {
       }
     };
 
-    fetchData();
-  }, [selectedMonth]);
+  // 초기 데이터 로드
+  useEffect(() => {
+    if (viewMode === 'task') {
+      fetchTaskData();
+    } else {
+      fetchProductCodeData();
+    }
+  }, [selectedMonth, selectedModel, viewMode]);
 
-  // 총 생산 대수 계산 함수
-  const calculateTotalProduction = () => {
-    if (!data || !data.models) return 0;
-    
-    return data.models.reduce((total, model) => {
-      return total + (model.total_production_count || 0);
-    }, 0);
-  };
 
-  // 카테고리별 바 차트 데이터 변환 (초안전 모드)
-  const getCategoryData = (categoryName) => {
-    try {
-      if (!selectedProductCode || !selectedProductCode.categories) return [];
 
-      const category = selectedProductCode.categories.find(cat => cat && cat.category === categoryName);
-      if (!category || !category.tasks || !Array.isArray(category.tasks)) return [];
-
-      const validTasks = [];
-      
-      for (const task of category.tasks) {
-        if (!task || typeof task !== 'object') continue;
-        
-        // 초안전 숫자 변환
-        let safeHours = 0;
-        const avgHours = task.avg_hours;
-        
-        if (typeof avgHours === 'number' && Number.isFinite(avgHours) && avgHours > 0) {
-          safeHours = avgHours;
-        } else if (typeof avgHours === 'string' && avgHours.trim() !== '') {
-          const parsed = parseFloat(avgHours);
-          if (Number.isFinite(parsed) && parsed > 0) {
-            safeHours = parsed;
-          }
-        }
-        
-        // 유효한 데이터만 추가
-        if (safeHours > 0) {
-          validTasks.push({
-            name: String(task.task_name || 'Unknown Task'),
-            hours: Number(safeHours.toFixed(2)), // 정확한 소수점 처리
-            time_str: String(task.avg_time_str || '0분'),
-            sample_count: Math.max(0, parseInt(task.sample_count) || 0),
-            category: String(categoryName)
-          });
+  // 데이터가 로드되면 첫 번째 Product Code를 자동 선택
+  useEffect(() => {
+    if (data && data.models && data.models.length > 0 && viewMode === 'product') {
+      const currentModel = data.models.find(model => model.model_name === selectedModel);
+      if (currentModel && currentModel.product_codes && currentModel.product_codes.length > 0) {
+        // 첫 번째 Product Code를 기본 선택
+        if (!selectedProductCode) {
+          setSelectedProductCode(currentModel.product_codes[0].product_code);
         }
       }
-      
-      return validTasks.sort((a, b) => b.hours - a.hours);
-    } catch (error) {
-      console.error('getCategoryData 에러:', error, categoryName);
-      return [];
+    }
+  }, [data, selectedModel, viewMode, selectedProductCode]);
+
+  // 뷰 모드 토글
+  const toggleViewMode = () => {
+    setViewMode(prev => prev === 'task' ? 'product' : 'task');
+  };
+
+  // 클릭 네비게이션 핸들러
+  const handleModelClick = (modelName) => {
+    setSelectedModel(modelName);
+    setSelectedProductCode(null); // Product Code 선택 초기화
+    setViewMode('product'); // 상세분석 모드로 전환
+  };
+
+  const handleProductCodeClick = (productCode) => {
+    setSelectedProductCode(productCode);
+  };
+
+  const handleBackToOverview = () => {
+    setSelectedProductCode(null);
+    setViewMode('task'); // Task 분석 모드로 돌아가기
+  };
+
+  // Product Code 버튼 클릭 핸들러 (드롭다운 토글)
+  const handleProductCodeButtonClick = (event, modelName, productCode) => {
+    event.stopPropagation();
+    
+    // 차트 전환
+    setSelectedProductCode(productCode);
+    
+    // 드롭다운 토글
+    if (dropdownState.isOpen && dropdownState.productCode === productCode) {
+      setDropdownState({ isOpen: false, modelName: null, productCode: null });
+    } else {
+      setDropdownState({ isOpen: true, modelName, productCode });
     }
   };
 
-  // 카테고리별 색상 매핑
-  const getCategoryColor = (category) => {
-    const colors = {
-      '기구': '#8884d8',
-      '전장': '#82ca9d', 
-      'TMS_반제품': '#ffc658',
-      '검사': '#ff7c7c',
-      '기타': '#8dd1e1',
-      '마무리': '#d084d0'
-    };
-    return colors[category] || '#8884d8';
+  // 드롭다운 외부 클릭시 닫기
+  const handleOutsideClick = () => {
+    setDropdownState({ isOpen: false, modelName: null, productCode: null });
   };
 
-  // CustomTooltip 제거 - 이제 HTML 바 차트에 직접 정보 표시
+  useEffect(() => {
+    if (dropdownState.isOpen) {
+      document.addEventListener('click', handleOutsideClick);
+      return () => document.removeEventListener('click', handleOutsideClick);
+    }
+  }, [dropdownState.isOpen]);
 
-  // 카테고리별 최대값 계산 (Y축 스케일 통일용)
-  const getMaxHours = () => {
-    try {
-      if (!selectedProductCode || !selectedProductCode.categories) return 12;
-      
-      let maxHours = 0;
-      selectedProductCode.categories.forEach(category => {
-        if (category && category.tasks && Array.isArray(category.tasks)) {
-          category.tasks.forEach(task => {
-            if (task && typeof task === 'object') {
-              const avgHours = task.avg_hours;
-              let hours = 0;
-              
-              if (typeof avgHours === 'number' && Number.isFinite(avgHours)) {
-                hours = avgHours;
-              } else if (typeof avgHours === 'string') {
-                const parsed = parseFloat(avgHours);
-                if (Number.isFinite(parsed)) {
-                  hours = parsed;
-                }
-              }
-              
-              if (hours > maxHours && hours > 0) {
-                maxHours = hours;
-              }
-            }
-          });
-        }
+  // Task 스왑 토글
+  const handleTaskToggle = (taskKey) => {
+    setSwappedTasks(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(taskKey)) {
+        newSet.delete(taskKey);
+      } else {
+        newSet.add(taskKey);
+      }
+      return newSet;
+    });
+  };
+
+  // 카테고리 스왑 토글
+  const handleCategoryToggle = (categoryKey) => {
+    setSwappedTasks(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(categoryKey)) {
+        newSet.delete(categoryKey);
+      } else {
+        newSet.add(categoryKey);
+      }
+      return newSet;
+    });
+  };
+
+  // 카테고리로 스크롤하는 함수
+  const scrollToCategory = (categoryName) => {
+    const categoryElement = document.getElementById(`category-${categoryName}`);
+    if (categoryElement) {
+      categoryElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
       });
-      return Math.ceil(Math.max(maxHours * 1.1, 1)); // 최소 1시간, 10% 여유 공간
-    } catch (error) {
-      console.error('getMaxHours 에러:', error);
-      return 12; // 기본값 반환
     }
   };
 
-  // Product Code 버튼 호버 이벤트 핸들러
-  const handleProductCodeMouseEnter = (event, modelName, productCode) => {
-    // 호버 기능 제거 - 클릭만 사용
-  };
+  if (loading) {
+    return (
+      <div className="cycle-time-analysis loading">
+        <div className="loading-spinner">
+          <div className="spinner"></div>
+          <p>데이터를 불러오는 중...</p>
+        </div>
+      </div>
+    );
+  }
 
-  const handleProductCodeMouseLeave = () => {
-    // 호버 기능 제거 - 클릭만 사용
-  };
-
-  if (loading) return <div className="loading">로딩 중...</div>;
-  if (error) return <div className="error">오류: {error}</div>;
-  if (!data) return <div className="no-data">데이터가 없습니다.</div>;
+  if (error) {
+    return (
+      <div className="cycle-time-analysis error">
+        <div className="error-message">
+          <span className="error-icon">⚠️</span>
+          <p>{error}</p>
+          <button onClick={() => window.location.reload()}>다시 시도</button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="cycle-time-analysis">
-      <div className="header">
-        <h1>📊 CT 분석 - {selectedMonth}</h1>
-        <div className="month-selector">
-          <label>월 선택: </label>
+      {/* 헤더 컨트롤 */}
+      <div className="analysis-header">
+        <div className="header-controls">
+          <div className="control-group">
+            <label htmlFor="month-select">📅 분석 월:</label>
           <select 
+              id="month-select"
             value={selectedMonth} 
             onChange={(e) => setSelectedMonth(e.target.value)}
-          >
-            {monthOptions.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
+              className="month-selector"
+            >
+              {monthOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="control-group">
+            <label htmlFor="model-select">🏭 모델:</label>
+            <select 
+              id="model-select"
+              value={selectedModel} 
+              onChange={(e) => setSelectedModel(e.target.value)}
+              className="model-selector"
+            >
+              <option value="GAIA-I DUAL">GAIA-I DUAL</option>
+              <option value="GAIA-I">GAIA-I</option>
+              <option value="DRAGON">DRAGON</option>
+              <option value="GAIA-II DUAL">GAIA-II DUAL</option>
+              <option value="SWS-I">SWS-I</option>
+              <option value="GAIA-II">GAIA-II</option>
+              <option value="GAIA-P DUAL">GAIA-P DUAL</option>
+              <option value="DRAGON DUAL">DRAGON DUAL</option>
+              <option value="GALLANT-A">GALLANT-A</option>
           </select>
         </div>
+
+          <div className="control-group">
+            <button 
+              className={`view-toggle-btn ${viewMode}`}
+              onClick={toggleViewMode}
+              title={viewMode === 'task' ? 'Product Code별 상세보기로 전환' : 'Task별 분석보기로 전환'}
+            >
+              {viewMode === 'task' ? '📊 Task 분석' : '📋 상세 분석'}
+            </button>
       </div>
 
-      {/* Model 탭 메뉴 */}
-      <div className="model-tabs">
-        <h3>📦 Model 선택 (생산량 순)</h3>
-        <div className="tab-buttons">
-          {data.models.map((model, index) => (
+          <div className="control-group">
             <button
-              key={index}
-              className={`tab-button ${selectedModel?.model_name === model.model_name ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedModel(model);
-                setSelectedProductCode(model.product_codes[0]);
-              }}
+              className="help-btn"
+              onClick={() => setIsModalOpen(true)}
+              title="평균시간 vs IQR 군집도 평균시간 설명"
             >
-              {model.model_name}
-              <span className="production-count">★{model.total_production_count}대</span>
+              ❓ 설명
             </button>
-          ))}
+          </div>
+        </div>
+
+        <div className="analysis-info">
+          <h2>
+            {viewMode === 'task' ? '🎯 Task별 IQR 군집도 분석' : '📋 Product Code별 상세 분석'}
+          </h2>
+          <p className="analysis-description">
+            {viewMode === 'task' 
+              ? `${selectedModel} 모델의 개별 Task별 기존 평균시간과 IQR 군집도 평균시간을 비교합니다. 클릭하여 주/보조 막대를 전환할 수 있습니다.`
+              : `${selectedModel} 모델의 Product Code별 세부 작업시간을 확인할 수 있습니다.`
+            }
+          </p>
         </div>
       </div>
 
-      {/* Product Code 선택 */}
+      {/* 메인 콘텐츠 */}
+      {viewMode === 'task' ? (
+        // 새로운 Task별 분석 뷰
+        <div className="task-analysis-view">
+          
+
+
+          {taskData ? (
+            <>
+              <div className="analysis-summary">
+                <h3>📊 {selectedModel} - {selectedMonth} Task별 분석</h3>
+                <p className="summary-note">{taskData.analysis_note}</p>
+                <div className="summary-stats">
+                  <span>총 {taskData.total_tasks}개 작업</span>
+                  <span className="swap-info">
+                    💡 막대를 클릭하여 기존 평균 ↔ IQR 군집도 시간 전환
+                  </span>
+                </div>
+              </div>
+
+              {/* Task 분석용 카테고리 요약 카드 */}
+              <div className="task-category-summary-cards">
+                <h3>📊 공정별 작업시간 합계</h3>
+                <div className="summary-cards-grid">
+                  {(() => {
+                    const getCategoryStyle = (category) => {
+                      const styles = {
+                        '기구': { color: '#8884d8', icon: '🔧' },
+                        '전장': { color: '#82ca9d', icon: '⚡' },
+                        'TMS_반제품': { color: '#ffc658', icon: '🏭' },
+                        '검사': { color: '#ff7c7c', icon: '🔍' },
+                        '마무리': { color: '#d084d0', icon: '✅' },
+                        '기타': { color: '#8dd1e1', icon: '📋' }
+                      };
+                      return styles[category] || { color: '#8884d8', icon: '📊' };
+                    };
+
+                    return taskData.categories.map(categoryData => {
+                      const style = getCategoryStyle(categoryData.category);
+                      // 카테고리별 합계 계산
+                      const originalSum = categoryData.tasks.reduce((sum, task) => sum + task.original_avg_time, 0);
+                      const clusteredSum = categoryData.tasks.reduce((sum, task) => sum + task.clustered_avg_time, 0);
+                      const totalSamples = categoryData.tasks.reduce((sum, task) => sum + task.total_samples, 0);
+                      
+                      const difference = Math.abs(originalSum - clusteredSum);
+                      const diffPercent = originalSum > 0 ? (difference / originalSum) * 100 : 0;
+                      
+                                              return (
+                          <div 
+                            key={categoryData.category} 
+                            className="summary-card clickable"
+                            style={{borderColor: style.color}}
+                            onClick={() => scrollToCategory(categoryData.category)}
+                          >
+                            <div className="card-header">
+                              <span className="category-icon">{style.icon}</span>
+                              <span className="category-name">{categoryData.category}</span>
+                            </div>
+                            <div className="card-content">
+                              <div className="main-value" style={{color: style.color}}>
+                                {clusteredSum.toFixed(1)}h
+                              </div>
+                              <div className="value-labels">
+                                <span className="main-label">IQR 합계</span>
+                                <span className="sub-value">평균 합계 {originalSum.toFixed(1)}h</span>
+                              </div>
+                              <div className="summary-stats">
+                                <div className="total-samples">{categoryData.tasks.length}개 작업</div>
+                                <div className="difference-badge" style={{
+                                  backgroundColor: diffPercent >= 30 ? '#ffebee' : diffPercent >= 10 ? '#fff3e0' : '#e8f5e8',
+                                  color: diffPercent >= 30 ? '#c62828' : diffPercent >= 10 ? '#ef6c00' : '#2e7d32'
+                                }}>
+                                  {diffPercent.toFixed(1)}% 차이
+                                </div>
+                              </div>
+                              <div className="click-hint">클릭으로 스크롤</div>
+                            </div>
+                          </div>
+                        );
+                    });
+                  })()}
+                </div>
+              </div>
+
+              <div className="categories-container">
+
+                {taskData.categories.map((categoryData, index) => (
+                  <CategorySection
+                    key={index}
+                    category={categoryData.category}
+                    tasks={categoryData.tasks}
+                    swappedTasks={swappedTasks}
+                    onTaskToggle={handleTaskToggle}
+                    onCategoryToggle={handleCategoryToggle}
+                  />
+                ))}
+              </div>
+            </>
+                      ) : loading ? (
+            <div className="loading">📊 데이터를 불러오는 중...</div>
+          ) : (
+            <div className="no-data">
+              ⚠️ 데이터 로딩 문제 발생
+              <br/>
+              <small>
+                loading: {loading.toString()}<br/>
+                taskData: {taskData ? 'exists' : 'null'}<br/>
+                categories: {taskData?.categories ? taskData.categories.length : 'none'}
+              </small>
+            </div>
+          )}
+        </div>
+      ) : (
+        // 기존 스타일 Product Code별 상세 뷰 (클릭 네비게이션 포함)
+        <div className="product-code-view">
+          {data && data.models && data.models.length > 0 ? (
+            data.models
+              .filter(model => model.model_name === selectedModel)
+              .map((modelData, index) => (
+              <div key={index} className="model-analysis">
+                {/* 상단 카테고리 요약 카드들 */}
+                <div className="category-summary-cards">
+                  <h3>📊 공정별 {selectedProductCode ? '작업 시간 합계' : '작업별 평균시간 합계'}</h3>
+                  <div className="summary-cards-grid">
+                                          {(() => {
+                        // 선택된 Product Code 또는 전체 모델의 카테고리별 평균시간 계산
+                        const categoryTotals = {};
+                        const categoryTaskCounts = {};
+                        
+                        const targetProductCodes = selectedProductCode 
+                          ? modelData.product_codes?.filter(pc => pc.product_code === selectedProductCode)
+                          : modelData.product_codes;
+                        
+                        if (selectedProductCode) {
+                          // Product Code 선택시: 해당 Product Code의 Task들의 합계
+                          targetProductCodes?.forEach(pc => {
+                            pc.categories?.forEach(cat => {
+                              if (!categoryTotals[cat.category]) {
+                                categoryTotals[cat.category] = 0;
+                                categoryTaskCounts[cat.category] = 0;
+                              }
+                              const categoryTime = cat.tasks ? 
+                                cat.tasks.reduce((sum, task) => sum + (task.avg_hours || task.avg_time || 0), 0) : 0;
+                              categoryTotals[cat.category] += categoryTime;
+                              categoryTaskCounts[cat.category] += (cat.tasks?.length || 0);
+                            });
+                          });
+                        } else {
+                          // 모델 전체시: 같은 작업명끼리 평균을 구한 후 합계
+                          const taskAverages = {}; // {category: {taskName: [시간들...]}}
+                          
+                          targetProductCodes?.forEach(pc => {
+                            pc.categories?.forEach(cat => {
+                              if (!taskAverages[cat.category]) {
+                                taskAverages[cat.category] = {};
+                              }
+                              cat.tasks?.forEach(task => {
+                                const taskName = task.task_name;
+                                const taskTime = task.avg_hours || task.avg_time || 0;
+                                
+                                if (!taskAverages[cat.category][taskName]) {
+                                  taskAverages[cat.category][taskName] = [];
+                                }
+                                taskAverages[cat.category][taskName].push(taskTime);
+                              });
+                            });
+                          });
+                          
+                          // 각 카테고리별로 작업명별 평균을 구하고 합계
+                          Object.keys(taskAverages).forEach(category => {
+                            let categoryTotal = 0;
+                            let taskCount = 0;
+                            
+                            Object.keys(taskAverages[category]).forEach(taskName => {
+                              const times = taskAverages[category][taskName];
+                              if (times.length > 0) {
+                                // 같은 작업명의 평균시간 계산
+                                const avgTime = times.reduce((sum, time) => sum + time, 0) / times.length;
+                                categoryTotal += avgTime;
+                                taskCount++;
+                              }
+                            });
+                            
+                            categoryTotals[category] = categoryTotal;
+                            categoryTaskCounts[category] = taskCount;
+                          });
+                        }
+
+                      const getCategoryStyle = (category) => {
+                        const styles = {
+                          '기구': { color: '#8884d8', icon: '🔧' },
+                          '전장': { color: '#82ca9d', icon: '⚡' },
+                          'TMS_반제품': { color: '#ffc658', icon: '🏭' },
+                          '검사': { color: '#ff7c7c', icon: '🔍' },
+                          '마무리': { color: '#d084d0', icon: '✅' },
+                          '기타': { color: '#8dd1e1', icon: '📋' }
+                        };
+                        return styles[category] || { color: '#8884d8', icon: '📊' };
+                      };
+
+                      return ['기구', '전장', 'TMS_반제품', '검사', '마무리', '기타'].map(category => {
+                        const style = getCategoryStyle(category);
+                        const totalTime = categoryTotals[category] || 0;
+                        const taskCount = categoryTaskCounts[category] || 0;
+                        
+                        return (
+                          <div 
+                            key={category} 
+                            className="summary-card clickable" 
+                            style={{borderColor: style.color}}
+                            onClick={() => scrollToCategory(category)}
+                          >
+                            <div className="card-header">
+                              <span className="category-icon">{style.icon}</span>
+                              <span className="category-name">{category}</span>
+                            </div>
+                            <div className="card-content">
+                              <div className="total-hours" style={{color: style.color}}>
+                                {totalTime.toFixed(1)}h
+                              </div>
+                              <div className="formatted-time">{taskCount}개 작업</div>
+                            </div>
+                          </div>
+                        );
+                      });
+                    })()}
+                  </div>
+                </div>
+
+                {/* Product Code 선택 버튼들 */}
       <div className="product-code-section">
-        <h3>📦 Product Code 선택 (생산량 순)</h3>
+                  <h3>🎯 {modelData.model_name} Product Code 선택</h3>
         <div className="product-code-list">
-          {selectedModel.product_codes.map((pc, index) => (
-            <div key={pc.product_code} className="product-code-item" style={{ position: 'relative' }}>
+                      {modelData.product_codes && modelData.product_codes.length > 0 ? (
+                        modelData.product_codes.map((productCode, pcIndex) => (
+                          <div key={pcIndex} className="product-code-item" style={{ position: 'relative' }}>
               <button
-                className={`product-code-btn ${selectedProductCode?.product_code === pc.product_code ? 'active' : ''}`}
-                onClick={(e) => {
-                  setSelectedProductCode(pc);
-                  handleProductCodeClick(e, selectedModel.model_name, pc.product_code);
-                }}
-                onMouseEnter={(e) => handleProductCodeMouseEnter(e, selectedModel.model_name, pc.product_code)}
-                onMouseLeave={handleProductCodeMouseLeave}
-              >
-                {pc.product_code}
-                <span className="star-rating">★{pc.production_count}대</span>
+                              className={`product-code-btn ${selectedProductCode === productCode.product_code ? 'active' : ''}`}
+                              onClick={(e) => handleProductCodeButtonClick(e, selectedModel, productCode.product_code)}
+                            >
+                              {productCode.product_code}
+                              <span className="star-rating">★{productCode.production_count}대</span>
               </button>
               
               {/* 드롭다운이 이 Product Code에 해당할 때만 표시 */}
-              {dropdownState.isOpen && dropdownState.productCode === pc.product_code && (
+                            {dropdownState.isOpen && 
+                             dropdownState.productCode === productCode.product_code && 
+                             dropdownState.modelName === selectedModel && (
                 <SerialNumberDropdown
-                  modelName={dropdownState.modelName}
-                  productCode={dropdownState.productCode}
+                                modelName={selectedModel}
+                                productCode={productCode.product_code}
                   selectedMonth={selectedMonth}
-                  isOpen={dropdownState.isOpen}
-                  onToggle={handleProductCodeClick}
-                  position={dropdownState.position}
+                                isOpen={true}
+                                onToggle={() => setDropdownState({ isOpen: false, modelName: null, productCode: null })}
                 />
               )}
             </div>
-          ))}
+                        ))
+                      ) : (
+                        <div className="no-product-data">Product Code 데이터가 없습니다.</div>
+                      )}
         </div>
       </div>
 
-      {/* 카테고리별 합계 시간 카드 */}
-      {selectedProductCode && (
-        <CategorySummaryCards selectedProductCode={selectedProductCode} />
-      )}
-
-      {/* 순수 HTML/CSS 바 차트 시각화 */}
-      {selectedProductCode && selectedProductCode.categories && (
-        <div className="charts-container">
-          <h4>
-             🎯 {selectedModel?.model_name} &gt; {selectedProductCode.product_code} 
-             <span className="subtitle">Task별 평균 작업시간</span>
+                {/* 선택된 Product Code의 상세 차트 */}
+                {selectedProductCode && modelData.product_codes
+                  .filter(pc => pc.product_code === selectedProductCode)
+                  .map((productCode, pcIndex) => (
+                  <div key={pcIndex} className="charts-container">
+                    <h4>
+                      📊 {productCode.product_code} 작업시간 분석
+                      <span className="subtitle">({productCode.production_count}대 생산)</span>
           </h4>
           
-          {/* 카테고리별 HTML 바 차트 */}
           <div className="category-charts">
-            {selectedProductCode.categories.map((category, index) => {
-              if (!category || !category.tasks) return null;
-              
-              const chartData = getCategoryData(category.category);
-              if (chartData.length === 0) return null;
-              
-              const maxHours = getMaxHours();
+                      {productCode.categories && productCode.categories.map((category, catIndex) => {
+                        if (!category.tasks || category.tasks.length === 0) return null;
+                        
+                        const getCategoryStyle = (cat) => {
+                          const styles = {
+                            '기구': { color: '#8884d8', icon: '🔧' },
+                            '전장': { color: '#82ca9d', icon: '⚡' },
+                            'TMS_반제품': { color: '#ffc658', icon: '🏭' },
+                            '검사': { color: '#ff7c7c', icon: '🔍' },
+                            '마무리': { color: '#d084d0', icon: '✅' },
+                            '기타': { color: '#8dd1e1', icon: '📋' }
+                          };
+                          return styles[cat] || { color: '#8884d8', icon: '📊' };
+                        };
+                        
+                        const style = getCategoryStyle(category.category);
+                        const maxTime = Math.max(...category.tasks.map(task => task.avg_hours || task.avg_time || 0));
               
               return (
-                <div key={index} className="category-chart-section" id={`category-section-${category.category}`}>
+                          <div key={catIndex} className="category-chart-section" id={`category-${category.category}`}>
                   <div className="category-header">
-                    <div 
-                      className="category-indicator" 
-                      style={{ backgroundColor: getCategoryColor(category.category) }}
-                    ></div>
-                    <h5>{category.category}</h5>
-                    <span className="task-count">({chartData.length}개 작업)</span>
+                              <div className="category-indicator" style={{backgroundColor: style.color}}></div>
+                              <h5>{style.icon} {category.category}</h5>
+                              <span className="task-count">({category.tasks.length}개 작업)</span>
                   </div>
                   
-                  {/* HTML/CSS 바 차트 */}
                   <div className="html-bar-chart">
-                    {chartData.map((task, taskIndex) => {
-                      const barWidth = (task.hours / maxHours) * 100;
+                              {category.tasks
+                                .sort((a, b) => {
+                                  const timeA = a.avg_hours || a.avg_time || 0;
+                                  const timeB = b.avg_hours || b.avg_time || 0;
+                                  return timeB - timeA; // 내림차순 정렬 (큰 시간부터)
+                                })
+                                .map((task, taskIndex) => {
+                                const taskTime = task.avg_hours || task.avg_time || 0;
+                                const barWidth = maxTime > 0 ? (taskTime / maxTime) * 100 : 0;
+                                
                       return (
                         <div key={taskIndex} className="bar-row">
-                          <div className="task-label">{task.name}</div>
+                                    <div className="task-label">{task.task_name}</div>
                           <div className="bar-container">
                             <div 
                               className="bar"
                               style={{ 
                                 width: `${barWidth}%`,
-                                backgroundColor: getCategoryColor(category.category)
+                                          backgroundColor: style.color
                               }}
                             >
-                              <span className="bar-value">{task.hours.toFixed(1)}h</span>
+                                        <span className="bar-value">{taskTime.toFixed(1)}h</span>
                             </div>
                           </div>
                           <div className="task-info">
-                            <span className="time-str">{task.time_str}</span>
-                            <span className="sample-count">({task.sample_count}개)</span>
+                                      <div className="time-str">{taskTime.toFixed(1)}h</div>
+                                      <div className="sample-count">({task.sample_count || 0}회)</div>
                           </div>
                         </div>
                       );
@@ -577,35 +1082,42 @@ const CycleTimeAnalysis = () => {
               );
             })}
           </div>
+                  </div>
+                ))}
 
-          {/* 범례 */}
-          <div className="legend">
-            <h5>카테고리 범례:</h5>
-            <div className="legend-items">
-              {selectedProductCode.categories.map(category => (
-                <div key={category.category} className="legend-item">
-                  <div 
-                    className="legend-color" 
-                    style={{ backgroundColor: getCategoryColor(category.category) }}
-                  ></div>
-                  <span>{category.category}</span>
+                {/* 하단 요약 정보 */}
+                <div className="summary-info">
+                  <div className="summary-card">
+                    <h5>📋 분석 요약</h5>
+                    <p>모델: {modelData.model_name}</p>
+                    <p>총 생산 대수: {modelData.product_codes?.reduce((sum, pc) => sum + (pc.production_count || 0), 0) || 0}대</p>
+                    <p>Product Code 수: {modelData.product_codes?.length || 0}개</p>
+                    <p>분석 기간: {data.date_range?.start?.split('T')[0]} ~ {data.date_range?.end?.split('T')[0]}</p>
+                    {selectedProductCode && (
+                      <p>선택된 Product Code: {selectedProductCode}</p>
+                    )}
+                  </div>
                 </div>
-              ))}
+              </div>
+            ))
+          ) : data && data.models && data.models.length > 0 ? (
+            <div className="no-model-data">
+              <p>⚠️ 선택한 모델 "{selectedModel}"에 대한 데이터가 없습니다.</p>
+              <p>다른 모델을 선택해주세요.</p>
             </div>
+          ) : (
+            <div className="loading-state">
+              <p>📊 데이터를 불러오는 중...</p>
           </div>
+          )}
         </div>
       )}
 
-      {/* 요약 정보 */}
-      <div className="summary-info">
-        <div className="summary-card">
-          <h5>📈 분석 요약</h5>
-          <p>총 모델 수: {data.summary.total_models}개</p>
-          <p>총 생산 대수: {calculateTotalProduction()}대</p>
-          <p>총 레코드 수: {data.summary.total_records}개</p>
-          <p>분석 기간: {data.date_range.start} ~ {data.date_range.end}</p>
-        </div>
-      </div>
+      {/* 설명 팝업 */}
+      <ExplanationModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 };
