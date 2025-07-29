@@ -713,7 +713,7 @@ body {
 .task-category-summary-cards .sub-value {
   display: block;
   font-size: 0.8em;
-  color: #6c757d;
+  color: #495057;
   font-weight: 500;
 }
 
@@ -1695,8 +1695,9 @@ body {
   }
   
   .task-samples {
-    color: #7f8c8d;
+    color: #495057;
     font-size: 12px;
+    font-weight: 500;
   }
   
   .task-values {
@@ -1712,12 +1713,13 @@ body {
   }
   
   .secondary-value {
-    opacity: 0.7;
+    opacity: 0.9;
     /* 색상은 JavaScript에서 동적 설정 */
   }
   
   .value-separator {
-    color: #dee2e6;
+    color: #495057;
+    font-weight: 500;
   }
   
   .bar-container {
