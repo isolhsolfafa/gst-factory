@@ -1,19 +1,6 @@
 {
   "predictions": [
     {
-      "모델": "GAIA-P",
-      "검출단계": "가압검사",
-      "부품": "REDUCER DOUBLE Y UNION",
-      "예상불량률": 100.0,
-      "키워드": "삽입부",
-      "불량유형": "부품불량",
-      "누적": 23,
-      "제안": "체결 토크 표준화",
-      "근거": "근거: 체결 불량, 누설, 가공 정밀도",
-      "예상효과": "불량률 50.0%p 감소 예상",
-      "우선순위": "IMMEDIATE"
-    },
-    {
       "모델": "GAIA-II DUAL",
       "검출단계": "가압검사",
       "부품": "REDUCER DOUBLE Y UNION",
@@ -27,42 +14,55 @@
       "우선순위": "IMMEDIATE"
     },
     {
+      "모델": "GAIA-P",
+      "검출단계": "가압검사",
+      "부품": "REDUCER DOUBLE Y UNION",
+      "예상불량률": 98.0,
+      "키워드": "삽입부",
+      "불량유형": "부품불량",
+      "누적": 23,
+      "제안": "체결 토크 표준화",
+      "근거": "근거: 체결 불량, 누설, 가공 정밀도",
+      "예상효과": "불량률 50.0%p 감소 예상",
+      "우선순위": "IMMEDIATE"
+    },
+    {
       "모델": "GAIA-P DUAL",
       "검출단계": "가압검사",
       "부품": "MALE CONNECTOR",
-      "예상불량률": 11.0,
+      "예상불량률": 9.0,
       "키워드": "연결",
       "불량유형": "기구작업불량",
       "누적": 25,
       "제안": "N2 가압 압력 및 시간 표준화",
       "근거": "근거: N2 가압 불량, Tube 삽입 불량, Teflon 작업 불량, Fitting 체결 불량",
-      "예상효과": "불량률 5.5%p 감소 예상",
+      "예상효과": "불량률 4.5%p 감소 예상",
       "우선순위": "URGENT"
     },
     {
-      "모델": "SWS-I",
-      "검출단계": "가압검사",
-      "부품": "MALE ELBOW",
-      "예상불량률": 6.0,
-      "키워드": "부족",
+      "모델": "GAIA-P DUAL",
+      "검출단계": "제조품질검사",
+      "부품": "BULKHEAD UNION",
+      "예상불량률": 8.0,
+      "키워드": "스티커, 부착",
       "불량유형": "기구작업불량",
-      "누적": 45,
+      "누적": 13,
       "제안": "개선 검토 필요",
       "근거": "근거: 추가 분석 필요",
       "예상효과": "효과 분석 중",
       "우선순위": "NORMAL"
     },
     {
-      "모델": "GAIA-II",
+      "모델": "SWS-I",
       "검출단계": "가압검사",
-      "부품": "CENTER O-RING",
+      "부품": "MALE ELBOW",
       "예상불량률": 4.0,
-      "키워드": "",
-      "불량유형": "기타불량",
-      "누적": 3,
-      "제안": "O-링 규격 재검토 및 공차 관리 강화",
-      "근거": "근거: 가압 불량, 삽입 불량, 누수",
-      "예상효과": "불량률 1.2%p 감소 예상",
+      "키워드": "부족",
+      "불량유형": "기구작업불량",
+      "누적": 45,
+      "제안": "개선 검토 필요",
+      "근거": "근거: 추가 분석 필요",
+      "예상효과": "효과 분석 중",
       "우선순위": "NORMAL"
     }
   ],
@@ -345,21 +345,21 @@
         },
         {
           "part": "REDUCER DOUBLE Y UNION",
-          "defect_rate": 100.0,
+          "defect_rate": 98.0,
           "risk_level": "CRITICAL"
         },
         {
           "part": "MALE CONNECTOR",
-          "defect_rate": 11.0,
+          "defect_rate": 9.0,
+          "risk_level": "HIGH"
+        },
+        {
+          "part": "BULKHEAD UNION",
+          "defect_rate": 8.0,
           "risk_level": "HIGH"
         },
         {
           "part": "MALE ELBOW",
-          "defect_rate": 6.0,
-          "risk_level": "HIGH"
-        },
-        {
-          "part": "CENTER O-RING",
           "defect_rate": 4.0,
           "risk_level": "MEDIUM"
         }
@@ -377,28 +377,6 @@
     "trend_analysis": {}
   },
   "improvement_suggestions": [
-    {
-      "target": "GAIA-P - REDUCER DOUBLE Y UNION",
-      "defect_rate": 100.0,
-      "urgency": "IMMEDIATE",
-      "root_causes": [
-        "체결 불량",
-        "누설",
-        "가공 정밀도"
-      ],
-      "specific_actions": [
-        "체결 토크 표준화",
-        "실링 재료 및 방법 개선"
-      ],
-      "inspection_points": [
-        "체결 토크",
-        "누설 여부",
-        "치수 정밀도"
-      ],
-      "expected_improvement": "불량률 50.0%p 감소 예상",
-      "implementation_cost": "HIGH",
-      "timeline": "1주 이내"
-    },
     {
       "target": "GAIA-II DUAL - REDUCER DOUBLE Y UNION",
       "defect_rate": 100.0,
@@ -422,8 +400,30 @@
       "timeline": "1주 이내"
     },
     {
+      "target": "GAIA-P - REDUCER DOUBLE Y UNION",
+      "defect_rate": 98.0,
+      "urgency": "IMMEDIATE",
+      "root_causes": [
+        "체결 불량",
+        "누설",
+        "가공 정밀도"
+      ],
+      "specific_actions": [
+        "체결 토크 표준화",
+        "실링 재료 및 방법 개선"
+      ],
+      "inspection_points": [
+        "체결 토크",
+        "누설 여부",
+        "치수 정밀도"
+      ],
+      "expected_improvement": "불량률 50.0%p 감소 예상",
+      "implementation_cost": "HIGH",
+      "timeline": "1주 이내"
+    },
+    {
       "target": "GAIA-P DUAL - MALE CONNECTOR",
-      "defect_rate": 11.0,
+      "defect_rate": 9.0,
       "urgency": "URGENT",
       "root_causes": [
         "N2 가압 불량",
@@ -441,30 +441,9 @@
         "Tube 삽입 상태",
         "Teflon 작업 품질"
       ],
-      "expected_improvement": "불량률 5.5%p 감소 예상",
+      "expected_improvement": "불량률 4.5%p 감소 예상",
       "implementation_cost": "MEDIUM",
       "timeline": "2-4주"
-    },
-    {
-      "target": "GAIA-II - CENTER O-RING",
-      "defect_rate": 4.0,
-      "urgency": "NORMAL",
-      "root_causes": [
-        "가압 불량",
-        "삽입 불량",
-        "누수"
-      ],
-      "specific_actions": [
-        "O-링 규격 재검토 및 공차 관리 강화"
-      ],
-      "inspection_points": [
-        "O-링 표면 상태",
-        "삽입 깊이",
-        "가압 시 누수점"
-      ],
-      "expected_improvement": "불량률 1.2%p 감소 예상",
-      "implementation_cost": "LOW",
-      "timeline": "1-2개월"
     }
   ],
   "selection_criteria": {
@@ -512,6 +491,6 @@
     ]
   },
   "analysis_summary": null,
-  "generated_at": "2025-07-29 10:58:35",
+  "generated_at": "2025-07-29 11:06:07",
   "analysis_version": "2.1"
 }
