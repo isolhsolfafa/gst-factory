@@ -449,9 +449,9 @@ const ExplanationModal = ({ isOpen, onClose }) => {
               <div className="reliability-item low">
                 <span className="reliability-badge low">🔴 낮음</span>
                 <span>차이 30% 이상 - 높은 변동성, 주의 필요</span>
+                </div>
               </div>
             </div>
-          </div>
           
           <div className="explanation-section">
             <h4>💡 사용 팁</h4>
@@ -824,10 +824,10 @@ const CycleTimeAnalysis = () => {
           {periodMode === 'single' ? (
             <div className="control-group">
               <label htmlFor="month-select">📆 분석 월:</label>
-              <select 
+          <select 
                 id="month-select"
-                value={selectedMonth} 
-                onChange={(e) => setSelectedMonth(e.target.value)}
+            value={selectedMonth} 
+            onChange={(e) => setSelectedMonth(e.target.value)}
                 className="month-selector"
               >
                 {monthOptions.map(option => (
@@ -835,8 +835,8 @@ const CycleTimeAnalysis = () => {
                     {option.label}
                   </option>
                 ))}
-              </select>
-            </div>
+          </select>
+        </div>
           ) : (
             <div className="control-group range-selector">
               <label>📅 분석 기간:</label>
@@ -866,7 +866,47 @@ const CycleTimeAnalysis = () => {
                     </option>
                   ))}
                 </select>
-              </div>
+                
+                {/* 빠른 선택 버튼들 */}
+                <div className="quick-select-buttons">
+                  <button
+                    type="button"
+                    className="quick-select-btn"
+                    onClick={() => {
+                      if (monthOptions.length >= 3) {
+                        setStartMonth('2025-06'); // 6월부터
+                        setEndMonth(monthOptions[0]?.value); // 현재월까지
+                      }
+                    }}
+                  >
+                    📊 전체기간
+                  </button>
+                  <button
+                    type="button"
+                    className="quick-select-btn"
+                    onClick={() => {
+                      if (monthOptions.length >= 3) {
+                        setStartMonth(monthOptions[2]?.value); // 3개월 전부터
+                        setEndMonth(monthOptions[0]?.value); // 현재월까지
+                      }
+                    }}
+                  >
+                    📈 최근 3개월
+                  </button>
+                  <button
+                    type="button"
+                    className="quick-select-btn"
+                    onClick={() => {
+                      if (monthOptions.length >= 6) {
+                        setStartMonth(monthOptions[5]?.value); // 6개월 전부터
+                        setEndMonth(monthOptions[0]?.value); // 현재월까지
+                      }
+                    }}
+                  >
+                    📉 최근 6개월
+                  </button>
+                </div>
+      </div>
             </div>
           )}
 
@@ -889,7 +929,7 @@ const CycleTimeAnalysis = () => {
         </div>
 
           <div className="control-group">
-            <button 
+            <button
               className={`view-toggle-btn ${viewMode}`}
               onClick={toggleViewMode}
               title={viewMode === 'task' ? 'Product Code별 상세보기로 전환' : 'Task별 분석보기로 전환'}
@@ -1017,8 +1057,8 @@ const CycleTimeAnalysis = () => {
                     onTaskToggle={handleTaskToggle}
                     onCategoryToggle={handleCategoryToggle}
                   />
-                ))}
-              </div>
+          ))}
+        </div>
             </>
                       ) : loading ? (
             <div className="loading">📊 데이터를 불러오는 중...</div>
@@ -1031,7 +1071,7 @@ const CycleTimeAnalysis = () => {
                 taskData: {taskData ? 'exists' : 'null'}<br/>
                 categories: {taskData?.categories ? taskData.categories.length : 'none'}
               </small>
-            </div>
+      </div>
           )}
         </div>
       ) : (
@@ -1260,12 +1300,12 @@ const CycleTimeAnalysis = () => {
               );
             })}
           </div>
-                  </div>
-                ))}
+                </div>
+              ))}
 
                 {/* 하단 요약 정보 */}
-                <div className="summary-info">
-                  <div className="summary-card">
+      <div className="summary-info">
+        <div className="summary-card">
                     <h5>📋 분석 요약</h5>
                     <p>모델: {modelData.model_name}</p>
                     <p>총 생산 대수: {modelData.product_codes?.reduce((sum, pc) => sum + (pc.production_count || 0), 0) || 0}대</p>
@@ -1274,8 +1314,8 @@ const CycleTimeAnalysis = () => {
                     {selectedProductCode && (
                       <p>선택된 Product Code: {selectedProductCode}</p>
                     )}
-                  </div>
-                </div>
+        </div>
+      </div>
               </div>
             ))
           ) : data && data.models && data.models.length > 0 ? (
