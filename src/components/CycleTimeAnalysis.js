@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 // API 기본 URL 설정 (기존 App.js 방식과 일관성 유지)
@@ -481,6 +481,9 @@ const CycleTimeAnalysis = () => {
   const [swappedTasks, setSwappedTasks] = useState(new Set()); // 스왑된 Task들 추적
   const [isModalOpen, setIsModalOpen] = useState(false); // 설명 팝업 상태
   
+  // 초기화 중복 실행 방지 플래그
+  const initializedRef = useRef(false);
+  
   // 기간 분석 모드 상태 추가
   const [periodMode, setPeriodMode] = useState('single'); // 'single' 또는 'range'
   const [startMonth, setStartMonth] = useState('');
@@ -489,9 +492,9 @@ const CycleTimeAnalysis = () => {
   // 선택된 Product Code 상태 (첫 번째를 기본값으로)
   const [selectedProductCode, setSelectedProductCode] = useState(null);
   
-  // 동적 월 옵션 생성 및 현재 월을 기본값으로 설정
-  const monthOptions = generateMonthOptions();
-  const [selectedMonth, setSelectedMonth] = useState(monthOptions[0]?.value || '2025-06');
+  // 동적 월 옵션 생성 및 현재 월을 기본값으로 설정 (안정화)
+  const [monthOptions, setMonthOptions] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState('2025-06');
   
   // 동적 모델 목록
   const [availableModels, setAvailableModels] = useState([]);
@@ -527,14 +530,15 @@ const CycleTimeAnalysis = () => {
     }
   };
 
-  // 기간합산 모드 초기화 (한 번만 실행)
+  // 기간합산 모드 초기화 (한 번만 실행, 중복 방지)
   useEffect(() => {
-    if (monthOptions.length >= 2 && !startMonth && !endMonth) {
-      // 가장 최근 2개월을 기본값으로 설정 (단, 이미 값이 있으면 덮어쓰지 않음)
+    if (monthOptions.length >= 2 && !startMonth && !endMonth && periodMode === 'range' && !initializedRef.current) {
+      // 가장 최근 2개월을 기본값으로 설정 (기간합산 모드에서만, 사용자 선택이 없을 때만)
       setStartMonth(monthOptions[1]?.value || '2025-07'); // 두 번째가 7월
       setEndMonth(monthOptions[0]?.value || '2025-08');   // 첫 번째가 8월
+      initializedRef.current = true; // 초기화 완료 플래그
     }
-  }, [monthOptions]);
+  }, [monthOptions, periodMode, startMonth, endMonth]); // 의존성 명시적 추가
 
   // periodMode 변경 시 처리
   const handlePeriodModeChange = (mode) => {
@@ -569,6 +573,7 @@ const CycleTimeAnalysis = () => {
       // 기간 모드에 따라 파라미터 설정
       if (periodMode === 'single') {
         apiParams.month = selectedMonth;
+        console.log('🔍 fetchTaskData (단일월):', selectedMonth);
       } else if (periodMode === 'range') {
         // 기간합산 모드: start_month, end_month 사용
         if (!startMonth || !endMonth) {
@@ -578,6 +583,7 @@ const CycleTimeAnalysis = () => {
         }
         apiParams.start_month = startMonth;
         apiParams.end_month = endMonth;
+        console.log('🔍 fetchTaskData (기간합산):', startMonth, '~', endMonth);
       }
       
       const response = await axios.get(`${API_BASE_URL}/api/task_analysis`, {
@@ -631,8 +637,17 @@ const CycleTimeAnalysis = () => {
       }
     };
 
-  // 컴포넌트 마운트 시 모델 목록 불러오기
+  // 컴포넌트 마운트 시 모델 목록 및 월 옵션 초기화
   useEffect(() => {
+    // 월 옵션 생성 (한 번만)
+    const options = generateMonthOptions();
+    setMonthOptions(options);
+    
+    // 선택된 월 초기화
+    if (options.length > 0) {
+      setSelectedMonth(options[0]?.value || '2025-06');
+    }
+    
     fetchAvailableModels();
   }, []);
 
