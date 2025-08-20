@@ -527,12 +527,12 @@ const CycleTimeAnalysis = () => {
     }
   };
 
-  // 기간합산 모드 초기화
+  // 기간합산 모드 초기화 (한 번만 실행)
   useEffect(() => {
-    if (monthOptions.length >= 2) {
-      // 가장 최근 2개월을 기본값으로 설정 (예: 2025-07, 2025-06)
-      setStartMonth(monthOptions[1]?.value || '2025-06'); // 두 번째가 6월
-      setEndMonth(monthOptions[0]?.value || '2025-07');   // 첫 번째가 7월
+    if (monthOptions.length >= 2 && !startMonth && !endMonth) {
+      // 가장 최근 2개월을 기본값으로 설정 (단, 이미 값이 있으면 덮어쓰지 않음)
+      setStartMonth(monthOptions[1]?.value || '2025-07'); // 두 번째가 7월
+      setEndMonth(monthOptions[0]?.value || '2025-08');   // 첫 번째가 8월
     }
   }, [monthOptions]);
 
@@ -652,7 +652,7 @@ const CycleTimeAnalysis = () => {
     }
   }, [data, selectedModel, viewMode, selectedProductCode]);
 
-  // 기간합산 모드에서 startMonth, endMonth 변경 시 자동 로드
+  // 기간합산 모드에서 startMonth, endMonth 변경 시 자동 로드 (디바운싱 적용)
   useEffect(() => {
     if (periodMode === 'range' && startMonth && endMonth && selectedModel) {
       // 시작월이 종료월보다 늦지 않은지 검증
@@ -660,11 +660,16 @@ const CycleTimeAnalysis = () => {
       const end = new Date(endMonth + '-01');
       
       if (start <= end) {
-        if (viewMode === 'task') {
-          fetchTaskData();
-        } else {
-          fetchProductCodeData();
-        }
+        // 300ms 지연을 통해 연속 클릭 방지
+        const timer = setTimeout(() => {
+          if (viewMode === 'task') {
+            fetchTaskData();
+          } else {
+            fetchProductCodeData();
+          }
+        }, 300);
+        
+        return () => clearTimeout(timer);
       }
     }
   }, [startMonth, endMonth, selectedModel, periodMode, viewMode]);
@@ -874,8 +879,11 @@ const CycleTimeAnalysis = () => {
                     className="quick-select-btn"
                     onClick={() => {
                       if (monthOptions.length >= 3) {
-                        setStartMonth('2025-06'); // 6월부터
-                        setEndMonth(monthOptions[0]?.value); // 현재월까지
+                        // 동시에 설정하여 중복 API 호출 방지
+                        const newStart = '2025-06';
+                        const newEnd = monthOptions[0]?.value;
+                        setStartMonth(newStart);
+                        setEndMonth(newEnd);
                       }
                     }}
                   >
@@ -886,8 +894,11 @@ const CycleTimeAnalysis = () => {
                     className="quick-select-btn"
                     onClick={() => {
                       if (monthOptions.length >= 3) {
-                        setStartMonth(monthOptions[2]?.value); // 3개월 전부터
-                        setEndMonth(monthOptions[0]?.value); // 현재월까지
+                        // 동시에 설정하여 중복 API 호출 방지
+                        const newStart = monthOptions[2]?.value;
+                        const newEnd = monthOptions[0]?.value;
+                        setStartMonth(newStart);
+                        setEndMonth(newEnd);
                       }
                     }}
                   >
@@ -898,8 +909,11 @@ const CycleTimeAnalysis = () => {
                     className="quick-select-btn"
                     onClick={() => {
                       if (monthOptions.length >= 6) {
-                        setStartMonth(monthOptions[5]?.value); // 6개월 전부터
-                        setEndMonth(monthOptions[0]?.value); // 현재월까지
+                        // 동시에 설정하여 중복 API 호출 방지
+                        const newStart = monthOptions[5]?.value;
+                        const newEnd = monthOptions[0]?.value;
+                        setStartMonth(newStart);
+                        setEndMonth(newEnd);
                       }
                     }}
                   >
