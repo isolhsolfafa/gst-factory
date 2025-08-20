@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 
 // API 기본 URL 설정 (기존 App.js 방식과 일관성 유지)
@@ -483,6 +483,7 @@ const CycleTimeAnalysis = () => {
   
   // 초기화 중복 실행 방지 플래그
   const initializedRef = useRef(false);
+  const debounceTimerRef = useRef(null);
   
   // 기간 분석 모드 상태 추가
   const [periodMode, setPeriodMode] = useState('single'); // 'single' 또는 'range'
@@ -560,8 +561,8 @@ const CycleTimeAnalysis = () => {
     }
   };
 
-  // Task별 분석 데이터 가져오기 (새로운 API)
-  const fetchTaskData = async () => {
+  // Task별 분석 데이터 가져오기 (새로운 API, useCallback으로 최적화)
+  const fetchTaskData = useCallback(async () => {
     setLoading(true);
     setError(null);
     
@@ -573,7 +574,7 @@ const CycleTimeAnalysis = () => {
       // 기간 모드에 따라 파라미터 설정
       if (periodMode === 'single') {
         apiParams.month = selectedMonth;
-        console.log('🔍 fetchTaskData (단일월):', selectedMonth);
+        console.log('🔍 fetchTaskData (단일월):', selectedMonth, new Date().toISOString());
       } else if (periodMode === 'range') {
         // 기간합산 모드: start_month, end_month 사용
         if (!startMonth || !endMonth) {
@@ -583,7 +584,7 @@ const CycleTimeAnalysis = () => {
         }
         apiParams.start_month = startMonth;
         apiParams.end_month = endMonth;
-        console.log('🔍 fetchTaskData (기간합산):', startMonth, '~', endMonth);
+        console.log('🔍 fetchTaskData (기간합산):', startMonth, '~', endMonth, new Date().toISOString());
       }
       
       const response = await axios.get(`${API_BASE_URL}/api/task_analysis`, {
@@ -602,7 +603,7 @@ const CycleTimeAnalysis = () => {
     }
     
     setLoading(false);
-  };
+  }, [selectedModel, periodMode, selectedMonth, startMonth, endMonth, viewMode]);
 
   // 기존 Product Code별 데이터 가져오기 (기간합산 지원)
   const fetchProductCodeData = async () => {
@@ -667,7 +668,7 @@ const CycleTimeAnalysis = () => {
     }
   }, [data, selectedModel, viewMode, selectedProductCode]);
 
-  // 기간합산 모드에서 startMonth, endMonth 변경 시 자동 로드 (디바운싱 적용)
+  // 기간합산 모드에서 startMonth, endMonth 변경 시 자동 로드 (강화된 디바운싱)
   useEffect(() => {
     if (periodMode === 'range' && startMonth && endMonth && selectedModel) {
       // 시작월이 종료월보다 늦지 않은지 검증
@@ -675,19 +676,29 @@ const CycleTimeAnalysis = () => {
       const end = new Date(endMonth + '-01');
       
       if (start <= end) {
-        // 300ms 지연을 통해 연속 클릭 방지
-        const timer = setTimeout(() => {
+        // 이전 타이머 취소
+        if (debounceTimerRef.current) {
+          clearTimeout(debounceTimerRef.current);
+        }
+        
+        // 500ms 지연으로 연속 호출 완전 차단
+        debounceTimerRef.current = setTimeout(() => {
+          console.log('🔥 Range useEffect 실행:', startMonth, '~', endMonth, new Date().toISOString());
           if (viewMode === 'task') {
             fetchTaskData();
           } else {
             fetchProductCodeData();
           }
-        }, 300);
-        
-        return () => clearTimeout(timer);
+        }, 500);
       }
     }
-  }, [startMonth, endMonth, selectedModel, periodMode, viewMode]);
+    
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, [startMonth, endMonth, selectedModel, periodMode, viewMode, fetchTaskData]);
 
   // 단일월 모드에서 selectedMonth 변경 시 자동 로드 (기존 useEffect 수정)
   useEffect(() => {
@@ -863,7 +874,10 @@ const CycleTimeAnalysis = () => {
               <div className="range-inputs">
                 <select
                   value={startMonth}
-                  onChange={(e) => setStartMonth(e.target.value)}
+                  onChange={(e) => {
+                    console.log('📅 시작월 변경:', e.target.value);
+                    setStartMonth(e.target.value);
+                  }}
                   className="month-selector"
                 >
                   <option value="">시작월 선택</option>
@@ -876,7 +890,10 @@ const CycleTimeAnalysis = () => {
                 <span className="range-separator">~</span>
                 <select
                   value={endMonth}
-                  onChange={(e) => setEndMonth(e.target.value)}
+                  onChange={(e) => {
+                    console.log('📅 종료월 변경:', e.target.value);
+                    setEndMonth(e.target.value);
+                  }}
                   className="month-selector"
                 >
                   <option value="">종료월 선택</option>
