@@ -401,7 +401,7 @@ const App = () => {
           <button style={getButtonStyle('/partner')}>🤝 협력사 대시보드</button>
         </Link>
         <Link to="/internal" style={{ textDecoration: 'none', flex: 1 }}>
-          <button style={getButtonStyle('/internal')}>🔍 불량 분석</button>
+          <button style={getButtonStyle('/internal')}>🚨 불량 분석</button>
         </Link>
         <Link to="/cycle-time" style={{ textDecoration: 'none', flex: 1 }}>
           <button style={getButtonStyle('/cycle-time')}>⏱️ CT 분석</button>
