@@ -1,26 +1,13 @@
 {
   "predictions": [
     {
-      "모델": "GAIA-P",
-      "검출단계": "가압검사",
-      "부품": "REDUCER DOUBLE Y UNION",
-      "예상불량률": 99.0,
-      "키워드": "삽입부",
-      "불량유형": "부품불량",
-      "누적": 25,
-      "제안": "체결 토크 표준화",
-      "근거": "근거: 체결 불량, 누설, 가공 정밀도",
-      "예상효과": "불량률 50.0%p 감소 예상",
-      "우선순위": "IMMEDIATE"
-    },
-    {
       "모델": "GAIA-II DUAL",
       "검출단계": "가압검사",
       "부품": "REDUCER DOUBLE Y UNION",
-      "예상불량률": 99.0,
+      "예상불량률": 100.0,
       "키워드": "삽입부",
       "불량유형": "부품불량",
-      "누적": 25,
+      "누적": 28,
       "제안": "체결 토크 표준화",
       "근거": "근거: 체결 불량, 누설, 가공 정밀도",
       "예상효과": "불량률 50.0%p 감소 예상",
@@ -29,37 +16,50 @@
     {
       "모델": "SWS-I",
       "검출단계": "가압검사",
+      "부품": "MALE CONNECTOR",
+      "예상불량률": 8.0,
+      "키워드": "풀림",
+      "불량유형": "기구작업불량",
+      "누적": 44,
+      "제안": "N2 가압 압력 및 시간 표준화",
+      "근거": "근거: N2 가압 불량, Tube 삽입 불량, Teflon 작업 불량, Fitting 체결 불량",
+      "예상효과": "불량률 4.0%p 감소 예상",
+      "우선순위": "URGENT"
+    },
+    {
+      "모델": "SWS-I",
+      "검출단계": "가압검사",
       "부품": "MALE ELBOW",
       "예상불량률": 5.0,
       "키워드": "부족",
       "불량유형": "기구작업불량",
-      "누적": 46,
+      "누적": 63,
       "제안": "개선 검토 필요",
       "근거": "근거: 추가 분석 필요",
       "예상효과": "효과 분석 중",
       "우선순위": "NORMAL"
     },
     {
-      "모델": "GAIA-P DUAL",
+      "모델": "GAIA-II",
       "검출단계": "가압검사",
-      "부품": "MALE CONNECTOR",
-      "예상불량률": 4.0,
-      "키워드": "연결",
+      "부품": "MALE ELBOW",
+      "예상불량률": 1.0,
+      "키워드": "",
       "불량유형": "기구작업불량",
-      "누적": 36,
-      "제안": "N2 가압 압력 및 시간 표준화",
-      "근거": "근거: N2 가압 불량, Tube 삽입 불량, Teflon 작업 불량, Fitting 체결 불량",
-      "예상효과": "불량률 1.2%p 감소 예상",
+      "누적": 63,
+      "제안": "개선 검토 필요",
+      "근거": "근거: 추가 분석 필요",
+      "예상효과": "효과 분석 중",
       "우선순위": "NORMAL"
     },
     {
-      "모델": "GAIA-P DUAL",
-      "검출단계": "제조품질검사",
-      "부품": "BULKHEAD UNION",
-      "예상불량률": 4.0,
-      "키워드": "스티커, 부착",
+      "모델": "DRAGON",
+      "검출단계": "가압검사",
+      "부품": "MALE ELBOW",
+      "예상불량률": 1.0,
+      "키워드": "",
       "불량유형": "기구작업불량",
-      "누적": 13,
+      "누적": 63,
       "제안": "개선 검토 필요",
       "근거": "근거: 추가 분석 필요",
       "예상효과": "효과 분석 중",
@@ -70,93 +70,212 @@
     "failure_patterns": {
       "top_patterns": [
         {
-          "pattern": "7_0_72",
-          "frequency": 48,
-          "percentage": 10.909090909090908,
+          "pattern": "7_0_84",
+          "frequency": 52,
+          "percentage": 9.62962962962963,
           "keywords": [
             [
               "Speed",
-              48
+              51
             ],
             [
               "Controller",
-              48
+              51
             ],
             [
               "Leak",
-              48
+              51
             ],
             [
               "(PFA)",
-              31
+              33
             ],
             [
               "(우레탄)",
-              17
+              19
             ]
           ],
           "risk_level": "HIGH"
         },
         {
-          "pattern": "6_2_47",
-          "frequency": 13,
-          "percentage": 2.9545454545454546,
+          "pattern": "16_1_103",
+          "frequency": 22,
+          "percentage": 4.074074074074074,
+          "keywords": [],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "7_2_54",
+          "frequency": 19,
+          "percentage": 3.5185185185185186,
           "keywords": [
             [
               "MALE",
-              13
+              19
             ],
             [
               "ELBOW",
-              13
+              19
             ],
             [
               "Fitting",
-              13
+              19
             ],
             [
               "nut",
-              13
+              19
             ],
             [
               "Water",
-              13
+              19
             ]
           ],
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "9_2_46",
-          "frequency": 10,
-          "percentage": 2.272727272727273,
+          "pattern": "6_2_54",
+          "frequency": 17,
+          "percentage": 3.148148148148148,
           "keywords": [
             [
               "MALE",
-              10
+              17
             ],
             [
-              "CONNECTOR",
-              10
+              "ELBOW",
+              17
             ],
             [
               "Fitting",
-              9
+              16
             ],
             [
               "nut",
-              9
+              16
             ],
             [
               "Water",
-              9
+              16
             ]
           ],
           "risk_level": "MEDIUM"
         },
         {
-          "pattern": "7_0_46",
+          "pattern": "9_2_53",
+          "frequency": 14,
+          "percentage": 2.5925925925925926,
+          "keywords": [
+            [
+              "MALE",
+              14
+            ],
+            [
+              "CONNECTOR",
+              14
+            ],
+            [
+              "Fitting",
+              13
+            ],
+            [
+              "nut",
+              13
+            ],
+            [
+              "Water",
+              13
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "6_0_84",
+          "frequency": 12,
+          "percentage": 2.2222222222222223,
+          "keywords": [
+            [
+              "Speed",
+              9
+            ],
+            [
+              "Controller",
+              9
+            ],
+            [
+              "Leak",
+              7
+            ],
+            [
+              "(PFA)",
+              6
+            ],
+            [
+              "SPEED",
+              3
+            ]
+          ],
+          "risk_level": "MEDIUM"
+        },
+        {
+          "pattern": "7_0_71",
           "frequency": 10,
-          "percentage": 2.272727272727273,
+          "percentage": 1.8518518518518516,
+          "keywords": [
+            [
+              "DOUBLE",
+              10
+            ],
+            [
+              "Y",
+              10
+            ],
+            [
+              "REDUCING",
+              9
+            ],
+            [
+              "UNION",
+              7
+            ],
+            [
+              "N2",
+              6
+            ]
+          ],
+          "risk_level": "LOW"
+        },
+        {
+          "pattern": "7_0_9",
+          "frequency": 10,
+          "percentage": 1.8518518518518516,
+          "keywords": [
+            [
+              "UNION",
+              8
+            ],
+            [
+              "Nut",
+              8
+            ],
+            [
+              "BULKHEAD",
+              7
+            ],
+            [
+              "Fitting",
+              7
+            ],
+            [
+              "BULK",
+              3
+            ]
+          ],
+          "risk_level": "LOW"
+        },
+        {
+          "pattern": "7_0_53",
+          "frequency": 10,
+          "percentage": 1.8518518518518516,
           "keywords": [
             [
               "Male",
@@ -179,20 +298,20 @@
               8
             ]
           ],
-          "risk_level": "MEDIUM"
+          "risk_level": "LOW"
         },
         {
-          "pattern": "6_0_72",
-          "frequency": 9,
-          "percentage": 2.0454545454545454,
+          "pattern": "10_0_84",
+          "frequency": 8,
+          "percentage": 1.4814814814814816,
           "keywords": [
             [
               "Speed",
-              9
+              8
             ],
             [
               "Controller",
-              9
+              8
             ],
             [
               "Leak",
@@ -200,174 +319,34 @@
             ],
             [
               "(PFA)",
-              5
+              7
             ],
             [
-              "(Body)",
+              "Leak(우레탄)",
               1
-            ]
-          ],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "7_0_8",
-          "frequency": 9,
-          "percentage": 2.0454545454545454,
-          "keywords": [
-            [
-              "Nut",
-              8
-            ],
-            [
-              "UNION",
-              7
-            ],
-            [
-              "Fitting",
-              7
-            ],
-            [
-              "BULKHEAD",
-              6
-            ],
-            [
-              "BULK",
-              3
-            ]
-          ],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "7_2_47",
-          "frequency": 9,
-          "percentage": 2.0454545454545454,
-          "keywords": [
-            [
-              "MALE",
-              9
-            ],
-            [
-              "ELBOW",
-              9
-            ],
-            [
-              "Fitting",
-              9
-            ],
-            [
-              "nut",
-              9
-            ],
-            [
-              "Water",
-              9
-            ]
-          ],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "7_0_62",
-          "frequency": 9,
-          "percentage": 2.0454545454545454,
-          "keywords": [
-            [
-              "REDUCING",
-              9
-            ],
-            [
-              "DOUBLE",
-              9
-            ],
-            [
-              "Y",
-              9
-            ],
-            [
-              "N2",
-              6
-            ],
-            [
-              "삽입부",
-              6
-            ]
-          ],
-          "risk_level": "MEDIUM"
-        },
-        {
-          "pattern": "7_0_17",
-          "frequency": 8,
-          "percentage": 1.8181818181818181,
-          "keywords": [
-            [
-              "체결불량",
-              7
-            ],
-            [
-              "CLAMP(NW50)",
-              3
-            ],
-            [
-              "CLAMP(NW40)",
-              2
-            ],
-            [
-              "Exhaust",
-              2
-            ],
-            [
-              "Clamp(125A)",
-              2
-            ]
-          ],
-          "risk_level": "LOW"
-        },
-        {
-          "pattern": "2_0_47",
-          "frequency": 8,
-          "percentage": 1.8181818181818181,
-          "keywords": [
-            [
-              "BCW",
-              4
-            ],
-            [
-              "Nut",
-              4
-            ],
-            [
-              "MALE",
-              4
-            ],
-            [
-              "ELBOW",
-              4
-            ],
-            [
-              "JACO",
-              3
             ]
           ],
           "risk_level": "LOW"
         }
       ],
-      "total_patterns": 194,
-      "concentration_index": 0.020154958677685957
+      "total_patterns": 222,
+      "concentration_index": 0.019135802469135807
     },
     "correlations": {
-      "product_part": 0.3220116225062795,
-      "stage_part": 0.717254855852631
+      "product_part": 0.31478543916800894,
+      "stage_part": 0.7001974493827792
     },
     "risk_analysis": {
       "risk_levels": [
         {
           "part": "REDUCER DOUBLE Y UNION",
-          "defect_rate": 99.0,
+          "defect_rate": 100.0,
           "risk_level": "CRITICAL"
         },
         {
-          "part": "REDUCER DOUBLE Y UNION",
-          "defect_rate": 99.0,
-          "risk_level": "CRITICAL"
+          "part": "MALE CONNECTOR",
+          "defect_rate": 8.0,
+          "risk_level": "HIGH"
         },
         {
           "part": "MALE ELBOW",
@@ -375,23 +354,22 @@
           "risk_level": "HIGH"
         },
         {
-          "part": "MALE CONNECTOR",
-          "defect_rate": 4.0,
+          "part": "MALE ELBOW",
+          "defect_rate": 1.0,
           "risk_level": "MEDIUM"
         },
         {
-          "part": "BULKHEAD UNION",
-          "defect_rate": 4.0,
+          "part": "MALE ELBOW",
+          "defect_rate": 1.0,
           "risk_level": "MEDIUM"
         }
       ],
       "distribution": {
-        "CRITICAL": 2,
-        "HIGH": 1,
+        "CRITICAL": 1,
+        "HIGH": 2,
         "MEDIUM": 2
       },
       "critical_parts": [
-        "REDUCER DOUBLE Y UNION",
         "REDUCER DOUBLE Y UNION"
       ]
     },
@@ -399,30 +377,8 @@
   },
   "improvement_suggestions": [
     {
-      "target": "GAIA-P - REDUCER DOUBLE Y UNION",
-      "defect_rate": 99.0,
-      "urgency": "IMMEDIATE",
-      "root_causes": [
-        "체결 불량",
-        "누설",
-        "가공 정밀도"
-      ],
-      "specific_actions": [
-        "체결 토크 표준화",
-        "실링 재료 및 방법 개선"
-      ],
-      "inspection_points": [
-        "체결 토크",
-        "누설 여부",
-        "치수 정밀도"
-      ],
-      "expected_improvement": "불량률 50.0%p 감소 예상",
-      "implementation_cost": "HIGH",
-      "timeline": "1주 이내"
-    },
-    {
       "target": "GAIA-II DUAL - REDUCER DOUBLE Y UNION",
-      "defect_rate": 99.0,
+      "defect_rate": 100.0,
       "urgency": "IMMEDIATE",
       "root_causes": [
         "체결 불량",
@@ -443,9 +399,9 @@
       "timeline": "1주 이내"
     },
     {
-      "target": "GAIA-P DUAL - MALE CONNECTOR",
-      "defect_rate": 4.0,
-      "urgency": "NORMAL",
+      "target": "SWS-I - MALE CONNECTOR",
+      "defect_rate": 8.0,
+      "urgency": "URGENT",
       "root_causes": [
         "N2 가압 불량",
         "Tube 삽입 불량",
@@ -453,16 +409,18 @@
         "Fitting 체결 불량"
       ],
       "specific_actions": [
-        "N2 가압 압력 및 시간 표준화"
+        "N2 가압 압력 및 시간 표준화",
+        "Tube 삽입 깊이 및 각도 검사 강화",
+        "Teflon 테이프 감기 작업 표준화"
       ],
       "inspection_points": [
         "N2 가압 누설",
         "Tube 삽입 상태",
         "Teflon 작업 품질"
       ],
-      "expected_improvement": "불량률 1.2%p 감소 예상",
-      "implementation_cost": "LOW",
-      "timeline": "1-2개월"
+      "expected_improvement": "불량률 4.0%p 감소 예상",
+      "implementation_cost": "MEDIUM",
+      "timeline": "2-4주"
     }
   ],
   "selection_criteria": {
@@ -472,7 +430,7 @@
         "factor": "예측 불량률",
         "weight": "40%",
         "description": "ML 모델이 예측한 부품별 불량 발생 확률",
-        "current_range": "99.0% ~ 4.0%"
+        "current_range": "100.0% ~ 1.0%"
       },
       {
         "factor": "생산량 가중치",
@@ -510,6 +468,6 @@
     ]
   },
   "analysis_summary": null,
-  "generated_at": "2025-08-06 23:43:15",
+  "generated_at": "2025-08-27 21:35:10",
   "analysis_version": "2.1"
 }
