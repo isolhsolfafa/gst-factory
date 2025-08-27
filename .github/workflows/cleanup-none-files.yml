@@ -1,0 +1,139 @@
+name: Clean up NONE JSON files
+
+on:
+  schedule:
+    # 매일 오후 1시 (KST 기준, UTC 04:00)에 실행
+    - cron: '0 4 * * *'
+  workflow_dispatch:  # 수동 실행 가능
+    inputs:
+      dry_run:
+        description: 'Dry run (삭제하지 않고 확인만)'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+        - 'true'
+        - 'false'
+
+jobs:
+  cleanup-none-files:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0  # 전체 히스토리 가져오기
+    
+    - name: Find NONE JSON files
+      id: find-files
+      run: |
+        echo "=== NONE JSON 파일 검색 ===" 
+        
+        # daily_data 디렉토리에서 NONE_*.json 파일 찾기
+        NONE_FILES=$(find daily_data -name "NONE_*.json" 2>/dev/null || echo "")
+        
+        if [ -z "$NONE_FILES" ]; then
+          echo "삭제할 NONE JSON 파일이 없습니다."
+          echo "files_found=false" >> $GITHUB_OUTPUT
+          echo "file_list=" >> $GITHUB_OUTPUT
+        else
+          echo "발견된 NONE JSON 파일들:"
+          echo "$NONE_FILES"
+          echo "files_found=true" >> $GITHUB_OUTPUT
+          echo "file_list<<EOF" >> $GITHUB_OUTPUT
+          echo "$NONE_FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          # 파일 개수 세기
+          FILE_COUNT=$(echo "$NONE_FILES" | wc -l)
+          echo "총 $FILE_COUNT 개의 NONE JSON 파일을 발견했습니다."
+        fi
+    
+    - name: Backup NONE files (before deletion)
+      if: steps.find-files.outputs.files_found == 'true'
+      run: |
+        echo "=== NONE JSON 파일 백업 ===" 
+        
+        # 백업 디렉토리 생성
+        mkdir -p backup/none_files_$(date +%Y%m%d_%H%M%S)
+        BACKUP_DIR="backup/none_files_$(date +%Y%m%d_%H%M%S)"
+        
+        # NONE 파일들을 백업 디렉토리로 복사
+        while IFS= read -r file; do
+          if [ -f "$file" ]; then
+            cp "$file" "$BACKUP_DIR/"
+            echo "백업됨: $file -> $BACKUP_DIR/"
+          fi
+        done <<< "${{ steps.find-files.outputs.file_list }}"
+        
+        echo "백업 완료: $BACKUP_DIR"
+    
+    - name: Upload backup as artifact
+      if: steps.find-files.outputs.files_found == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: none-files-backup-${{ github.run_number }}
+        path: backup/none_files_*
+        retention-days: 30
+    
+    - name: Delete NONE JSON files (dry run)
+      if: steps.find-files.outputs.files_found == 'true' && github.event.inputs.dry_run == 'true'
+      run: |
+        echo "=== DRY RUN: 삭제될 파일들 ===" 
+        echo "다음 파일들이 삭제될 예정입니다:"
+        echo "${{ steps.find-files.outputs.file_list }}"
+        echo ""
+        echo "실제 삭제를 원하면 dry_run을 false로 설정하여 다시 실행하세요."
+    
+    - name: Delete NONE JSON files
+      if: steps.find-files.outputs.files_found == 'true' && github.event.inputs.dry_run != 'true'
+      run: |
+        echo "=== NONE JSON 파일 삭제 시작 ===" 
+        
+        DELETED_COUNT=0
+        while IFS= read -r file; do
+          if [ -f "$file" ]; then
+            echo "삭제 중: $file"
+            rm "$file"
+            DELETED_COUNT=$((DELETED_COUNT + 1))
+          else
+            echo "파일을 찾을 수 없음: $file"
+          fi
+        done <<< "${{ steps.find-files.outputs.file_list }}"
+        
+        echo "총 $DELETED_COUNT 개의 NONE JSON 파일을 삭제했습니다."
+    
+    - name: Commit and push changes
+      if: steps.find-files.outputs.files_found == 'true' && github.event.inputs.dry_run != 'true'
+      run: |
+        echo "=== Git 커밋 및 푸시 ===" 
+        
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # 변경사항이 있는지 확인
+        if git diff --quiet; then
+          echo "삭제할 파일이 없거나 이미 삭제되었습니다."
+        else
+          git add -A
+          git commit -m "🗑️ Auto cleanup: Remove NONE_*.json files [$(date +'%Y-%m-%d %H:%M:%S')]"
+          git push
+          echo "변경사항이 커밋되고 푸시되었습니다."
+        fi
+    
+    - name: Summary
+      if: always()
+      run: |
+        echo "=== 정리 작업 완료 ===" 
+        if [ "${{ steps.find-files.outputs.files_found }}" == "true" ]; then
+          if [ "${{ github.event.inputs.dry_run }}" == "true" ]; then
+            echo "✅ DRY RUN 완료: 삭제될 파일 목록을 확인했습니다."
+          else
+            echo "✅ NONE JSON 파일 정리 완료"
+            echo "📦 백업이 아티팩트로 저장되었습니다 (30일 보관)"
+          fi
+        else
+          echo "ℹ️  삭제할 NONE JSON 파일이 없습니다."
+        fi
