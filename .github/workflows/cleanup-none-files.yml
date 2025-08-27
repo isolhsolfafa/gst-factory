@@ -31,8 +31,8 @@ jobs:
       run: |
         echo "=== NONE JSON 파일 검색 ===" 
         
-        # daily_data 디렉토리에서 NONE_*.json 파일 찾기
-        NONE_FILES=$(find daily_data -name "NONE_*.json" 2>/dev/null || echo "")
+        # public/daily_data 디렉토리에서 NONE_*.json 파일 찾기
+        NONE_FILES=$(find public/daily_data -name "NONE_*.json" 2>/dev/null || echo "")
         
         if [ -z "$NONE_FILES" ]; then
           echo "삭제할 NONE JSON 파일이 없습니다."
