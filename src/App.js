@@ -206,7 +206,7 @@ const PartnerDashboard = () => (
   />
 );
 
-// 내부 대시보드 컴포넌트 (비밀번호 보호 포함, iframe으로 internal.html 연동)
+// 불량 분석 컴포넌트 (비밀번호 보호 포함, iframe으로 internal.html 연동)
 const InternalDashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
@@ -249,10 +249,10 @@ const InternalDashboard = () => {
           textAlign: 'center'
         }}>
           <h2 style={{ marginBottom: '10px', color: '#333' }}>
-            🔒 내부 대시보드 - 사내 직원 전용
+            🔒 불량 분석 - 사내 직원 전용
           </h2>
           <p style={{ color: '#666', marginBottom: '30px' }}>
-            내부 대시보드 페이지는 사내 직원만 접근 가능합니다.
+            불량 분석 페이지는 사내 직원만 접근 가능합니다.
           </p>
           
           <form onSubmit={handleSubmit}>
@@ -401,10 +401,10 @@ const App = () => {
           <button style={getButtonStyle('/partner')}>🤝 협력사 대시보드</button>
         </Link>
         <Link to="/internal" style={{ textDecoration: 'none', flex: 1 }}>
-          <button style={getButtonStyle('/internal')}>🔒 내부 대시보드</button>
+          <button style={getButtonStyle('/internal')}>🔍 불량 분석</button>
         </Link>
         <Link to="/cycle-time" style={{ textDecoration: 'none', flex: 1 }}>
-          <button style={getButtonStyle('/cycle-time')}>📊 CT 분석</button>
+          <button style={getButtonStyle('/cycle-time')}>⏱️ CT 분석</button>
         </Link>
       </div>
       <div style={{ padding: '20px' }}>
