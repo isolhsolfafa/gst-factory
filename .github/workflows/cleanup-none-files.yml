@@ -18,6 +18,8 @@ on:
 jobs:
   cleanup-none-files:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 파일 수정 및 커밋 권한
     
     steps:
     - name: Checkout repository
@@ -25,6 +27,11 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0  # 전체 히스토리 가져오기
+        
+    - name: Configure Git
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
     
     - name: Find NONE JSON files
       id: find-files
