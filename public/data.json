@@ -5,7 +5,7 @@
       "검출단계": "가압검사",
       "부품": "REDUCER DOUBLE Y UNION",
       "예상불량률": 5.0,
-      "키워드": "N2 REDUCING DOUBLE Y UNION, LEAK, 삽입부",
+      "키워드": "N2 REDUCING UNION, LEAK, 삽입부",
       "불량유형": "부품불량",
       "누적": 28,
       "제안": "체결 토크 표준화",
