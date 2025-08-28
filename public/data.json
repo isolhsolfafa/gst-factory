@@ -9,7 +9,7 @@
       "불량유형": "부품불량",
       "누적": 28,
       "제안": "삽입부 설계 및 가공 정밀도 개선",
-      "근거": "근거: 삽입부 불량 (41건 - 최다 키워드), N2 REDUCING DOUBLE Y UNION Leak (12건), 우레탄 재질 문제, 체결 불량, 누설",
+      "근거": "근거: 삽입부 불량 (41건-최다 키워드), N2 REDUCING DOUBLE Y UNION Leak (12건), 우레탄 재질 문제, 체결 불량, 누설",
       "예상효과": "불량률 50.0%p 감소 예상",
       "우선순위": "URGENT"
     },
@@ -22,7 +22,7 @@
       "불량유형": "기구작업불량",
       "누적": 63,
       "제안": "MALE ELBOW Fitting nut 누수 패턴 분석 및 대책",
-      "근거": "근거: MALE ELBOW Fitting nut Water Leak (40건 - 높은 빈도), BCW Jaco Fitting Nut Leak (10건), TEFLON 부족 (15건), 체결 불량, 부품 누락",
+      "근거": "근거: MALE ELBOW Fitting nut Water Leak (40건-높은 빈도), BCW Jaco Fitting Nut Leak (10건), TEFLON 부족 (15건), 체결 불량, 부품 누락",
       "예상효과": "불량률 5.2%p 감소 예상",
       "우선순위": "URGENT"
     },
@@ -35,7 +35,7 @@
       "불량유형": "기구작업불량",
       "누적": 63,
       "제안": "MALE ELBOW Fitting nut 누수 패턴 분석 및 대책",
-      "근거": "근거: MALE ELBOW Fitting nut Water Leak (40건 - 높은 빈도), BCW Jaco Fitting Nut Leak (10건), TEFLON 부족 (15건), 체결 불량, 부품 누락",
+      "근거": "근거: MALE ELBOW Fitting nut Water Leak (40건-높은 빈도), BCW Jaco Fitting Nut Leak (10건), TEFLON 부족 (15건), 체결 불량, 부품 누락",
       "예상효과": "불량률 5.2%p 감소 예상",
       "우선순위": "URGENT"
     },
@@ -48,7 +48,7 @@
       "불량유형": "기구작업불량",
       "누적": 63,
       "제안": "MALE ELBOW Fitting nut 누수 패턴 분석 및 대책",
-      "근거": "근거: MALE ELBOW Fitting nut Water Leak (40건 - 높은 빈도), BCW Jaco Fitting Nut Leak (10건), TEFLON 부족 (15건), 체결 불량, 부품 누락",
+      "근거": "근거: MALE ELBOW Fitting nut Water Leak (40건-높은 빈도), BCW Jaco Fitting Nut Leak (10건), TEFLON 부족 (15건), 체결 불량, 부품 누락",
       "예상효과": "불량률 5.2%p 감소 예상",
       "우선순위": "URGENT"
     },
