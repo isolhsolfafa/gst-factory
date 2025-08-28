@@ -4,14 +4,14 @@
       "모델": "GAIA-II DUAL",
       "검출단계": "가압검사",
       "부품": "REDUCER DOUBLE Y UNION",
-      "예상불량률": 100.0,
-      "키워드": "N2 REDUCING DOUBLE Y UNION, LEAK, 삽입부",
+      "예상불량률": 5.0,
+      "키워드": "N2 REDUCING Y UNION, LEAK, 삽입부",
       "불량유형": "부품불량",
       "누적": 28,
       "제안": "삽입부 설계 및 가공 정밀도 개선",
       "근거": "근거: 삽입부 불량 (41건 - 최다 키워드), N2 REDUCING DOUBLE Y UNION Leak (12건), 우레탄 재질 문제, 체결 불량, 누설",
       "예상효과": "불량률 50.0%p 감소 예상",
-      "우선순위": "IMMEDIATE"
+      "우선순위": "URGENT"
     },
     {
       "모델": "GAIA-I",
