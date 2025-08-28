@@ -4,34 +4,21 @@
       "모델": "GAIA-II DUAL",
       "검출단계": "가압검사",
       "부품": "REDUCER DOUBLE Y UNION",
-      "예상불량률": 5.0,
-      "키워드": "삽입부",
+      "예상불량률": 100.0,
+      "키워드": "N2 REDUCING DOUBLE Y UNION, LEAK, 삽입부",
       "불량유형": "부품불량",
       "누적": 28,
-      "제안": "체결 표준화",
-      "근거": "근거: 체결 불량, 누설",
+      "제안": "체결 토크 표준화",
+      "근거": "근거: 체결 불량, 누설, 가공 정밀도",
       "예상효과": "불량률 50.0%p 감소 예상",
-      "우선순위": "URGENT"
+      "우선순위": "IMMEDIATE"
     },
     {
-      "모델": "SWS-I",
-      "검출단계": "가압검사",
-      "부품": "MALE CONNECTOR",
-      "예상불량률": 8.0,
-      "키워드": "풀림",
-      "불량유형": "기구작업불량",
-      "누적": 44,
-      "제안": "N2 가압 압력 및 시간 표준화",
-      "근거": "근거: N2 가압 불량, Tube 삽입 불량, Teflon 작업 불량, Fitting 체결 불량",
-      "예상효과": "불량률 4.0%p 감소 예상",
-      "우선순위": "URGENT"
-    },
-    {
-      "모델": "SWS-I",
+      "모델": "GAIA-I",
       "검출단계": "가압검사",
       "부품": "MALE ELBOW",
-      "예상불량률": 5.0,
-      "키워드": "부족",
+      "예상불량률": 2.0,
+      "키워드": "MALE ELBOW LOCTITE, Leak, 부족",
       "불량유형": "기구작업불량",
       "누적": 63,
       "제안": "개선 검토 필요",
@@ -40,11 +27,11 @@
       "우선순위": "NORMAL"
     },
     {
-      "모델": "GAIA-II",
+      "모델": "SWS-I",
       "검출단계": "가압검사",
       "부품": "MALE ELBOW",
-      "예상불량률": 1.0,
-      "키워드": "",
+      "예상불량률": 2.0,
+      "키워드": "MALE ELBOW Teflon, Leak, 부족",
       "불량유형": "기구작업불량",
       "누적": 63,
       "제안": "개선 검토 필요",
@@ -55,9 +42,22 @@
     {
       "모델": "DRAGON",
       "검출단계": "가압검사",
+      "부품": "O-RING",
+      "예상불량률": 2.0,
+      "키워드": "Ring",
+      "불량유형": "기타불량",
+      "누적": 23,
+      "제안": "개선 검토 필요",
+      "근거": "근거: 추가 분석 필요",
+      "예상효과": "효과 분석 중",
+      "우선순위": "NORMAL"
+    },
+    {
+      "모델": "GAIA-II",
+      "검출단계": "가압검사",
       "부품": "MALE ELBOW",
       "예상불량률": 1.0,
-      "키워드": "",
+      "키워드": "MALE ELBOW JACO FITTING, Leak",
       "불량유형": "기구작업불량",
       "누적": 63,
       "제안": "개선 검토 필요",
@@ -344,18 +344,18 @@
           "risk_level": "CRITICAL"
         },
         {
-          "part": "MALE CONNECTOR",
-          "defect_rate": 8.0,
-          "risk_level": "HIGH"
+          "part": "MALE ELBOW",
+          "defect_rate": 2.0,
+          "risk_level": "MEDIUM"
         },
         {
           "part": "MALE ELBOW",
-          "defect_rate": 5.0,
-          "risk_level": "HIGH"
+          "defect_rate": 2.0,
+          "risk_level": "MEDIUM"
         },
         {
-          "part": "MALE ELBOW",
-          "defect_rate": 1.0,
+          "part": "O-RING",
+          "defect_rate": 2.0,
           "risk_level": "MEDIUM"
         },
         {
@@ -366,8 +366,7 @@
       ],
       "distribution": {
         "CRITICAL": 1,
-        "HIGH": 2,
-        "MEDIUM": 2
+        "MEDIUM": 4
       },
       "critical_parts": [
         "REDUCER DOUBLE Y UNION"
@@ -397,30 +396,6 @@
       "expected_improvement": "불량률 50.0%p 감소 예상",
       "implementation_cost": "HIGH",
       "timeline": "1주 이내"
-    },
-    {
-      "target": "SWS-I - MALE CONNECTOR",
-      "defect_rate": 8.0,
-      "urgency": "URGENT",
-      "root_causes": [
-        "N2 가압 불량",
-        "Tube 삽입 불량",
-        "Teflon 작업 불량",
-        "Fitting 체결 불량"
-      ],
-      "specific_actions": [
-        "N2 가압 압력 및 시간 표준화",
-        "Tube 삽입 깊이 및 각도 검사 강화",
-        "Teflon 테이프 감기 작업 표준화"
-      ],
-      "inspection_points": [
-        "N2 가압 누설",
-        "Tube 삽입 상태",
-        "Teflon 작업 품질"
-      ],
-      "expected_improvement": "불량률 4.0%p 감소 예상",
-      "implementation_cost": "MEDIUM",
-      "timeline": "2-4주"
     }
   ],
   "selection_criteria": {
@@ -468,6 +443,6 @@
     ]
   },
   "analysis_summary": null,
-  "generated_at": "2025-08-27 21:35:10",
+  "generated_at": "2025-08-28 13:11:24",
   "analysis_version": "2.1"
 }
