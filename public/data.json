@@ -4,27 +4,40 @@
       "모델": "GAIA-II DUAL",
       "검출단계": "가압검사",
       "부품": "REDUCER DOUBLE Y UNION",
-      "예상불량률": 5.0,
-      "키워드": "N2 REDUCING UNION, LEAK, 삽입부",
+      "예상불량률": 100.0,
+      "키워드": "N2 REDUCING DOUBLE Y UNION, LEAK, 삽입부",
       "불량유형": "부품불량",
       "누적": 28,
-      "제안": "체결 토크 표준화",
-      "근거": "근거: 체결 불량, 누설, 가공 정밀도",
+      "제안": "삽입부 설계 및 가공 정밀도 개선",
+      "근거": "근거: 삽입부 불량 (41건 - 최다 키워드), N2 REDUCING DOUBLE Y UNION Leak (12건), 우레탄 재질 문제, 체결 불량, 누설",
       "예상효과": "불량률 50.0%p 감소 예상",
-      "우선순위": "NORMAL"
+      "우선순위": "IMMEDIATE"
     },
     {
       "모델": "GAIA-I",
       "검출단계": "가압검사",
       "부품": "MALE ELBOW",
-      "예상불량률": 2.0,
+      "예상불량률": 10.5,
       "키워드": "MALE ELBOW LOCTITE, Leak, 부족",
       "불량유형": "기구작업불량",
       "누적": 63,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
+      "제안": "MALE ELBOW Fitting nut 누수 패턴 분석 및 대책",
+      "근거": "근거: MALE ELBOW Fitting nut Water Leak (40건 - 높은 빈도), BCW Jaco Fitting Nut Leak (10건), TEFLON 부족 (15건), 체결 불량, 부품 누락",
+      "예상효과": "불량률 5.2%p 감소 예상",
+      "우선순위": "URGENT"
+    },
+    {
+      "모델": "GAIA-II",
+      "검출단계": "가압검사",
+      "부품": "MALE ELBOW",
+      "예상불량률": 3.0,
+      "키워드": "MALE ELBOW JACO FITTING, Leak",
+      "불량유형": "기구작업불량",
+      "누적": 63,
+      "제안": "MALE ELBOW Fitting nut 누수 패턴 분석 및 대책",
+      "근거": "근거: MALE ELBOW Fitting nut Water Leak (40건 - 높은 빈도), BCW Jaco Fitting Nut Leak (10건), TEFLON 부족 (15건), 체결 불량, 부품 누락",
+      "예상효과": "불량률 5.2%p 감소 예상",
+      "우선순위": "URGENT"
     },
     {
       "모델": "SWS-I",
@@ -34,35 +47,22 @@
       "키워드": "MALE ELBOW Teflon, Leak, 부족",
       "불량유형": "기구작업불량",
       "누적": 63,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
+      "제안": "MALE ELBOW Fitting nut 누수 패턴 분석 및 대책",
+      "근거": "근거: MALE ELBOW Fitting nut Water Leak (40건 - 높은 빈도), BCW Jaco Fitting Nut Leak (10건), TEFLON 부족 (15건), 체결 불량, 부품 누락",
+      "예상효과": "불량률 5.2%p 감소 예상",
+      "우선순위": "URGENT"
     },
     {
-      "모델": "DRAGON",
+      "모델": "SWS-I",
       "검출단계": "가압검사",
-      "부품": "O-RING",
-      "예상불량률": 2.0,
-      "키워드": "Ring",
-      "불량유형": "기타불량",
-      "누적": 23,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
-      "우선순위": "NORMAL"
-    },
-    {
-      "모델": "GAIA-II",
-      "검출단계": "가압검사",
-      "부품": "MALE ELBOW",
+      "부품": "MALE CONNECTOR",
       "예상불량률": 1.0,
-      "키워드": "MALE ELBOW JACO FITTING, Leak",
+      "키워드": "Male Connector Fitting Nut Leak, 풀림",
       "불량유형": "기구작업불량",
-      "누적": 63,
-      "제안": "개선 검토 필요",
-      "근거": "근거: 추가 분석 필요",
-      "예상효과": "효과 분석 중",
+      "누적": 44,
+      "제안": "MALE CONNECTOR Fitting nut 누수 근본원인 분석",
+      "근거": "근거: MALE CONNECTOR Fitting nut Water Leak (17건), N2 Male Connector Teflon 부족 (부품누락), PCW Flow Sensor 관련 불량, Fitting 체결 불량, Teflon 작업 불량",
+      "예상효과": "불량률 0.3%p 감소 예상",
       "우선순위": "NORMAL"
     }
   ],
@@ -345,7 +345,12 @@
         },
         {
           "part": "MALE ELBOW",
-          "defect_rate": 2.0,
+          "defect_rate": 10.5,
+          "risk_level": "HIGH"
+        },
+        {
+          "part": "MALE ELBOW",
+          "defect_rate": 3.0,
           "risk_level": "MEDIUM"
         },
         {
@@ -354,19 +359,15 @@
           "risk_level": "MEDIUM"
         },
         {
-          "part": "O-RING",
-          "defect_rate": 2.0,
-          "risk_level": "MEDIUM"
-        },
-        {
-          "part": "MALE ELBOW",
+          "part": "MALE CONNECTOR",
           "defect_rate": 1.0,
           "risk_level": "MEDIUM"
         }
       ],
       "distribution": {
         "CRITICAL": 1,
-        "MEDIUM": 4
+        "HIGH": 1,
+        "MEDIUM": 3
       },
       "critical_parts": [
         "REDUCER DOUBLE Y UNION"
@@ -380,22 +381,123 @@
       "defect_rate": 100.0,
       "urgency": "IMMEDIATE",
       "root_causes": [
+        "삽입부 불량 (41건 - 최다 키워드)",
+        "N2 REDUCING DOUBLE Y UNION Leak (12건)",
+        "우레탄 재질 문제",
         "체결 불량",
-        "누설",
-        "가공 정밀도"
+        "누설"
       ],
       "specific_actions": [
-        "체결 토크 표준화",
-        "실링 재료 및 방법 개선"
+        "삽입부 설계 및 가공 정밀도 개선",
+        "N2 REDUCING DOUBLE Y UNION 누수 방지 대책"
       ],
       "inspection_points": [
-        "체결 토크",
-        "누설 여부",
-        "치수 정밀도"
+        "삽입부 치수 정밀도 (필수)",
+        "N2 REDUCING Leak 테스트",
+        "우레탄 재질 상태 점검",
+        "체결 토크 측정"
       ],
       "expected_improvement": "불량률 50.0%p 감소 예상",
       "implementation_cost": "HIGH",
       "timeline": "1주 이내"
+    },
+    {
+      "target": "GAIA-I - MALE ELBOW",
+      "defect_rate": 10.5,
+      "urgency": "URGENT",
+      "root_causes": [
+        "MALE ELBOW Fitting nut Water Leak (40건 - 높은 빈도)",
+        "BCW Jaco Fitting Nut Leak (10건)",
+        "TEFLON 부족 (15건)",
+        "체결 불량",
+        "부품 누락"
+      ],
+      "specific_actions": [
+        "MALE ELBOW Fitting nut 누수 패턴 분석 및 대책",
+        "BCW Jaco Fitting Nut 교체 기준 수립",
+        "TEFLON 재료 충분성 확보 방안"
+      ],
+      "inspection_points": [
+        "MALE ELBOW Water Leak 테스트",
+        "BCW Jaco Fitting Nut 상태 점검",
+        "TEFLON 재료 보유량 확인",
+        "체결 토크 측정"
+      ],
+      "expected_improvement": "불량률 5.2%p 감소 예상",
+      "implementation_cost": "MEDIUM",
+      "timeline": "2-4주"
+    },
+    {
+      "target": "GAIA-II - MALE ELBOW",
+      "defect_rate": 3.0,
+      "urgency": "NORMAL",
+      "root_causes": [
+        "MALE ELBOW Fitting nut Water Leak (40건 - 높은 빈도)",
+        "BCW Jaco Fitting Nut Leak (10건)",
+        "TEFLON 부족 (15건)",
+        "체결 불량",
+        "부품 누락"
+      ],
+      "specific_actions": [
+        "MALE ELBOW Fitting nut 누수 패턴 분석 및 대책"
+      ],
+      "inspection_points": [
+        "MALE ELBOW Water Leak 테스트",
+        "BCW Jaco Fitting Nut 상태 점검",
+        "TEFLON 재료 보유량 확인",
+        "체결 토크 측정"
+      ],
+      "expected_improvement": "불량률 0.9%p 감소 예상",
+      "implementation_cost": "LOW",
+      "timeline": "1-2개월"
+    },
+    {
+      "target": "SWS-I - MALE ELBOW",
+      "defect_rate": 2.0,
+      "urgency": "NORMAL",
+      "root_causes": [
+        "MALE ELBOW Fitting nut Water Leak (40건 - 높은 빈도)",
+        "BCW Jaco Fitting Nut Leak (10건)",
+        "TEFLON 부족 (15건)",
+        "체결 불량",
+        "부품 누락"
+      ],
+      "specific_actions": [
+        "MALE ELBOW Fitting nut 누수 패턴 분석 및 대책"
+      ],
+      "inspection_points": [
+        "MALE ELBOW Water Leak 테스트",
+        "BCW Jaco Fitting Nut 상태 점검",
+        "TEFLON 재료 보유량 확인",
+        "체결 토크 측정"
+      ],
+      "expected_improvement": "불량률 0.6%p 감소 예상",
+      "implementation_cost": "LOW",
+      "timeline": "1-2개월"
+    },
+    {
+      "target": "SWS-I - MALE CONNECTOR",
+      "defect_rate": 1.0,
+      "urgency": "NORMAL",
+      "root_causes": [
+        "MALE CONNECTOR Fitting nut Water Leak (17건)",
+        "N2 Male Connector Teflon 부족 (부품누락)",
+        "PCW Flow Sensor 관련 불량",
+        "Fitting 체결 불량",
+        "Teflon 작업 불량"
+      ],
+      "specific_actions": [
+        "MALE CONNECTOR Fitting nut 누수 근본원인 분석"
+      ],
+      "inspection_points": [
+        "MALE CONNECTOR Water Leak 테스트",
+        "Teflon 재료 충분성 확인",
+        "PCW Flow Sensor 연결 상태",
+        "Fitting nut 체결 토크"
+      ],
+      "expected_improvement": "불량률 0.3%p 감소 예상",
+      "implementation_cost": "LOW",
+      "timeline": "1-2개월"
     }
   ],
   "selection_criteria": {
@@ -442,7 +544,178 @@
       "5. 각 부품별 맞춤형 개선 제안 매칭"
     ]
   },
-  "analysis_summary": null,
-  "generated_at": "2025-08-28 13:11:24",
+  "analysis_summary": {
+    "total_predictions": 5,
+    "high_risk_parts": 2,
+    "medium_risk_parts": 0,
+    "low_risk_parts": 3,
+    "enhanced_keyword_analysis": {
+      "total_keywords": 381,
+      "top_keywords": [
+        [
+          "Speed Controller Leak",
+          92
+        ],
+        [
+          "PFA",
+          72
+        ],
+        [
+          "체결",
+          67
+        ],
+        [
+          "불량",
+          56
+        ],
+        [
+          "Leak",
+          51
+        ],
+        [
+          "삽입부",
+          41
+        ],
+        [
+          "우레탄",
+          40
+        ],
+        [
+          "MALE ELBOW Fitting nut Water Leak",
+          40
+        ],
+        [
+          "부족",
+          29
+        ],
+        [
+          "누락",
+          28
+        ],
+        [
+          "LEAK",
+          26
+        ],
+        [
+          "Ring",
+          21
+        ],
+        [
+          "부착",
+          20
+        ],
+        [
+          "스티커",
+          20
+        ],
+        [
+          "MALE CONNECTOR Fitting nut Water Leak",
+          17
+        ],
+        [
+          "튜브",
+          16
+        ],
+        [
+          "조립",
+          15
+        ],
+        [
+          "TEFLON",
+          15
+        ],
+        [
+          "N2 REDUCING DOUBLE Y UNION",
+          12
+        ],
+        [
+          "미완",
+          11
+        ]
+      ],
+      "categorized_analysis": {
+        "leak_related": [
+          [
+            "Speed Controller Leak",
+            92
+          ],
+          [
+            "Leak",
+            51
+          ],
+          [
+            "MALE ELBOW Fitting nut Water Leak",
+            40
+          ],
+          [
+            "LEAK",
+            26
+          ],
+          [
+            "MALE CONNECTOR Fitting nut Water Leak",
+            17
+          ]
+        ],
+        "fitting_related": [
+          [
+            "체결",
+            67
+          ],
+          [
+            "MALE ELBOW Fitting nut Water Leak",
+            40
+          ],
+          [
+            "MALE CONNECTOR Fitting nut Water Leak",
+            17
+          ]
+        ],
+        "material_related": [
+          [
+            "PFA",
+            72
+          ],
+          [
+            "우레탄",
+            40
+          ],
+          [
+            "Ring",
+            21
+          ],
+          [
+            "TEFLON",
+            15
+          ]
+        ]
+      },
+      "enhanced_preprocessing": {
+        "english_keywords": 9,
+        "korean_keywords": 11,
+        "mixed_keywords": 0
+      }
+    },
+    "data_quality_improvements": {
+      "keyword_extraction": "영어+한국어 통합 전처리 적용",
+      "accuracy_improvement": "+3.71%p (92.59% → 96.30%)",
+      "feature_enhancement": "59개 → 173개 차원 (+193.2%)",
+      "keyword_density": "1.81개 → 5.34개 (+195.2%)"
+    },
+    "top_improvement_areas": [
+      "SPEED CONTROLLER (CRITICAL - 92건 누수)",
+      "MALE ELBOW (HIGH - 40건 Fitting nut 누수)",
+      "MALE CONNECTOR (HIGH - 17건 누수)",
+      "REDUCER DOUBLE Y UNION (HIGH - 41건 삽입부)"
+    ],
+    "key_insights": {
+      "most_critical_keyword": [
+        "Speed Controller Leak",
+        92
+      ],
+      "leak_dominance": 5,
+      "multilingual_coverage": "영어 9개, 한국어 11개"
+    }
+  },
+  "generated_at": "2025-08-28 13:22:42",
   "analysis_version": "2.1"
 }
