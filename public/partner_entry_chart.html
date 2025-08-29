@@ -38,8 +38,8 @@
             <h1>🏢 협력사 출입 현황 (일자별 관리)</h1>
             <div class="stats">
                 <div class="stat-item">📊 총 회사: 6개</div>
-                <div class="stat-item">👥 총 인원: 95명</div>
-                <div class="stat-item">🕐 생성일시: 2025년 08월 29일 08시 25분</div>
+                <div class="stat-item">👥 총 인원: 104명</div>
+                <div class="stat-item">🕐 생성일시: 2025년 08월 29일 11시 40분</div>
                 <div class="stat-item">📋 관리방식: 일자별 독립 관리</div>
             </div>
         </div>
@@ -52,11 +52,11 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_0')">
                 <div>
-                    <h3>⚡ C&A (총 22명: 본사 13명, 현장 9명)</h3>
-                    <small style="opacity: 0.8;">상세: 본사 6명, 본사CHI_1 2명, 본사CHI_2 5명, 현장 9명</small>
+                    <h3>⚡ C&A (총 23명: 본사 14명, 현장 9명)</h3>
+                    <small style="opacity: 0.8;">상세: 본사 6명, 본사CHI_1 2명, 본사CHI_2 6명, 현장 9명</small>
                 </div>
                 <div>
-                    <span class="summary-badge">퇴근미체크: 22명</span>
+                    <span class="summary-badge">퇴근미체크: 23명</span>
                     <span class="toggle-icon">▼</span>
                 </div>
             </div>
@@ -142,6 +142,15 @@
                     <td>박은혜</td>
                     <td>본사</td>
                     <td>2025. 8. 29 7:55:21</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>박준성</td>
+                    <td>본사CHI_2</td>
+                    <td>2025. 8. 29 9:55:04</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -290,11 +299,11 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_1')">
                 <div>
-                    <h3>🏗️ BAT (총 19명: 본사 0명, 현장 19명)</h3>
-                    <small style="opacity: 0.8;">상세: 현장 19명</small>
+                    <h3>🏗️ BAT (총 22명: 본사 0명, 현장 22명)</h3>
+                    <small style="opacity: 0.8;">상세: 현장 22명</small>
                 </div>
                 <div>
-                    <span class="summary-badge">퇴근미체크: 19명</span>
+                    <span class="summary-badge">퇴근미체크: 21명</span>
                     <span class="toggle-icon">▼</span>
                 </div>
             </div>
@@ -359,6 +368,15 @@
                 </tr>
             
                 <tr>
+                    <td>김춘동</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 8:36:57</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
                     <td>남경봉</td>
                     <td>현장</td>
                     <td>2025. 8. 29 7:52:45</td>
@@ -392,6 +410,24 @@
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>우미정</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 8:44:50</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>우미현</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 8:40:27</td>
+                    <td>2025. 8. 29 08:40:37</td>
+                    <td class="normal">0시간 0분</td>
+                    <td>아니오</td>
                 </tr>
             
                 <tr>
@@ -501,15 +537,244 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_2')">
                 <div>
-                    <h3>🏗️ FNI (총 19명: 본사 0명, 현장 19명)</h3>
-                    <small style="opacity: 0.8;">상세: 현장 19명</small>
+                    <h3>⚡ TMS(E) (총 21명: 본사 10명, 현장 11명)</h3>
+                    <small style="opacity: 0.8;">상세: 본사 10명, 현장 9명, 현장CHI 2명</small>
                 </div>
                 <div>
-                    <span class="summary-badge">퇴근미체크: 18명</span>
+                    <span class="summary-badge">퇴근미체크: 19명</span>
                     <span class="toggle-icon">▼</span>
                 </div>
             </div>
             <div class="company-content" id="company_2">
+                <div class="date-buttons">
+                    📅 일자별 CSV 다운로드 (최근 7일):
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_29')">8월 29일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_28')">8월 28일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_27')">8월 27일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_26')">8월 26일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_25')">8월 25일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_24')">8월 24일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_23')">8월 23일</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>담당 업무</th>
+                            <th>출근 시간</th>
+                            <th>퇴근 시간</th>
+                            <th>근무시간</th>
+                            <th>퇴근미체크</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>공종필</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 7:34:09</td>
+                    <td>2025. 8. 29 07:47:27</td>
+                    <td class="normal">0시간 0분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>김삼구</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:58:19</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>김상명</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 8:05:14</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>김성규</td>
+                    <td>현장CHI</td>
+                    <td>2025. 8. 29 8:35:36</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>김재호</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 7:50:01</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>김주용</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 7:23:41</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>김준</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 8:43:39</td>
+                    <td>2025. 8. 29 11:34:30</td>
+                    <td class="normal">2시간 16분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>김창조</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 6:47:57</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>김형석</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:34:52</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>박민혁</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:53:08</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>오세훈</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:49:45</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>오정석</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:53:44</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>우강</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 8:32:12</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>유민상</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:42:39</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>윤금봉</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 8:41:19</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>윤성구</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:57:32</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>이동구</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:51:07</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>이종광</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 7:51:15</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>전준룡</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:29:08</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>최선희</td>
+                    <td>본사</td>
+                    <td>2025. 8. 29 7:50:09</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>황금산</td>
+                    <td>현장CHI</td>
+                    <td>2025. 8. 29 7:32:47</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="company-section">
+            <div class="company-header" onclick="toggleCompany('company_3')">
+                <div>
+                    <h3>🏗️ FNI (총 20명: 본사 0명, 현장 20명)</h3>
+                    <small style="opacity: 0.8;">상세: 현장 20명</small>
+                </div>
+                <div>
+                    <span class="summary-badge">퇴근미체크: 19명</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+            </div>
+            <div class="company-content" id="company_3">
                 <div class="date-buttons">
                     📅 일자별 CSV 다운로드 (최근 7일):
                     <button class="date-btn" onclick="downloadCSV('FNI', '2025_08_29')">8월 29일</button>
@@ -591,6 +856,15 @@
                     <td>서정원</td>
                     <td>현장</td>
                     <td>2025. 8. 29 8:10:23</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>손국권</td>
+                    <td>현장</td>
+                    <td>2025. 8. 29 8:27:35</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -699,199 +973,6 @@
                     <td>황진충</td>
                     <td>현장</td>
                     <td>2025. 8. 29 7:02:24</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <div class="company-section">
-            <div class="company-header" onclick="toggleCompany('company_3')">
-                <div>
-                    <h3>⚡ TMS(E) (총 17명: 본사 10명, 현장 7명)</h3>
-                    <small style="opacity: 0.8;">상세: 본사 10명, 현장 6명, 현장CHI 1명</small>
-                </div>
-                <div>
-                    <span class="summary-badge">퇴근미체크: 16명</span>
-                    <span class="toggle-icon">▼</span>
-                </div>
-            </div>
-            <div class="company-content" id="company_3">
-                <div class="date-buttons">
-                    📅 일자별 CSV 다운로드 (최근 7일):
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_29')">8월 29일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_28')">8월 28일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_27')">8월 27일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_26')">8월 26일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_25')">8월 25일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_24')">8월 24일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2025_08_23')">8월 23일</button>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>이름</th>
-                            <th>담당 업무</th>
-                            <th>출근 시간</th>
-                            <th>퇴근 시간</th>
-                            <th>근무시간</th>
-                            <th>퇴근미체크</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                <tr>
-                    <td>공종필</td>
-                    <td>현장</td>
-                    <td>2025. 8. 29 7:34:09</td>
-                    <td>2025. 8. 29 07:47:27</td>
-                    <td class="normal">0시간 0분</td>
-                    <td>아니오</td>
-                </tr>
-            
-                <tr>
-                    <td>김삼구</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:58:19</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김상명</td>
-                    <td>현장</td>
-                    <td>2025. 8. 29 8:05:14</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김재호</td>
-                    <td>현장</td>
-                    <td>2025. 8. 29 7:50:01</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김주용</td>
-                    <td>현장</td>
-                    <td>2025. 8. 29 7:23:41</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김창조</td>
-                    <td>현장</td>
-                    <td>2025. 8. 29 6:47:57</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김형석</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:34:52</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>박민혁</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:53:08</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>오세훈</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:49:45</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>오정석</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:53:44</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>유민상</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:42:39</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>윤성구</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:57:32</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>이동구</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:51:07</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>이종광</td>
-                    <td>현장</td>
-                    <td>2025. 8. 29 7:51:15</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>전준룡</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:29:08</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>최선희</td>
-                    <td>본사</td>
-                    <td>2025. 8. 29 7:50:09</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>황금산</td>
-                    <td>현장CHI</td>
-                    <td>2025. 8. 29 7:32:47</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -1148,10 +1229,10 @@
 
     <script>
                  // 차트 데이터 (단순화 - 본사 vs 현장)
-         var companies = ["C&A", "BAT", "FNI", "TMS(E)", "P&S", "TMS(M)"];
-         var totals = [22, 19, 19, 17, 11, 7];
-         var hq_total_counts = [13, 0, 0, 10, 4, 0];
-         var factory_total_counts = [9, 19, 19, 7, 7, 7];
+         var companies = ["C&A", "BAT", "TMS(E)", "FNI", "P&S", "TMS(M)"];
+         var totals = [23, 22, 21, 20, 11, 7];
+         var hq_total_counts = [14, 0, 10, 0, 4, 0];
+         var factory_total_counts = [9, 22, 11, 20, 7, 7];
          
          // 협력사별 색상 정의
          var companyColors = {
