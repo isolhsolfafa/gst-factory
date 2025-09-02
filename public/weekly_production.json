@@ -16,17 +16,12 @@
   },
   {
     "model": "GAIA-I DUAL",
-    "count": 13,
+    "count": 12,
     "week": "36W"
   },
   {
     "model": "SWS-I",
     "count": 1,
-    "week": "36W"
-  },
-  {
-    "model": "GAIA-II DUAL",
-    "count": 2,
     "week": "36W"
   }
 ]
