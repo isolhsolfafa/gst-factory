@@ -37,9 +37,9 @@
         <div class="header">
             <h1>🏢 협력사 출입 현황 (일자별 관리)</h1>
             <div class="stats">
-                <div class="stat-item">📊 총 회사: 2개</div>
-                <div class="stat-item">👥 총 인원: 5명</div>
-                <div class="stat-item">🕐 생성일시: 2025년 11월 23일 08시 27분</div>
+                <div class="stat-item">📊 총 회사: 3개</div>
+                <div class="stat-item">👥 총 인원: 6명</div>
+                <div class="stat-item">🕐 생성일시: 2025년 11월 23일 12시 03분</div>
                 <div class="stat-item">📋 관리방식: 일자별 독립 관리</div>
             </div>
         </div>
@@ -128,7 +128,7 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_1')">
                 <div>
-                    <h3>🏗️ TMS(M) (총 1명: 본사 0명, 현장 1명)</h3>
+                    <h3>🏢 NONE (총 1명: 본사 0명, 현장 1명)</h3>
                     <small style="opacity: 0.8;">상세: 현장 1명</small>
                 </div>
                 <div>
@@ -137,6 +137,55 @@
                 </div>
             </div>
             <div class="company-content" id="company_1">
+                <div class="date-buttons">
+                    📅 일자별 CSV 다운로드 (최근 7일):
+                    <button class="date-btn" onclick="downloadCSV('NONE', '2025_11_23')">11월 23일</button>
+                    <button class="date-btn" onclick="downloadCSV('NONE', '2025_11_22')">11월 22일</button>
+                    <button class="date-btn" onclick="downloadCSV('NONE', '2025_11_21')">11월 21일</button>
+                    <button class="date-btn" onclick="downloadCSV('NONE', '2025_11_20')">11월 20일</button>
+                    <button class="date-btn" onclick="downloadCSV('NONE', '2025_11_19')">11월 19일</button>
+                    <button class="date-btn" onclick="downloadCSV('NONE', '2025_11_18')">11월 18일</button>
+                    <button class="date-btn" onclick="downloadCSV('NONE', '2025_11_17')">11월 17일</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>담당 업무</th>
+                            <th>출근 시간</th>
+                            <th>퇴근 시간</th>
+                            <th>근무시간</th>
+                            <th>퇴근미체크</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>김만득</td>
+                    <td>현장</td>
+                    <td>2025. 11. 23 8:45:30</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="company-section">
+            <div class="company-header" onclick="toggleCompany('company_2')">
+                <div>
+                    <h3>🏗️ TMS(M) (총 1명: 본사 0명, 현장 1명)</h3>
+                    <small style="opacity: 0.8;">상세: 현장 1명</small>
+                </div>
+                <div>
+                    <span class="summary-badge">퇴근미체크: 1명</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+            </div>
+            <div class="company-content" id="company_2">
                 <div class="date-buttons">
                     📅 일자별 CSV 다운로드 (최근 7일):
                     <button class="date-btn" onclick="downloadCSV('TMS(M)', '2025_11_23')">11월 23일</button>
@@ -178,10 +227,10 @@
 
     <script>
                  // 차트 데이터 (단순화 - 본사 vs 현장)
-         var companies = ["P&S", "TMS(M)"];
-         var totals = [4, 1];
-         var hq_total_counts = [4, 0];
-         var factory_total_counts = [0, 1];
+         var companies = ["P&S", "NONE", "TMS(M)"];
+         var totals = [4, 1, 1];
+         var hq_total_counts = [4, 0, 0];
+         var factory_total_counts = [0, 1, 1];
          
          // 협력사별 색상 정의
          var companyColors = {
