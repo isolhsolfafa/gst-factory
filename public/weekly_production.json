@@ -2,41 +2,31 @@
   {
     "model": "MITHAS",
     "count": 1,
-    "week": "47W"
+    "week": "48W"
   },
   {
     "model": "GAIA-I DUAL",
-    "count": 18,
-    "week": "47W"
-  },
-  {
-    "model": "GAIA-P DUAL",
-    "count": 10,
-    "week": "47W"
+    "count": 20,
+    "week": "48W"
   },
   {
     "model": "GAIA-I",
-    "count": 14,
-    "week": "47W"
+    "count": 17,
+    "week": "48W"
+  },
+  {
+    "model": "GAIA-P DUAL",
+    "count": 3,
+    "week": "48W"
   },
   {
     "model": "DRAGON DUAL",
-    "count": 2,
-    "week": "47W"
-  },
-  {
-    "model": "GAIA-P",
-    "count": 1,
-    "week": "47W"
+    "count": 3,
+    "week": "48W"
   },
   {
     "model": "GAIA-II",
     "count": 2,
-    "week": "47W"
-  },
-  {
-    "model": "SWS-I",
-    "count": 1,
-    "week": "47W"
+    "week": "48W"
   }
 ]
