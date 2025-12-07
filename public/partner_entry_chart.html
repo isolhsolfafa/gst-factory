@@ -37,9 +37,9 @@
         <div class="header">
             <h1>🏢 협력사 출입 현황 (일자별 관리)</h1>
             <div class="stats">
-                <div class="stat-item">📊 총 회사: 4개</div>
-                <div class="stat-item">👥 총 인원: 19명</div>
-                <div class="stat-item">🕐 생성일시: 2025년 12월 07일 08시 27분</div>
+                <div class="stat-item">📊 총 회사: 5개</div>
+                <div class="stat-item">👥 총 인원: 21명</div>
+                <div class="stat-item">🕐 생성일시: 2025년 12월 07일 12시 03분</div>
                 <div class="stat-item">📋 관리방식: 일자별 독립 관리</div>
             </div>
         </div>
@@ -52,11 +52,11 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_0')">
                 <div>
-                    <h3>🏗️ BAT (총 7명: 본사 0명, 현장 7명)</h3>
-                    <small style="opacity: 0.8;">상세: 현장 7명</small>
+                    <h3>🏗️ BAT (총 8명: 본사 0명, 현장 8명)</h3>
+                    <small style="opacity: 0.8;">상세: 현장 8명</small>
                 </div>
                 <div>
-                    <span class="summary-badge">퇴근미체크: 7명</span>
+                    <span class="summary-badge">퇴근미체크: 8명</span>
                     <span class="toggle-icon">▼</span>
                 </div>
             </div>
@@ -88,6 +88,15 @@
                     <td>김군</td>
                     <td>현장</td>
                     <td>2025. 12. 7 7:56:07</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>김춘동</td>
+                    <td>현장</td>
+                    <td>2025. 12. 7 8:33:47</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -380,14 +389,63 @@
             </div>
         </div>
         
+        <div class="company-section">
+            <div class="company-header" onclick="toggleCompany('company_4')">
+                <div>
+                    <h3>⚡ P&S (총 1명: 본사 1명, 현장 0명)</h3>
+                    <small style="opacity: 0.8;">상세: 본사 1명</small>
+                </div>
+                <div>
+                    <span class="summary-badge">퇴근미체크: 1명</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+            </div>
+            <div class="company-content" id="company_4">
+                <div class="date-buttons">
+                    📅 일자별 CSV 다운로드 (최근 7일):
+                    <button class="date-btn" onclick="downloadCSV('P&S', '2025_12_07')">12월 7일</button>
+                    <button class="date-btn" onclick="downloadCSV('P&S', '2025_12_06')">12월 6일</button>
+                    <button class="date-btn" onclick="downloadCSV('P&S', '2025_12_05')">12월 5일</button>
+                    <button class="date-btn" onclick="downloadCSV('P&S', '2025_12_04')">12월 4일</button>
+                    <button class="date-btn" onclick="downloadCSV('P&S', '2025_12_03')">12월 3일</button>
+                    <button class="date-btn" onclick="downloadCSV('P&S', '2025_12_02')">12월 2일</button>
+                    <button class="date-btn" onclick="downloadCSV('P&S', '2025_12_01')">12월 1일</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>담당 업무</th>
+                            <th>출근 시간</th>
+                            <th>퇴근 시간</th>
+                            <th>근무시간</th>
+                            <th>퇴근미체크</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>주용범</td>
+                    <td>본사</td>
+                    <td>2025. 12. 7 8:35:05</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
     </div>
 
     <script>
                  // 차트 데이터 (단순화 - 본사 vs 현장)
-         var companies = ["BAT", "FNI", "C&A", "NONE"];
-         var totals = [7, 6, 5, 1];
-         var hq_total_counts = [0, 0, 1, 0];
-         var factory_total_counts = [7, 6, 4, 1];
+         var companies = ["BAT", "FNI", "C&A", "NONE", "P&S"];
+         var totals = [8, 6, 5, 1, 1];
+         var hq_total_counts = [0, 0, 1, 0, 1];
+         var factory_total_counts = [8, 6, 4, 1, 0];
          
          // 협력사별 색상 정의
          var companyColors = {
