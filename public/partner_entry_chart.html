@@ -38,8 +38,8 @@
             <h1>🏢 협력사 출입 현황 (일자별 관리)</h1>
             <div class="stats">
                 <div class="stat-item">📊 총 회사: 7개</div>
-                <div class="stat-item">👥 총 인원: 93명</div>
-                <div class="stat-item">🕐 생성일시: 2025년 12월 24일 08시 29분</div>
+                <div class="stat-item">👥 총 인원: 95명</div>
+                <div class="stat-item">🕐 생성일시: 2025년 12월 24일 11시 59분</div>
                 <div class="stat-item">📋 관리방식: 일자별 독립 관리</div>
             </div>
         </div>
@@ -52,8 +52,8 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_0')">
                 <div>
-                    <h3>⚡ TMS(E) (총 22명: 본사 11명, 현장 11명)</h3>
-                    <small style="opacity: 0.8;">상세: 본사 11명, 현장 9명, 현장CHI 2명</small>
+                    <h3>⚡ TMS(E) (총 23명: 본사 11명, 현장 12명)</h3>
+                    <small style="opacity: 0.8;">상세: 본사 11명, 현장 10명, 현장CHI 2명</small>
                 </div>
                 <div>
                     <span class="summary-badge">퇴근미체크: 21명</span>
@@ -124,6 +124,15 @@
                     <td>김성규</td>
                     <td>현장CHI</td>
                     <td>2025. 12. 24 6:48:16</td>
+                    <td>2025. 12. 24 10:05:08</td>
+                    <td class="normal">2시간 0분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>김재호</td>
+                    <td>현장</td>
+                    <td>2025. 12. 24 8:46:05</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -510,11 +519,11 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_2')">
                 <div>
-                    <h3>⚡ C&A (총 16명: 본사 9명, 현장 7명)</h3>
-                    <small style="opacity: 0.8;">상세: 본사 6명, 본사CHI_1 1명, 본사CHI_2 2명, 현장 7명</small>
+                    <h3>⚡ C&A (총 17명: 본사 10명, 현장 7명)</h3>
+                    <small style="opacity: 0.8;">상세: 본사 6명, 본사CHI_1 1명, 본사CHI_2 3명, 현장 7명</small>
                 </div>
                 <div>
-                    <span class="summary-badge">퇴근미체크: 14명</span>
+                    <span class="summary-badge">퇴근미체크: 15명</span>
                     <span class="toggle-icon">▼</span>
                 </div>
             </div>
@@ -636,6 +645,15 @@
                     <td>이성훈</td>
                     <td>본사</td>
                     <td>2025. 12. 24 8:17:44</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>임영목</td>
+                    <td>본사CHI_2</td>
+                    <td>2025. 12. 24 8:46:02</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -1171,9 +1189,9 @@
     <script>
                  // 차트 데이터 (단순화 - 본사 vs 현장)
          var companies = ["TMS(E)", "FNI", "C&A", "BAT", "P&S", "TMS(M)", "NONE"];
-         var totals = [22, 20, 16, 15, 9, 6, 5];
-         var hq_total_counts = [11, 0, 9, 0, 3, 0, 0];
-         var factory_total_counts = [11, 20, 7, 15, 6, 6, 5];
+         var totals = [23, 20, 17, 15, 9, 6, 5];
+         var hq_total_counts = [11, 0, 10, 0, 3, 0, 0];
+         var factory_total_counts = [12, 20, 7, 15, 6, 6, 5];
          
          // 협력사별 색상 정의
          var companyColors = {
