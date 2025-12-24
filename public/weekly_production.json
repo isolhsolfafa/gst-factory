@@ -1,12 +1,7 @@
 [
   {
     "model": "GAIA-I DUAL",
-    "count": 25,
-    "week": "52W"
-  },
-  {
-    "model": "GAIA-I",
-    "count": 5,
+    "count": 22,
     "week": "52W"
   },
   {
@@ -16,12 +11,12 @@
   },
   {
     "model": "GAIA-P",
-    "count": 7,
+    "count": 5,
     "week": "52W"
   },
   {
-    "model": "GAIA-II DUAL",
-    "count": 1,
+    "model": "GAIA-I",
+    "count": 2,
     "week": "52W"
   }
 ]
