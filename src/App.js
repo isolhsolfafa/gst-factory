@@ -81,10 +81,11 @@ const getCurrentMonth = () => {
   return `${year}-${month}`;
 };
 
-const getCurrentWeek = () => {
-  const now = new Date();
-  const [year, week] = [now.getFullYear(), getWeekNumber(now)];
-  return `${year}년 ${week}주차`;
+const getISOWeekYear = (date) => {
+  const target = new Date(date.valueOf());
+  const dayNr = (date.getDay() + 6) % 7;
+  target.setDate(target.getDate() - dayNr + 3);
+  return target.getFullYear();
 };
 
 const getWeekNumber = (date) => {
@@ -98,6 +99,13 @@ const getWeekNumber = (date) => {
   }
   const weekNumber = 1 + Math.ceil((firstThursday - target) / 604800000);
   return weekNumber;
+};
+
+const getCurrentWeek = () => {
+  const now = new Date();
+  const year = getISOWeekYear(now);
+  const week = getWeekNumber(now);
+  return `${year}년 ${week}주차`;
 };
 
 // 공장 대시보드 컴포넌트
