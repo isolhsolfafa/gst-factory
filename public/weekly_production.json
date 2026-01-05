@@ -1,22 +1,42 @@
 [
   {
-    "model": "GAIA-P-II DUAL",
-    "count": 1,
-    "week": "1W"
+    "model": "GAIA-I",
+    "count": 5,
+    "week": "2W"
   },
   {
     "model": "GAIA-I DUAL",
-    "count": 2,
-    "week": "1W"
+    "count": 25,
+    "week": "2W"
   },
   {
     "model": "GAIA-II DUAL",
     "count": 2,
-    "week": "1W"
+    "week": "2W"
   },
   {
-    "model": "GAIA-P",
-    "count": 3,
-    "week": "1W"
+    "model": "GALLANT-C-II",
+    "count": 1,
+    "week": "2W"
+  },
+  {
+    "model": "DRAGON DUAL",
+    "count": 1,
+    "week": "2W"
+  },
+  {
+    "model": "GAIA-P DUAL",
+    "count": 1,
+    "week": "2W"
+  },
+  {
+    "model": "GAIA-II",
+    "count": 2,
+    "week": "2W"
+  },
+  {
+    "model": "SDS-500",
+    "count": 1,
+    "week": "2W"
   }
 ]
