@@ -1,22 +1,22 @@
 [
   {
-    "model": "GAIA-I",
-    "count": 5,
-    "week": "2W"
-  },
-  {
     "model": "GAIA-I DUAL",
-    "count": 25,
+    "count": 22,
     "week": "2W"
   },
   {
     "model": "GAIA-II DUAL",
-    "count": 2,
+    "count": 4,
     "week": "2W"
   },
   {
     "model": "GALLANT-C-II",
     "count": 1,
+    "week": "2W"
+  },
+  {
+    "model": "GAIA-I",
+    "count": 4,
     "week": "2W"
   },
   {
