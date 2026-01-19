@@ -149,7 +149,7 @@ const FactoryDashboard = () => {
         // 2. Fetch monthly production data and other info
         let headers = {};
         if (process.env.NODE_ENV !== 'development') {
-        const token = await getAccessTokenSilently();
+          const token = await getAccessTokenSilently();
           headers = { Authorization: `Bearer ${token}` };
         }
 
@@ -210,6 +210,15 @@ const PartnerDashboard = () => (
   <iframe
     src="/partner.html"
     title="Partner Dashboard"
+    style={{ width: '100%', height: '95vh', border: 'none' }}
+  />
+);
+
+// SCR 생산일정 대시보드 컴포넌트
+const ScrScheduleDashboard = () => (
+  <iframe
+    src="https://scr-schedule.netlify.app/"
+    title="SCR Schedule Dashboard"
     style={{ width: '100%', height: '95vh', border: 'none' }}
   />
 );
@@ -408,6 +417,9 @@ const App = () => {
         <Link to="/partner" style={{ textDecoration: 'none', flex: 1 }}>
           <button style={getButtonStyle('/partner')}>🤝 협력사 대시보드</button>
         </Link>
+        <Link to="/scr-schedule" style={{ textDecoration: 'none', flex: 1 }}>
+          <button style={getButtonStyle('/scr-schedule')}>✅ 생산일정</button>
+        </Link>
         <Link to="/internal" style={{ textDecoration: 'none', flex: 1 }}>
           <button style={getButtonStyle('/internal')}>🚨 불량 분석</button>
         </Link>
@@ -421,6 +433,7 @@ const App = () => {
           <Route path="/partner" element={<PartnerDashboard />} />
           <Route path="/internal" element={<InternalDashboard />} />
           <Route path="/cycle-time" element={<CTAnalysisProtected />} />
+          <Route path="/scr-schedule" element={<ScrScheduleDashboard />} />
         </Routes>
       </div>
     </div>
