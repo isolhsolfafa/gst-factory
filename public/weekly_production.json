@@ -1,17 +1,27 @@
 [
   {
     "model": "GAIA-I DUAL",
-    "count": 27,
+    "count": 30,
     "week": "6W"
   },
   {
     "model": "GAIA-P DUAL",
-    "count": 3,
+    "count": 2,
     "week": "6W"
   },
   {
     "model": "GAIA-P",
-    "count": 11,
+    "count": 3,
+    "week": "6W"
+  },
+  {
+    "model": "GAIA-I",
+    "count": 3,
+    "week": "6W"
+  },
+  {
+    "model": "GAIA-II DUAL",
+    "count": 1,
     "week": "6W"
   },
   {
@@ -22,11 +32,6 @@
   {
     "model": "SWS-I",
     "count": 1,
-    "week": "6W"
-  },
-  {
-    "model": "GAIA-I",
-    "count": 2,
     "week": "6W"
   }
 ]
