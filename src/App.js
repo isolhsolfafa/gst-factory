@@ -120,16 +120,37 @@ const FactoryDashboard = () => {
   const [error, setError] = useState(null);
 
   const { getAccessTokenSilently, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+  const [accessDenied, setAccessDenied] = useState(false);
+  const [accessDeniedMessage, setAccessDeniedMessage] = useState('');
+
+  useEffect(() => {
+    // URL에서 Auth0 에러 파라미터 확인
+    const urlParams = new URLSearchParams(window.location.search);
+    const errorParam = urlParams.get('error');
+    const errorDescription = urlParams.get('error_description');
+
+    if (errorParam === 'access_denied') {
+      setAccessDenied(true);
+      setAccessDeniedMessage(errorDescription || '접근이 거부되었습니다.');
+      // URL에서 에러 파라미터 제거
+      window.history.replaceState({}, document.title, window.location.pathname);
+      return;
+    }
+  }, []);
 
   useEffect(() => {
     // 개발 환경에서는 Auth0 인증 건너뛰기
     if (process.env.NODE_ENV === 'development') {
       return; // 개발 환경에서는 자동 로그인 리다이렉트 비활성화
     }
+    // 접근 거부 상태면 리다이렉트 하지 않음
+    if (accessDenied) {
+      return;
+    }
     if (!isLoading && !isAuthenticated) {
       loginWithRedirect();  // Automatically redirect to login
     }
-  }, [isLoading, isAuthenticated]);
+  }, [isLoading, isAuthenticated, accessDenied]);
 
   useEffect(() => {
     // 개발 환경에서는 인증 확인 건너뛰기
@@ -173,6 +194,52 @@ const FactoryDashboard = () => {
   }, [isAuthenticated, getAccessTokenSilently]); // 개발 환경에서도 데이터 로드
 
   const currentTime = formatDateTime(new Date());
+
+  // 접근 거부 시 메시지 표시
+  if (accessDenied) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        fontFamily: 'sans-serif',
+        backgroundColor: '#f5f5f5'
+      }}>
+        <div style={{
+          backgroundColor: 'white',
+          padding: '40px',
+          borderRadius: '10px',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+          textAlign: 'center',
+          maxWidth: '400px'
+        }}>
+          <h2 style={{ color: '#e74c3c', marginBottom: '20px' }}>접근 제한</h2>
+          <p style={{ color: '#666', marginBottom: '20px', lineHeight: '1.6' }}>
+            {accessDeniedMessage}
+          </p>
+          <button
+            onClick={() => {
+              setAccessDenied(false);
+              loginWithRedirect();
+            }}
+            style={{
+              backgroundColor: '#3498db',
+              color: 'white',
+              border: 'none',
+              padding: '12px 24px',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              fontSize: '14px'
+            }}
+          >
+            다시 로그인
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
