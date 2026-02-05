@@ -119,7 +119,7 @@ const FactoryDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { getAccessTokenSilently, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
+  const { getAccessTokenSilently, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
   const [accessDenied, setAccessDenied] = useState(false);
   const [accessDeniedMessage, setAccessDeniedMessage] = useState('');
 
@@ -221,8 +221,7 @@ const FactoryDashboard = () => {
           </p>
           <button
             onClick={() => {
-              setAccessDenied(false);
-              loginWithRedirect();
+              logout({ logoutParams: { returnTo: window.location.origin } });
             }}
             style={{
               backgroundColor: '#3498db',
@@ -231,11 +230,15 @@ const FactoryDashboard = () => {
               padding: '12px 24px',
               borderRadius: '5px',
               cursor: 'pointer',
-              fontSize: '14px'
+              fontSize: '14px',
+              marginRight: '10px'
             }}
           >
-            다시 로그인
+            다른 계정으로 로그인
           </button>
+          <p style={{ color: '#999', fontSize: '12px', marginTop: '20px' }}>
+            승인 요청: 관리자에게 문의하세요
+          </p>
         </div>
       </div>
     );
