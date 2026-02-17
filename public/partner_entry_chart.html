@@ -38,8 +38,8 @@
             <h1>🏢 협력사 출입 현황 (일자별 관리)</h1>
             <div class="stats">
                 <div class="stat-item">📊 총 회사: 1개</div>
-                <div class="stat-item">👥 총 인원: 2명</div>
-                <div class="stat-item">🕐 생성일시: 2026년 02월 16일 20시 53분</div>
+                <div class="stat-item">👥 총 인원: 1명</div>
+                <div class="stat-item">🕐 생성일시: 2026년 02월 18일 08시 41분</div>
                 <div class="stat-item">📋 관리방식: 일자별 독립 관리</div>
             </div>
         </div>
@@ -52,8 +52,8 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_0')">
                 <div>
-                    <h3>🏗️ TMS(M) (총 2명: 본사 0명, 현장 2명)</h3>
-                    <small style="opacity: 0.8;">상세: 현장 2명</small>
+                    <h3>🏗️ TMS(M) (총 1명: 본사 0명, 현장 1명)</h3>
+                    <small style="opacity: 0.8;">상세: 현장 1명</small>
                 </div>
                 <div>
                     <span class="summary-badge">퇴근미체크: 1명</span>
@@ -63,13 +63,13 @@
             <div class="company-content" id="company_0">
                 <div class="date-buttons">
                     📅 일자별 CSV 다운로드 (최근 7일):
+                    <button class="date-btn" onclick="downloadCSV('TMS(M)', '2026_02_18')">2월 18일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(M)', '2026_02_17')">2월 17일</button>
                     <button class="date-btn" onclick="downloadCSV('TMS(M)', '2026_02_16')">2월 16일</button>
                     <button class="date-btn" onclick="downloadCSV('TMS(M)', '2026_02_15')">2월 15일</button>
                     <button class="date-btn" onclick="downloadCSV('TMS(M)', '2026_02_14')">2월 14일</button>
                     <button class="date-btn" onclick="downloadCSV('TMS(M)', '2026_02_13')">2월 13일</button>
                     <button class="date-btn" onclick="downloadCSV('TMS(M)', '2026_02_12')">2월 12일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(M)', '2026_02_11')">2월 11일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(M)', '2026_02_10')">2월 10일</button>
                 </div>
                 <table>
                     <thead>
@@ -85,18 +85,9 @@
                     <tbody>
                         
                 <tr>
-                    <td>양윤</td>
+                    <td>이동민</td>
                     <td>현장</td>
-                    <td>2026. 2. 16 7:55:03</td>
-                    <td>2026. 2. 16 17:04:51</td>
-                    <td class="normal">7시간 25분</td>
-                    <td>아니오</td>
-                </tr>
-            
-                <tr>
-                    <td>이선만</td>
-                    <td>현장</td>
-                    <td>2026. 2. 16 8:18:51</td>
+                    <td>2026. 2. 18 7:40:35</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -112,9 +103,9 @@
     <script>
                  // 차트 데이터 (단순화 - 본사 vs 현장)
          var companies = ["TMS(M)"];
-         var totals = [2];
+         var totals = [1];
          var hq_total_counts = [0];
-         var factory_total_counts = [2];
+         var factory_total_counts = [1];
          
          // 협력사별 색상 정의
          var companyColors = {
@@ -158,7 +149,7 @@
          };
         
         var layout = {
-            title: '협력사별 출입 현황 (2026. 2. 16)',
+            title: '협력사별 출입 현황 (2026. 2. 18)',
             xaxis: { title: '회사명' },
             yaxis: { title: '인원 수' },
             barmode: 'stack',
