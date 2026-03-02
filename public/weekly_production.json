@@ -1,27 +1,32 @@
 [
   {
     "model": "GAIA-P",
-    "count": 3,
-    "week": "8W"
+    "count": 9,
+    "week": "10W"
   },
   {
     "model": "GAIA-I DUAL",
-    "count": 24,
-    "week": "8W"
-  },
-  {
-    "model": "GAIA-I",
-    "count": 2,
-    "week": "8W"
+    "count": 14,
+    "week": "10W"
   },
   {
     "model": "SWS-I",
     "count": 4,
-    "week": "8W"
+    "week": "10W"
+  },
+  {
+    "model": "GAIA-P DUAL",
+    "count": 2,
+    "week": "10W"
+  },
+  {
+    "model": "GAIA-I",
+    "count": 8,
+    "week": "10W"
   },
   {
     "model": "DRAGON DUAL",
-    "count": 2,
-    "week": "8W"
+    "count": 4,
+    "week": "10W"
   }
 ]
