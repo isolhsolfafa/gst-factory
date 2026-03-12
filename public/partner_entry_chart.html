@@ -38,8 +38,8 @@
             <h1>🏢 협력사 출입 현황 (일자별 관리)</h1>
             <div class="stats">
                 <div class="stat-item">📊 총 회사: 6개</div>
-                <div class="stat-item">👥 총 인원: 60명</div>
-                <div class="stat-item">🕐 생성일시: 2026년 03월 12일 18시 59분</div>
+                <div class="stat-item">👥 총 인원: 63명</div>
+                <div class="stat-item">🕐 생성일시: 2026년 03월 12일 20시 43분</div>
                 <div class="stat-item">📋 관리방식: 일자별 독립 관리</div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                     <small style="opacity: 0.8;">상세: 본사 9명, 본사CHI_1 2명, 본사CHI_2 6명, 현장 4명</small>
                 </div>
                 <div>
-                    <span class="summary-badge">퇴근미체크: 12명</span>
+                    <span class="summary-badge">퇴근미체크: 7명</span>
                     <span class="toggle-icon">▼</span>
                 </div>
             </div>
@@ -97,18 +97,18 @@
                     <td>김우람</td>
                     <td>본사</td>
                     <td>2026. 3. 12 7:49:38</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
+                    <td>2026. 3. 12 20:00:31</td>
+                    <td class="normal">9시간 21분</td>
+                    <td>아니오</td>
                 </tr>
             
                 <tr>
                     <td>라경숙</td>
                     <td>본사CHI_2</td>
                     <td>2026. 3. 12 7:47:32</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
+                    <td>2026. 3. 12 19:58:47</td>
+                    <td class="normal">9시간 19분</td>
+                    <td>아니오</td>
                 </tr>
             
                 <tr>
@@ -196,9 +196,9 @@
                     <td>이영찬</td>
                     <td>본사CHI_2</td>
                     <td>2026. 3. 12 7:55:53</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
+                    <td>2026. 3. 12 20:00:22</td>
+                    <td class="normal">9시간 20분</td>
+                    <td>아니오</td>
                 </tr>
             
                 <tr>
@@ -214,9 +214,9 @@
                     <td>임영대</td>
                     <td>본사CHI_2</td>
                     <td>2026. 3. 12 8:54:33</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
+                    <td>2026. 3. 12 19:59:33</td>
+                    <td class="normal">8시간 25분</td>
+                    <td>아니오</td>
                 </tr>
             
                 <tr>
@@ -241,9 +241,9 @@
                     <td>조성호</td>
                     <td>현장</td>
                     <td>2026. 3. 12 7:49:38</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
+                    <td>2026. 3. 12 20:01:21</td>
+                    <td class="normal">9시간 21분</td>
+                    <td>아니오</td>
                 </tr>
             
                 <tr>
@@ -281,6 +281,199 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_1')">
                 <div>
+                    <h3>⚡ TMS(E) (총 17명: 본사 7명, 현장 10명)</h3>
+                    <small style="opacity: 0.8;">상세: 본사 7명, 현장 9명, 현장CHI 1명</small>
+                </div>
+                <div>
+                    <span class="summary-badge">퇴근미체크: 6명</span>
+                    <span class="toggle-icon">▼</span>
+                </div>
+            </div>
+            <div class="company-content" id="company_1">
+                <div class="date-buttons">
+                    📅 일자별 CSV 다운로드 (최근 7일):
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_12')">3월 12일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_11')">3월 11일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_10')">3월 10일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_09')">3월 9일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_08')">3월 8일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_07')">3월 7일</button>
+                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_06')">3월 6일</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>담당 업무</th>
+                            <th>출근 시간</th>
+                            <th>퇴근 시간</th>
+                            <th>근무시간</th>
+                            <th>퇴근미체크</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                <tr>
+                    <td>공종필</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 7:37:06</td>
+                    <td>2026. 3. 12 19:29:06</td>
+                    <td class="normal">8시간 49분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>김단국</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 19:34:37</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>김삼구</td>
+                    <td>본사</td>
+                    <td>2026. 3. 12 16:54:29</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>김상명</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 7:03:43</td>
+                    <td>2026. 3. 12 19:34:44</td>
+                    <td class="normal">8시간 55분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>김재호</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 7:26:37</td>
+                    <td>2026. 3. 12 19:37:07</td>
+                    <td class="normal">8시간 57분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>김주용</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 8:30:27</td>
+                    <td>2026. 3. 12 19:37:01</td>
+                    <td class="normal">8시간 27분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>김창조</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 6:55:13</td>
+                    <td>2026. 3. 12 19:26:37</td>
+                    <td class="normal">8시간 47분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>김형석</td>
+                    <td>본사</td>
+                    <td>2026. 3. 12 7:48:33</td>
+                    <td>2026. 3. 12 19:59:59</td>
+                    <td class="normal">9시간 20분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>오세훈</td>
+                    <td>본사</td>
+                    <td>2026. 3. 12 7:52:17</td>
+                    <td>2026. 3. 12 19:58:19</td>
+                    <td class="normal">9시간 18분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>오정석</td>
+                    <td>본사</td>
+                    <td>2026. 3. 12 7:54:06</td>
+                    <td>2026. 3. 12 19:55:45</td>
+                    <td class="normal">9시간 16분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>우강</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 19:34:48</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>윤금봉</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 19:34:33</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>윤성구</td>
+                    <td>본사</td>
+                    <td>2026. 3. 12 7:55:53</td>
+                    <td>2026. 3. 12 19:57:01</td>
+                    <td class="normal">9시간 17분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>이종광</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 7:51:54</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>이효주</td>
+                    <td>본사</td>
+                    <td>2026. 3. 12 7:54:53</td>
+                    <td>2026. 3. 12 19:55:41</td>
+                    <td class="normal">9시간 16분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>전준룡</td>
+                    <td>본사</td>
+                    <td>2026. 3. 12 7:34:56</td>
+                    <td>2026. 3. 12 19:56:32</td>
+                    <td class="normal">9시간 17분</td>
+                    <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>황금산</td>
+                    <td>현장CHI</td>
+                    <td>2026. 3. 12 7:50:36</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="company-section">
+            <div class="company-header" onclick="toggleCompany('company_2')">
+                <div>
                     <h3>🏗️ BAT (총 14명: 본사 0명, 현장 14명)</h3>
                     <small style="opacity: 0.8;">상세: 현장 14명</small>
                 </div>
@@ -289,7 +482,7 @@
                     <span class="toggle-icon">▼</span>
                 </div>
             </div>
-            <div class="company-content" id="company_1">
+            <div class="company-content" id="company_2">
                 <div class="date-buttons">
                     📅 일자별 CSV 다운로드 (최근 7일):
                     <button class="date-btn" onclick="downloadCSV('BAT', '2026_03_12')">3월 12일</button>
@@ -445,172 +638,6 @@
         </div>
         
         <div class="company-section">
-            <div class="company-header" onclick="toggleCompany('company_2')">
-                <div>
-                    <h3>⚡ TMS(E) (총 14명: 본사 7명, 현장 7명)</h3>
-                    <small style="opacity: 0.8;">상세: 본사 7명, 현장 6명, 현장CHI 1명</small>
-                </div>
-                <div>
-                    <span class="summary-badge">퇴근미체크: 13명</span>
-                    <span class="toggle-icon">▼</span>
-                </div>
-            </div>
-            <div class="company-content" id="company_2">
-                <div class="date-buttons">
-                    📅 일자별 CSV 다운로드 (최근 7일):
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_12')">3월 12일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_11')">3월 11일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_10')">3월 10일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_09')">3월 9일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_08')">3월 8일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_07')">3월 7일</button>
-                    <button class="date-btn" onclick="downloadCSV('TMS(E)', '2026_03_06')">3월 6일</button>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>이름</th>
-                            <th>담당 업무</th>
-                            <th>출근 시간</th>
-                            <th>퇴근 시간</th>
-                            <th>근무시간</th>
-                            <th>퇴근미체크</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                <tr>
-                    <td>공종필</td>
-                    <td>현장</td>
-                    <td>2026. 3. 12 7:37:06</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김삼구</td>
-                    <td>본사</td>
-                    <td>2026. 3. 12 16:54:29</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김상명</td>
-                    <td>현장</td>
-                    <td>2026. 3. 12 7:03:43</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김재호</td>
-                    <td>현장</td>
-                    <td>2026. 3. 12 7:26:37</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김주용</td>
-                    <td>현장</td>
-                    <td>2026. 3. 12 8:30:27</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김창조</td>
-                    <td>현장</td>
-                    <td>2026. 3. 12 6:55:13</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>김형석</td>
-                    <td>본사</td>
-                    <td>2026. 3. 12 7:48:33</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>오세훈</td>
-                    <td>본사</td>
-                    <td>2026. 3. 12 7:52:17</td>
-                    <td>2026. 3. 12 08:03:47</td>
-                    <td class="normal">0시간 4분</td>
-                    <td>아니오</td>
-                </tr>
-            
-                <tr>
-                    <td>오정석</td>
-                    <td>본사</td>
-                    <td>2026. 3. 12 7:54:06</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>윤성구</td>
-                    <td>본사</td>
-                    <td>2026. 3. 12 7:55:53</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>이종광</td>
-                    <td>현장</td>
-                    <td>2026. 3. 12 7:51:54</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>이효주</td>
-                    <td>본사</td>
-                    <td>2026. 3. 12 7:54:53</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>전준룡</td>
-                    <td>본사</td>
-                    <td>2026. 3. 12 7:34:56</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>황금산</td>
-                    <td>현장CHI</td>
-                    <td>2026. 3. 12 7:50:36</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_3')">
                 <div>
                     <h3>🏢 NONE (총 8명: 본사 0명, 현장 8명)</h3>
@@ -646,18 +673,18 @@
                     <tbody>
                         
                 <tr>
-                    <td>김동범</td>
+                    <td>박성민</td>
                     <td>현장</td>
-                    <td>2026. 3. 12 7:30:27</td>
+                    <td>2026. 3. 12 7:55:38</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
                 </tr>
             
                 <tr>
-                    <td>박성민</td>
+                    <td>박인호</td>
                     <td>현장</td>
-                    <td>2026. 3. 12 7:55:38</td>
+                    <td>2026. 3. 12 19:36:26</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -676,6 +703,15 @@
                     <td>심령수</td>
                     <td>현장</td>
                     <td>2026. 3. 12 7:45:27</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
+                    <td>윤성연</td>
+                    <td>현장</td>
+                    <td>2026. 3. 12 19:56:45</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -703,15 +739,6 @@
                     <td>한상허</td>
                     <td>현장</td>
                     <td>2026. 3. 12 8:04:02</td>
-                    <td><span class="missing">미체크</span></td>
-                    <td class="missing">0시간 0분</td>
-                    <td>예</td>
-                </tr>
-            
-                <tr>
-                    <td>홍현호</td>
-                    <td>현장</td>
-                    <td>2026. 3. 12 7:35:35</td>
                     <td><span class="missing">미체크</span></td>
                     <td class="missing">0시간 0분</td>
                     <td>예</td>
@@ -833,10 +860,10 @@
 
     <script>
                  // 차트 데이터 (단순화 - 본사 vs 현장)
-         var companies = ["C&A", "BAT", "TMS(E)", "NONE", "TMS(M)", "FNI"];
-         var totals = [21, 14, 14, 8, 2, 1];
-         var hq_total_counts = [17, 0, 7, 0, 0, 0];
-         var factory_total_counts = [4, 14, 7, 8, 2, 1];
+         var companies = ["C&A", "TMS(E)", "BAT", "NONE", "TMS(M)", "FNI"];
+         var totals = [21, 17, 14, 8, 2, 1];
+         var hq_total_counts = [17, 7, 0, 0, 0, 0];
+         var factory_total_counts = [4, 10, 14, 8, 2, 1];
          
          // 협력사별 색상 정의
          var companyColors = {
