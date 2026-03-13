@@ -38,8 +38,8 @@
             <h1>🏢 협력사 출입 현황 (일자별 관리)</h1>
             <div class="stats">
                 <div class="stat-item">📊 총 회사: 6개</div>
-                <div class="stat-item">👥 총 인원: 52명</div>
-                <div class="stat-item">🕐 생성일시: 2026년 03월 13일 18시 55분</div>
+                <div class="stat-item">👥 총 인원: 54명</div>
+                <div class="stat-item">🕐 생성일시: 2026년 03월 13일 20시 45분</div>
                 <div class="stat-item">📋 관리방식: 일자별 독립 관리</div>
             </div>
         </div>
@@ -52,11 +52,11 @@
         <div class="company-section">
             <div class="company-header" onclick="toggleCompany('company_0')">
                 <div>
-                    <h3>⚡ C&A (총 17명: 본사 14명, 현장 3명)</h3>
-                    <small style="opacity: 0.8;">상세: 본사 9명, 본사CHI_1 1명, 본사CHI_2 4명, 현장 3명</small>
+                    <h3>⚡ C&A (총 19명: 본사 16명, 현장 3명)</h3>
+                    <small style="opacity: 0.8;">상세: 본사 9명, 본사CHI_1 1명, 본사CHI_2 6명, 현장 3명</small>
                 </div>
                 <div>
-                    <span class="summary-badge">퇴근미체크: 3명</span>
+                    <span class="summary-badge">퇴근미체크: 5명</span>
                     <span class="toggle-icon">▼</span>
                 </div>
             </div>
@@ -175,6 +175,15 @@
                 </tr>
             
                 <tr>
+                    <td>이영찬</td>
+                    <td>본사CHI_2</td>
+                    <td>2026. 3. 13 20:00:23</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
+                </tr>
+            
+                <tr>
                     <td>이우성</td>
                     <td>본사</td>
                     <td>2026. 3. 13 7:55:20</td>
@@ -217,6 +226,15 @@
                     <td>2026. 3. 13 16:31:12</td>
                     <td class="normal">6시간 51분</td>
                     <td>아니오</td>
+                </tr>
+            
+                <tr>
+                    <td>한상준</td>
+                    <td>본사CHI_2</td>
+                    <td>2026. 3. 13 20:00:31</td>
+                    <td><span class="missing">미체크</span></td>
+                    <td class="missing">0시간 0분</td>
+                    <td>예</td>
                 </tr>
             
                 <tr>
@@ -762,8 +780,8 @@
     <script>
                  // 차트 데이터 (단순화 - 본사 vs 현장)
          var companies = ["C&A", "TMS(E)", "BAT", "NONE", "TMS(M)", "FNI"];
-         var totals = [17, 16, 12, 4, 2, 1];
-         var hq_total_counts = [14, 6, 0, 0, 0, 0];
+         var totals = [19, 16, 12, 4, 2, 1];
+         var hq_total_counts = [16, 6, 0, 0, 0, 0];
          var factory_total_counts = [3, 10, 12, 4, 2, 1];
          
          // 협력사별 색상 정의
